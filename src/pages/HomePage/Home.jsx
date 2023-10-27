@@ -2,8 +2,10 @@ import { Box, Text, useMediaQuery, Link, Button } from '@chakra-ui/react';
 import { BsSteam } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 
-import BackgroundVideo from '../components/BackgroundVideo';
-import Header from '../components/Header';
+import BackgroundVideo from '../../components/BackgroundVideo';
+import Header from '../../components/Header';
+import HomeNews from '../../components/HomeNews';
+import BattleSection from './Sections/BattleSection';
 
 function Home() {
   const mainContainerStyle = {
@@ -97,8 +99,8 @@ function Home() {
         top="0"
         left="0"
         zIndex="1"
-        width="100%"
-        height="100%"
+        width="inherit"
+        height="100vh"
         position="absolute"
       >
         <Box style={headerStyle}>
@@ -159,6 +161,10 @@ function Home() {
             </Box>
           </motion.div>
         </Box>
+        <Box display="flex" color="#f51" marginLeft="350px" marginTop="20px">
+          <HomeNews />
+        </Box>
+        <BattleSection />
       </Box>
     </Box>
   );

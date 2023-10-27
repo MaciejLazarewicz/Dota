@@ -6,7 +6,8 @@ function BackgroundVideo() {
       <video
         autoPlay
         loop
-        style={{ width: '100vw', height: '75vh', objectFit: 'cover' }}
+        muted
+        style={{ width: '100%', height: '80%', objectFit: 'cover' }}
       >
         <source
           src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/homepage/dota_montage_webm.webm"
