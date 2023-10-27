@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 
 import BackgroundVideo from '../../components/BackgroundVideo';
 import Header from '../../components/Header';
-import HomeNews from '../../components/HomeNews';
+import HomeNews from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
+import ChooseSection from './Sections/ChooseSection';
 
 function Home() {
   const mainContainerStyle = {
@@ -92,7 +93,7 @@ function Home() {
   };
 
   return (
-    <Box style={mainContainerStyle}>
+    <Box style={mainContainerStyle} background="#000000">
       <BackgroundVideo />
       <Box
         background="rgba(0,0,0,0.7)"
@@ -165,6 +166,7 @@ function Home() {
           <HomeNews />
         </Box>
         <BattleSection />
+        <ChooseSection />
       </Box>
     </Box>
   );

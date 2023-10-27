@@ -14,6 +14,7 @@ import { TbWorld } from 'react-icons/tb';
 import { BsSteam } from 'react-icons/bs';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
+import CommonButton from './constants/CommonButton';
 
 const FONT_DATA = {
   color: ' #f5f4f5d1',
@@ -23,8 +24,6 @@ const FONT_DATA = {
   //   color: '#F5F4F5',
   // },
 };
-
-const GAME_DATA = {};
 
 function Header() {
   const [isMenuHovered, setMenuHovered] = useState(false);
@@ -147,17 +146,10 @@ function Header() {
         {breakPoint1200 ? null : (
           <Box display="flex">
             <Link href="https://store.steampowered.com/app/570/Dota_2/">
-              <Button
-                fontSize="15px"
-                border="1px solid #f51"
-                height="50px"
-                width="200px"
-                bgColor="transparent"
-                cursor="pointer"
-              >
+              <CommonButton>
                 <BsSteam />
                 Graj za darmo
-              </Button>
+              </CommonButton>
             </Link>
           </Box>
         )}

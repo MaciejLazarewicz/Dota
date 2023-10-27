@@ -1,6 +1,6 @@
 import { Box, Link, Text } from '@chakra-ui/react';
 
-function HomeNews() {
+function NewsSection() {
   return (
     <Box display="flex" flexDir="column">
       <Box display="flex" flexDir="row" gap="20px">
@@ -24,4 +24,4 @@ function HomeNews() {
   );
 }
 
-export default HomeNews;
+export default NewsSection;
