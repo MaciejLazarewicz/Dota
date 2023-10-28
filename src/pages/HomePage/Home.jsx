@@ -1,4 +1,4 @@
-import { Box, Text, useMediaQuery, Link, Button } from '@chakra-ui/react';
+import { Box, Text, Link, Button } from '@chakra-ui/react';
 import { BsSteam } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 
@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import HomeNews from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
+import { useBreakpoint } from '../../components/constants/BreakPoints';
 
 function Home() {
   const mainContainerStyle = {
@@ -47,11 +48,11 @@ function Home() {
   const defaultScreenTextStyle = {
     fontSize: '60px',
   };
-  const [breakPoint300] = useMediaQuery('(max-width: 300px)');
-  const [breakPoint350] = useMediaQuery('(max-width: 350px)');
-  const [breakPoint450] = useMediaQuery('(max-width: 450px)');
-  const [breakPoint550] = useMediaQuery('(max-width: 550px)');
-  const [breakPoint700] = useMediaQuery('(max-width: 700px)');
+  const [breakPoint300] = useBreakpoint('isBreakPoint300');
+  const [breakPoint350] = useBreakpoint('isBreakPoint350');
+  const [breakPoint450] = useBreakpoint('isBreakPoint450');
+  const [breakPoint550] = useBreakpoint('isBreakPoint550');
+  const [breakPoint700] = useBreakpoint('isBreakPoint700');
 
   const textBoxStyle = {
     display: 'flex',
@@ -93,7 +94,7 @@ function Home() {
   };
 
   return (
-    <Box style={mainContainerStyle} background="#000000">
+    <Box style={mainContainerStyle}>
       <BackgroundVideo />
       <Box
         background="rgba(0,0,0,0.7)"
@@ -119,7 +120,7 @@ function Home() {
               </Text>
               <Box
                 width="300px"
-                color="#f51"
+                color="#919FA6"
                 fontSize="20px"
                 display="flex"
                 flexDir="column"
@@ -127,7 +128,7 @@ function Home() {
                 <Text margin="0">DESTRUCTOID</Text>
 
                 <Box
-                  width="100px"
+                  width="80px"
                   marginTop="15px"
                   orientation="horizontal"
                   height="3px"

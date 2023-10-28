@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-const AnimatedText = ({ children }) => {
+const BottomAnimation = ({ children }) => {
+  const [ref, inView] = useInView();
   const textStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -9,8 +11,9 @@ const AnimatedText = ({ children }) => {
   };
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
       transition={{ duration: 1 }}
       style={textStyle}
     >
@@ -19,4 +22,4 @@ const AnimatedText = ({ children }) => {
   );
 };
 
-export default AnimatedText;
+export default BottomAnimation;

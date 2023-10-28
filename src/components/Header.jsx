@@ -8,13 +8,13 @@ import {
   Link,
   Img,
   Text,
-  useMediaQuery,
 } from '@chakra-ui/react';
 import { TbWorld } from 'react-icons/tb';
 import { BsSteam } from 'react-icons/bs';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import CommonButton from './constants/CommonButton';
+import { useBreakpoint } from './constants/BreakPoints';
 
 const FONT_DATA = {
   color: ' #f5f4f5d1',
@@ -27,10 +27,10 @@ const FONT_DATA = {
 
 function Header() {
   const [isMenuHovered, setMenuHovered] = useState(false);
-  const [breakPoint1300] = useMediaQuery('(max-width: 1300px)'); //DOTA
-  const [breakPoint1200] = useMediaQuery('(max-width: 1200px)'); //GRAJ ZA DARMO
-  const [breakPoint900] = useMediaQuery('(max-width: 900px)'); // LOGO
-  const [breakPoint700] = useMediaQuery('(max-width: 700px)'); // HAMBURGER
+  const [breakPoint700] = useBreakpoint('isBreakPoint700'); // HAMBURGER
+  const [breakPoint900] = useBreakpoint('isBreakPoint900'); // LOGO
+  const [breakPoint1200] = useBreakpoint('isBreakPoint1200'); //GRAJ ZA DARMO
+  const [breakPoint1300] = useBreakpoint('isBreakPoint1300'); //DOTA
 
   return (
     <Box
