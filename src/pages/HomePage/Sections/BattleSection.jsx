@@ -1,13 +1,11 @@
-import { Box, Image, Text, useMediaQuery } from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
 import CommonButton from '../../../components/constants/CommonButton';
-import AnimatedText from '../../../components/constants/BottomAnimation';
-
-export const textStyle = {
-  fontFamily: 'Young Serif, serif',
-};
+import BottomAnimation from '../../../components/constants/BottomAnimation';
+import { fontFamily } from '../../../components/constants/FontFamily';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function BattleSection() {
-  const [isBreakPoint1200] = useMediaQuery('(max-width: 1200px)');
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
 
   return (
     <Box
@@ -49,14 +47,14 @@ function BattleSection() {
         width="80%"
         left="10%"
       >
-        <AnimatedText>
+        <BottomAnimation>
           <Text
             marginBottom="0"
             textTransform="uppercase"
             fontSize="70px"
             color="rgba(226,218,206,.5647058824)"
             letterSpacing="2px"
-            style={textStyle}
+            style={fontFamily}
           >
             Dołącz do
           </Text>
@@ -67,11 +65,11 @@ function BattleSection() {
             fontSize="100px"
             color="#e2dace"
             letterSpacing="2px"
-            style={textStyle}
+            style={fontFamily}
           >
             bitwy starożytnych
           </Text>
-        </AnimatedText>
+        </BottomAnimation>
 
         <Box
           width="80px"

@@ -1,7 +1,8 @@
 import { Box, Text } from '@chakra-ui/react';
 import CommonButton from '../../../components/constants/CommonButton';
 import Gradient from '../../../components/constants/Gradient';
-import { textStyle } from './BattleSection';
+import { fontFamily } from '../../../components/constants/FontFamily';
+import BottomAnimation from '../../../components/constants/BottomAnimation';
 
 function ChooseSection() {
   return (
@@ -26,24 +27,26 @@ function ChooseSection() {
         lineHeight="105%"
         color="#e2dace"
       >
-        <Text
-          color="rgba(226,218,206,.5647058824)"
-          textTransform="uppercase"
-          marginBottom="30px"
-          fontSize="50px"
-          style={textStyle}
-        >
-          Kogo
-        </Text>
-        <Text
-          textTransform="uppercase"
-          marginTop="30px"
-          marginBottom="30px"
-          fontSize="100px"
-          style={textStyle}
-        >
-          Wybierzesz ?
-        </Text>
+        <BottomAnimation>
+          <Text
+            color="rgba(226,218,206,.5647058824)"
+            textTransform="uppercase"
+            marginBottom="30px"
+            fontSize="70px"
+            style={fontFamily}
+          >
+            Kogo
+          </Text>
+          <Text
+            textTransform="uppercase"
+            marginTop="30px"
+            marginBottom="30px"
+            fontSize="100px"
+            style={fontFamily}
+          >
+            Wybierzesz ?
+          </Text>
+        </BottomAnimation>
         <Box
           width="80px"
           height="3px"

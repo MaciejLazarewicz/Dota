@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 
 import { Box } from '@chakra-ui/react';
+
+export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
+
 function Hero() {
-  const [hero, setHero] = useState([]);
+  const [heroes, setHeroes] = useState([]);
   useEffect(() => {
     const fetchHero = async () => {
       try {
@@ -12,7 +15,7 @@ function Hero() {
         }
 
         const heroData = await response.json();
-        setHero(heroData);
+        setHeroes(heroData);
       } catch (error) {
         console.error('Error fetching heroes:', error);
       }
@@ -20,12 +23,11 @@ function Hero() {
 
     fetchHero();
   }, []);
-  const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
   return (
     <Box width="90%">
       <ul>
-        {hero.map((hero) => (
+        {heroes.map((hero) => (
           <li key={hero.id}>
             {hero.localized_name}
             <img
