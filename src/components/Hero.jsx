@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Box } from '@chakra-ui/react';
+import HeroGrid from './HeroGrid';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
@@ -26,17 +27,16 @@ function Hero() {
 
   return (
     <Box width="90%">
-      <ul>
-        {heroes.map((hero) => (
-          <li key={hero.id}>
-            {hero.localized_name}
-            <img
-              src={`${PUBLIC_DOMAIN}${hero.img}`}
-              alt={hero.localized_name}
-            />
-          </li>
-        ))}
-      </ul>
+      {heroes.map((hero) => (
+        <HeroGrid
+          key={hero.id}
+          name={hero.localized_name}
+          img={`${PUBLIC_DOMAIN}${hero.img}`}
+          alt={hero.localized_name}
+          icon={`${PUBLIC_DOMAIN}${hero.primary_attr.icon}`}
+          prim={hero.primary_attr}
+        />
+      ))}
     </Box>
   );
 }

@@ -8,6 +8,8 @@ import HomeNews from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
 import { useBreakpoint } from '../../components/constants/BreakPoints';
+import HeroGrid from '../../components/HeroGrid';
+import Hero from '../../components/Hero';
 
 function Home() {
   const mainContainerStyle = {
@@ -168,13 +170,11 @@ function Home() {
         </Box>
         <BattleSection />
         <ChooseSection />
+
+        <HeroGrid />
       </Box>
     </Box>
   );
 }
 
 export default Home;
-
-// style={
-//               breakPoint550 ? smallScreenTextBoxStyle : largeScreenTextBoxStyle
-//             }
