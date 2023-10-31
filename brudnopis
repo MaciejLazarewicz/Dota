@@ -1,0 +1,8 @@
+<ul>
+  {heroes.map((hero) => (
+  <li key="{hero.id}">
+    {hero.localized_name}
+    <img src="{`${PUBLIC_DOMAIN}${hero.img}`}" alt="{hero.localized_name}" />
+  </li>
+  ))}
+</ul>
