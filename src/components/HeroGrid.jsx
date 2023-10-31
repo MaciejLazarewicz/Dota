@@ -1,16 +1,54 @@
 import { Box } from '@chakra-ui/react';
 
-function HeroGrid({ name, img, alt, icon, prim }) {
+function HeroGrid({ name, img, alt, prim, icon }) {
+  const transformBackendAttributeIntoReadableOne = (attr) => {
+    switch (attr) {
+      case 'agi':
+        return 'agility';
+      case 'str':
+        return 'strength';
+      case 'int':
+        return 'intelligence';
+      case 'all':
+        return 'all';
+      default:
+        throw new Error("Attribute doesn't exist");
+    }
+  };
+  const attributeIconUrl = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_${transformBackendAttributeIntoReadableOne(
+    prim
+  )}`;
+
+  const transformAttributeIntoIconSrc = (attr) => {
+    switch (attr) {
+      case 'agi':
+        return `${attributeIconUrl}.png`;
+      case 'str':
+        return `${attributeIconUrl}.png`;
+      case 'int':
+        return `${attributeIconUrl}.png`;
+      case 'all':
+        return 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_universal.png';
+    }
+  };
+
   return (
-    <Box width="1000px" height="1000px" display="flex" flexDir="row">
-      <img width="50px" height="50px" src={img} alt={alt} />
-      <p width="50px" height="50px">
-        {name}
-      </p>
-      <img src={icon} />
-      <p width="50px" height="50px">
-        {prim}
-      </p>
+    <Box>
+      <Box display="flex" flexDir="row">
+        <img width="250px" height="125px" src={img} alt={alt} />
+        <p width="50px" height="50px">
+          {name}
+        </p>
+
+        <p width="50px" height="50px">
+          {transformBackendAttributeIntoReadableOne(prim)}
+        </p>
+        <img
+          src={transformAttributeIntoIconSrc(prim)}
+          width="24px"
+          height="24px"
+        />
+      </Box>
     </Box>
   );
 }
