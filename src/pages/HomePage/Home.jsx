@@ -9,8 +9,11 @@ import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
 import { useBreakpoint } from '../../components/constants/BreakPoints';
 import HeroGrid from '../../components/HeroGrid';
-import Hero from '../../components/Hero';
+import { fetchHeroData } from '../../components/FetchHeroData';
+import { useState, useEffect } from 'react';
+import ProCircuitSection from './Sections/ProCircuitSection';
 
+export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 function Home() {
   const mainContainerStyle = {
     position: 'relative',
@@ -95,6 +98,20 @@ function Home() {
     ...(breakPoint350 && buttonQueryStyle),
   };
 
+  const [heroes, setHeroes] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const heroData = await fetchHeroData();
+        setHeroes(heroData);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Box style={mainContainerStyle}>
       <BackgroundVideo />
@@ -171,7 +188,25 @@ function Home() {
         <BattleSection />
         <ChooseSection />
 
-        <HeroGrid />
+        {/* <Box
+          display="grid"
+          height="100%"
+          width="100%"
+          gridTemplateColumns="repeat(25,1fr)"
+          gridTemplateRows="repeat (5,1fr)"
+        >
+          {heroes.map((hero) => (
+            <HeroGrid
+              key={hero.id}
+              name={hero.localized_name}
+              img={`${PUBLIC_DOMAIN}${hero.img}`}
+              alt={hero.localized_name}
+              prim={hero.primary_attr}
+            />
+          ))}
+        </Box> */}
+
+        <ProCircuitSection />
       </Box>
     </Box>
   );
