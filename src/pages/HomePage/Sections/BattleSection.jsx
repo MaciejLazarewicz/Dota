@@ -3,6 +3,10 @@ import CommonButton from '../../../components/constants/CommonButton';
 import BottomAnimation from '../../../components/constants/BottomAnimation';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
+import {
+  lightFontColor,
+  darkFontColor,
+} from '../../../components/constants/FontColors';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
@@ -52,7 +56,7 @@ function BattleSection() {
             marginBottom="0"
             textTransform="uppercase"
             fontSize="70px"
-            color="rgba(226,218,206,.5647058824)"
+            color={darkFontColor.color}
             letterSpacing="2px"
             style={fontFamily}
           >
@@ -63,7 +67,7 @@ function BattleSection() {
             marginBottom="10px"
             textTransform="uppercase"
             fontSize="100px"
-            color="#e2dace"
+            color={lightFontColor.color}
             letterSpacing="2px"
             style={fontFamily}
           >
@@ -84,7 +88,7 @@ function BattleSection() {
           textAlign="center"
           width="60%"
           fontSize="26px"
-          color="#e2dace"
+          color={lightFontColor.color}
         >
           Każdego dnia miliony graczy na całym świecie wkracza do walki jako
           jeden z ponad setki bohaterów Dota w drużynowych starciach 5 na 5.

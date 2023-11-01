@@ -185,6 +185,7 @@ function Home() {
         <Box display="flex" color="#f51" marginLeft="350px" marginTop="20px">
           <HomeNews />
         </Box>
+
         <BattleSection />
         <ChooseSection />
 
