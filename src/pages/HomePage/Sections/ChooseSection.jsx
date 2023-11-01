@@ -3,6 +3,11 @@ import CommonButton from '../../../components/constants/CommonButton';
 import Gradient from '../../../components/constants/Gradient';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import BottomAnimation from '../../../components/constants/BottomAnimation';
+import {
+  lightFontColor,
+  darkFontColor,
+} from '../../../components/constants/FontColors';
+import OrangeDivider from '../../../components/constants/OrangeDivider';
 
 function ChooseSection() {
   return (
@@ -25,11 +30,11 @@ function ChooseSection() {
         justifyContent="center"
         letterSpacing="2px"
         lineHeight="105%"
-        color="#e2dace"
+        color={lightFontColor.color}
       >
         <BottomAnimation>
           <Text
-            color="rgba(226,218,206,.5647058824)"
+            color={darkFontColor.color}
             textTransform="uppercase"
             marginBottom="30px"
             fontSize="70px"
@@ -40,21 +45,14 @@ function ChooseSection() {
           <Text
             textTransform="uppercase"
             marginTop="30px"
-            marginBottom="30px"
+            marginBottom="60px"
             fontSize="100px"
             style={fontFamily}
           >
             Wybierzesz ?
           </Text>
         </BottomAnimation>
-        <Box
-          width="80px"
-          height="3px"
-          borderRadius="1px"
-          backgroundColor="#FF6046"
-          marginTop="30px"
-          marginBottom="10px"
-        />
+        <OrangeDivider />
         <Text lineHeight="115%" fontSize="26px" textAlign="center" width="50%">
           Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
           pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
