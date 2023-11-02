@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-function HeroGrid({ name, img, alt, prim, icon }) {
+function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
   const transformBackendAttributeIntoReadableOne = (attr) => {
     switch (attr) {
       case 'agi':
@@ -33,8 +33,8 @@ function HeroGrid({ name, img, alt, prim, icon }) {
   };
 
   return (
-    <Box>
-      <Box display="flex" flexDir="row">
+    <Box display="flex" style={rowStyle}>
+      <Box display="flex">
         <img width="250px" height="125px" src={img} alt={alt} />
         <p width="50px" height="50px">
           {name}

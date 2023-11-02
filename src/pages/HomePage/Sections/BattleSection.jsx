@@ -8,6 +8,7 @@ import {
   darkFont,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
+import OrangeDivider from '../../../components/constants/OrangeDivider';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
@@ -70,13 +71,7 @@ function BattleSection() {
           </Text>
         </BottomAnimation>
 
-        <Box
-          width="80px"
-          height="3px"
-          borderRadius="1px"
-          backgroundColor="#FF6046"
-          marginBottom="10px"
-        />
+        <OrangeDivider />
 
         <Text
           marginTop="10px"

@@ -11,18 +11,18 @@ function JoinBattleSection() {
   return (
     <Box
       width="100%"
-      height="100%"
+      height="50%"
       display="flex"
       flexDir="column"
       position="relative"
     >
       <Image
         width="100%"
-        height="60%"
+        height="100%"
         src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/background4.png"
       />
       <Box
-        pos="absolute"
+        position="absolute"
         color="#f51"
         display="flex"
         flexDir="column"

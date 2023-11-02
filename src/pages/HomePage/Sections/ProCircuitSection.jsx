@@ -6,6 +6,7 @@ import {
   descriptionFont,
 } from '../../../components/constants/FontVariables';
 import { fontFamily } from '../../../components/constants/FontFamily';
+import BottomAnimation from '../../../components/constants/BottomAnimation';
 
 function ProCircuitSection() {
   return (
@@ -60,25 +61,31 @@ function ProCircuitSection() {
         </Box>
 
         <Box position="absolute" left="15%" top="5%">
-          <Image
-            width="300px"
-            height="200px"
-            src=" 	https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_1.jpg"
-          />
+          <BottomAnimation>
+            <Image
+              width="300px"
+              height="200px"
+              src=" 	https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_1.jpg"
+            />
+          </BottomAnimation>
         </Box>
         <Box position="absolute" right="0">
-          <Image
-            width="300px"
-            height="200px"
-            src=" https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_2.jpg"
-          />
+          <BottomAnimation>
+            <Image
+              width="300px"
+              height="200px"
+              src=" https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_2.jpg"
+            />
+          </BottomAnimation>
         </Box>
         <Box position="absolute" left="0" top="40%">
-          <Image
-            width="300px"
-            height="200px"
-            src=" 	https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_3.jpg"
-          />
+          <BottomAnimation>
+            <Image
+              width="300px"
+              height="200px"
+              src=" 	https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc_ti9_3.jpg"
+            />
+          </BottomAnimation>
         </Box>
       </Box>
     </Box>
