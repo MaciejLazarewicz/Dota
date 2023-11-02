@@ -14,8 +14,11 @@ import { useState, useEffect } from 'react';
 import ProCircuitSection from './Sections/ProCircuitSection';
 import JoinBattleSection from './Sections/JoinBattleSection';
 import FooterSection from './Sections/FooterSection';
+import HeroGrid from '../../components/HeroGrid';
+import { useAnimate } from 'framer-motion';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
+
 function Home() {
   const mainContainerStyle = {
     position: 'relative',
@@ -113,6 +116,50 @@ function Home() {
 
     fetchData();
   }, []);
+  const evenRowStyle = {
+    backgroundColor: '#ff1111',
+  };
+
+  const oddRowStyle = {
+    backgroundColor: '#f51',
+  };
+
+  const InfiniteTranslateAnimation = () => {
+    return (
+      <motion.div
+        style={{
+          ...evenRowStyle,
+          whiteSpace: 'nowrap',
+        }}
+        initial={{ x: '0%' }}
+        transition={{
+          repeat: Infinity,
+          duration: 5,
+          ease: 'linear',
+        }}
+      >
+        <Box
+          display="grid"
+          height="70%"
+          gridTemplateColumns="repeat(25,1fr)"
+          gridTemplateRows="repeat (5,1fr)"
+        >
+          {heroes.map((hero, index) => (
+            <HeroGrid
+              key={hero.id}
+              name={hero.localized_name}
+              img={`${PUBLIC_DOMAIN}${hero.img}`}
+              alt={hero.localized_name}
+              prim={hero.primary_attr}
+              rowStyle={
+                Math.floor(index / 25) % 2 === 0 ? evenRowStyle : oddRowStyle
+              }
+            />
+          ))}
+        </Box>
+      </motion.div>
+    );
+  };
 
   return (
     <Box style={mainContainerStyle}>
@@ -190,24 +237,7 @@ function Home() {
 
         <BattleSection />
         <ChooseSection />
-
-        {/* <Box
-          display="grid"
-          height="100%"
-          width="100%"
-          gridTemplateColumns="repeat(25,1fr)"
-          gridTemplateRows="repeat (5,1fr)"
-        >
-          {heroes.map((hero) => (
-            <HeroGrid
-              key={hero.id}
-              name={hero.localized_name}
-              img={`${PUBLIC_DOMAIN}${hero.img}`}
-              alt={hero.localized_name}
-              prim={hero.primary_attr}
-            />
-          ))}
-        </Box> */}
+        <InfiniteTranslateAnimation />
 
         <ProCircuitSection />
         <Box width="100%" height="20%" background="rgb(0,0,0)" />

@@ -1,5 +1,4 @@
 import { Box, Text, Image, Link } from '@chakra-ui/react';
-import { descriptionFont } from '../../../components/constants/FontVariables';
 
 function FooterSection() {
   return (
@@ -16,12 +15,21 @@ function FooterSection() {
         flexDir="row"
         alignItems="center"
         justifyContent="center"
+        gap="50px"
       >
         <Link>
-          <Image src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/valve_logo.png" />
+          <Image
+            width="100px"
+            height="30px"
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/valve_logo.png"
+          />
         </Link>
         <Link>
-          <Image src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dota_footer_logo.png" />
+          <Image
+            width="150px"
+            height="30px"
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dota_footer_logo.png"
+          />
         </Link>
       </Box>
       <Box margin="0 auto" textAlign="center" maxW="500px">

@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, Image } from '@chakra-ui/react';
 import CommonButton from '../../../components/constants/CommonButton';
 import Gradient from '../../../components/constants/Gradient';
 import { fontFamily } from '../../../components/constants/FontFamily';
@@ -12,23 +12,22 @@ import OrangeDivider from '../../../components/constants/OrangeDivider';
 
 function ChooseSection() {
   return (
-    <Box
-      width="100%"
-      height="100%"
-      minH="2000px"
-      backgroundPosition="center top"
-      position="relative"
-      backgroundImage="url(https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/heroes_full.jpg)"
-      backgroundSize="3500px"
-      backgroundRepeat="no-repeat"
-    >
+    <Box width="100%" height="100%" position="relative">
       <Gradient />
+      <Image
+        width="100%"
+        height="100%"
+        src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/heroes_full.jpg"
+      />
+
       <Box
         display="flex"
         flexDir="column"
         alignItems="center"
-        height="100%"
+        height="30%"
         justifyContent="center"
+        position="absolute"
+        top="40%"
       >
         <BottomAnimation>
           <Text style={{ ...darkFont }} fontFamily={fontFamily}>
