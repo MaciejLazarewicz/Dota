@@ -4,9 +4,10 @@ import BottomAnimation from '../../../components/constants/BottomAnimation';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
 import {
-  lightFontColor,
-  darkFontColor,
-} from '../../../components/constants/FontColors';
+  lightFont,
+  darkFont,
+  descriptionFont,
+} from '../../../components/constants/FontVariables';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
@@ -54,22 +55,16 @@ function BattleSection() {
         <BottomAnimation>
           <Text
             marginBottom="0"
-            textTransform="uppercase"
-            fontSize="70px"
-            color={darkFontColor.color}
-            letterSpacing="2px"
-            style={fontFamily}
+            style={{ ...darkFont }}
+            fontFamily={fontFamily}
           >
             Dołącz do
           </Text>
           <Text
             marginTop="0"
             marginBottom="10px"
-            textTransform="uppercase"
-            fontSize="100px"
-            color={lightFontColor.color}
-            letterSpacing="2px"
-            style={fontFamily}
+            style={{ ...lightFont }}
+            fontFamily={fontFamily}
           >
             bitwy starożytnych
           </Text>
@@ -87,8 +82,7 @@ function BattleSection() {
           marginTop="10px"
           textAlign="center"
           width="60%"
-          fontSize="26px"
-          color={lightFontColor.color}
+          style={{ ...descriptionFont }}
         >
           Każdego dnia miliony graczy na całym świecie wkracza do walki jako
           jeden z ponad setki bohaterów Dota w drużynowych starciach 5 na 5.

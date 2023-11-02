@@ -1,13 +1,15 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
 import OrangeDivider from '../../../components/constants/OrangeDivider';
-import { lightFontColor } from '../../../components/constants/FontColors';
+import {
+  lightFont,
+  descriptionFont,
+} from '../../../components/constants/FontVariables';
 import { fontFamily } from '../../../components/constants/FontFamily';
 
 function ProCircuitSection() {
-  console.log(lightFontColor);
   return (
-    <Box width="100%" height="100%" position="relative">
+    <Box width="100%" position="relative">
       <Box
         display="flex"
         flexDir="column"
@@ -15,11 +17,10 @@ function ProCircuitSection() {
         alignItems="center"
         backgroundPosition="center-top"
         backgroundRepeat="no-repeat"
-        color={lightFontColor.color}
       >
         <Image
           width="100%"
-          height="100vh"
+          height="100%"
           src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/dpc.jpg"
           alt="Circuit Section Background Image"
         />
@@ -38,18 +39,16 @@ function ProCircuitSection() {
           marginBottom="20px"
         >
           <Text
-            textTransform="uppercase"
-            fontSize="100px"
             marginBottom="25px"
-            fontWeight="700"
-            style={fontFamily}
+            style={{ ...lightFont }}
+            fontFamily={fontFamily.fontFamily}
           >
             Dota Pro Circuit
           </Text>
 
           <OrangeDivider />
           <Box />
-          <Text fontSize="26px">
+          <Text style={{ ...descriptionFont }}>
             Gdy akurat nie wspinasz się po szczeblach rankingów, będziesz w
             stanie uczyć się od najlepszych. Dota Pro Circuit to rozgrywki
             rywalizacyjne w Dota 2 na najwyższym poziomie, które są
@@ -82,8 +81,6 @@ function ProCircuitSection() {
           />
         </Box>
       </Box>
-
-      <Box background="rgb(0,0,0)" width="100%" height="20%" />
     </Box>
   );
 }
