@@ -7,7 +7,8 @@ function OrangeDivider() {
       height="3px"
       borderRadius="1px"
       backgroundColor="#FF6046"
-      marginBottom="10px"
+      marginTop="5px"
+      marginBottom="30px"
     />
   );
 }

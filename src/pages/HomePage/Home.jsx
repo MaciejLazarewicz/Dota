@@ -8,10 +8,12 @@ import HomeNews from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
 import { useBreakpoint } from '../../components/constants/BreakPoints';
-import HeroGrid from '../../components/HeroGrid';
+
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { useState, useEffect } from 'react';
 import ProCircuitSection from './Sections/ProCircuitSection';
+import JoinBattleSection from './Sections/JoinBattleSection';
+import FooterSection from './Sections/FooterSection';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 function Home() {
@@ -208,6 +210,9 @@ function Home() {
         </Box> */}
 
         <ProCircuitSection />
+        <Box width="100%" height="20%" background="rgb(0,0,0)" />
+        <JoinBattleSection />
+        <FooterSection />
       </Box>
     </Box>
   );

@@ -4,9 +4,10 @@ import Gradient from '../../../components/constants/Gradient';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import BottomAnimation from '../../../components/constants/BottomAnimation';
 import {
-  lightFontColor,
-  darkFontColor,
-} from '../../../components/constants/FontColors';
+  lightFont,
+  darkFont,
+  descriptionFont,
+} from '../../../components/constants/FontVariables';
 import OrangeDivider from '../../../components/constants/OrangeDivider';
 
 function ChooseSection() {
@@ -28,32 +29,17 @@ function ChooseSection() {
         alignItems="center"
         height="100%"
         justifyContent="center"
-        letterSpacing="2px"
-        lineHeight="105%"
-        color={lightFontColor.color}
       >
         <BottomAnimation>
-          <Text
-            color={darkFontColor.color}
-            textTransform="uppercase"
-            marginBottom="30px"
-            fontSize="70px"
-            style={fontFamily}
-          >
+          <Text style={{ ...darkFont }} fontFamily={fontFamily}>
             Kogo
           </Text>
-          <Text
-            textTransform="uppercase"
-            marginTop="30px"
-            marginBottom="60px"
-            fontSize="100px"
-            style={fontFamily}
-          >
+          <Text style={{ ...lightFont }} fontFamily={fontFamily}>
             Wybierzesz ?
           </Text>
         </BottomAnimation>
         <OrangeDivider />
-        <Text lineHeight="115%" fontSize="26px" textAlign="center" width="50%">
+        <Text style={{ ...descriptionFont }} textAlign="center" width="50%">
           Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
           pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
           Uwolnij niesamowite umiejętności i niszczycielskie umiejętności
