@@ -1,11 +1,58 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Image, Link } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
-export const evenRowStyle = {};
+export const evenRowStyle = {
+  animation: 'moveEvenRow 180s linear infinite',
+};
 
-export const oddRowStyle = {};
+export const oddRowStyle = {
+  animation: 'moveOddRow 180s linear infinite',
+  flexDirection: 'row-reverse',
+};
+
+const customStyles = `
+  @keyframes moveEvenRow {
+    0% {
+      transform: translateX(0%);
+    }
+    50% {
+      transform: translateX(-400%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes moveOddRow {
+    0% {
+      transform: translateX(-410%);
+    }
+    50% {
+      transform: translateX(-75%);
+    }
+    100% {
+      transform: translateX(-410%);
+    }
+  }
+`;
 
 function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
+  const RowAnimation = ({ children }) => {
+    return (
+      <>
+        <style>{customStyles}</style>
+        <motion.div
+          style={{
+            width: '460%',
+          }}
+        >
+          {children}
+        </motion.div>
+      </>
+    );
+  };
+
   const transformBackendAttributeIntoReadableOne = (attr) => {
     switch (attr) {
       case 'agi':
@@ -37,39 +84,12 @@ function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
     }
   };
 
-  const RowAnimation = ({ children, evenRow, oddRow }) => {
-    const animationVariants = {
-      initial: {
-        x: evenRow ? '0%' : '-550%',
-      },
-      animate: {
-        x: evenRow ? '-400%' : '400%',
-        transition: {
-          duration: '15',
-          ease: 'linear',
-          repeat: 'Infinity',
-        },
-      },
-    };
-    return (
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={animationVariants}
-        style={{
-          width: '460%',
-        }}
-      >
-        {children}
-      </motion.div>
-    );
-  };
-
   return (
-    <RowAnimation evenRow={rowStyle === evenRowStyle}>
+    <RowAnimation rowStyle={rowStyle}>
       <Box display="flex" style={rowStyle}>
         <Box display="flex">
-          <img width="250px" height="125px" src={img} alt={alt} />
+          <Image width="250px" height="125px" src={img} alt={alt} />
+
           {/* <p width="50px" height="50px">
             {name}
           </p> */}

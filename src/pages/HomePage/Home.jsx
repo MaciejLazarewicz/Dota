@@ -193,27 +193,57 @@ function Home() {
 
         <BattleSection />
         <ChooseSection />
-
         <Box
-          display="grid"
-          height="70%"
-          gap="10px"
-          overflow="hidden"
-          gridTemplateColumns="repeat(25,1fr)"
-          gridTemplateRows="repeat (5,1fr)"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          position="relative"
+          background="rgb(0,0,0)"
+          marginTop="-100px"
+          paddingBottom="150px"
         >
-          {heroes.map((hero, index) => (
-            <HeroGrid
-              key={hero.id}
-              name={hero.localized_name}
-              img={`${PUBLIC_DOMAIN}${hero.img}`}
-              alt={hero.localized_name}
-              prim={hero.primary_attr}
-              rowStyle={
-                Math.floor(index / 25) % 2 === 0 ? evenRowStyle : oddRowStyle
-              }
-            />
-          ))}
+          <Box
+            position="absolute"
+            top="0"
+            left="0"
+            bottom="0"
+            right="50%"
+            background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 50%)"
+            zIndex="1"
+          />
+          <Box
+            position="absolute"
+            top="0"
+            left="50%"
+            bottom="0"
+            right="0%"
+            background="linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
+            zIndex="1"
+          />
+
+          <Box
+            display="grid"
+            height="70%"
+            width="80%"
+            gap="10px"
+            overflow="hidden"
+            gridTemplateColumns="repeat(25,1fr)"
+            gridTemplateRows="repeat (5,1fr)"
+            background="rgb(0,0,0)"
+          >
+            {heroes.map((hero, index) => (
+              <HeroGrid
+                key={hero.id}
+                name={hero.localized_name}
+                img={`${PUBLIC_DOMAIN}${hero.img}`}
+                alt={hero.localized_name}
+                prim={hero.primary_attr}
+                rowStyle={
+                  Math.floor(index / 25) % 2 === 0 ? evenRowStyle : oddRowStyle
+                }
+              />
+            ))}
+          </Box>
         </Box>
 
         <ProCircuitSection />
