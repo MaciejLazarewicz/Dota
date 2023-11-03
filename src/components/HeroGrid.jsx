@@ -1,4 +1,9 @@
 import { Box } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
+
+export const evenRowStyle = {};
+
+export const oddRowStyle = {};
 
 function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
   const transformBackendAttributeIntoReadableOne = (attr) => {
@@ -32,24 +37,54 @@ function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
     }
   };
 
-  return (
-    <Box display="flex" style={rowStyle}>
-      <Box display="flex">
-        <img width="250px" height="125px" src={img} alt={alt} />
-        <p width="50px" height="50px">
-          {name}
-        </p>
+  const RowAnimation = ({ children, evenRow, oddRow }) => {
+    const animationVariants = {
+      initial: {
+        x: evenRow ? '0%' : '-550%',
+      },
+      animate: {
+        x: evenRow ? '-400%' : '400%',
+        transition: {
+          duration: '15',
+          ease: 'linear',
+          repeat: 'Infinity',
+        },
+      },
+    };
+    return (
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={animationVariants}
+        style={{
+          width: '460%',
+        }}
+      >
+        {children}
+      </motion.div>
+    );
+  };
 
-        <p width="50px" height="50px">
-          {transformBackendAttributeIntoReadableOne(prim)}
-        </p>
-        <img
-          src={transformAttributeIntoIconSrc(prim)}
-          width="24px"
-          height="24px"
-        />
+  return (
+    <RowAnimation evenRow={rowStyle === evenRowStyle}>
+      <Box display="flex" style={rowStyle}>
+        <Box display="flex">
+          <img width="250px" height="125px" src={img} alt={alt} />
+          {/* <p width="50px" height="50px">
+            {name}
+          </p> */}
+
+          {/* <p width="50px" height="50px">
+            {transformBackendAttributeIntoReadableOne(prim)}
+          </p>
+          <img
+            src={transformAttributeIntoIconSrc(prim)}
+            width="24px"
+            height="24px"
+          /> */}
+        </Box>
       </Box>
-    </Box>
+    </RowAnimation>
   );
 }
 
