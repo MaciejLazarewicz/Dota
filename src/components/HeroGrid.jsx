@@ -1,55 +1,53 @@
-import { Box, Image, Link } from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import PropTypes from 'prop-types';
+import { fontFamily } from './constants/FontFamily';
 
 export const evenRowStyle = {
-  animation: 'moveEvenRow 180s linear infinite',
+  animation: 'moveEvenRow 100s linear infinite alternate ',
 };
 
 export const oddRowStyle = {
-  animation: 'moveOddRow 180s linear infinite',
-  flexDirection: 'row-reverse',
+  animation: 'moveOddRow 100s linear infinite alternate',
 };
 
 const customStyles = `
   @keyframes moveEvenRow {
     0% {
-      transform: translateX(0%);
-    }
-    50% {
-      transform: translateX(-400%);
-    }
+      transform: translateX(0%);   
+    }    
     100% {
-      transform: translateX(0%);
-    }
+      transform: translateX(-430%);       
+    } 
   }
-
   @keyframes moveOddRow {
     0% {
-      transform: translateX(-410%);
+      transform: translateX(-430%);
     }
-    50% {
+    
+    100% {
       transform: translateX(-75%);
     }
-    100% {
-      transform: translateX(-410%);
-    }
+   
+    
   }
+  
+  
 `;
 
 function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
   const RowAnimation = ({ children }) => {
     return (
-      <>
+      <Box>
         <style>{customStyles}</style>
+
         <motion.div
           style={{
             width: '460%',
           }}
         >
-          {children}
+          <Box>{children}</Box>
         </motion.div>
-      </>
+      </Box>
     );
   };
 
@@ -85,27 +83,89 @@ function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
   };
 
   return (
-    <RowAnimation rowStyle={rowStyle}>
-      <Box display="flex" style={rowStyle}>
-        <Box display="flex">
-          <Image width="250px" height="125px" src={img} alt={alt} />
+    <RowAnimation style={rowStyle}>
+      <Box
+        display="flex"
+        style={rowStyle}
+        background="linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
+      >
+        <motion.div
+          whileHover={{
+            scale: 1.2,
+          }}
+          position="relative"
+        >
+          <Box display="flex" width="100%" cursor="pointer">
+            <Image width="250px" height="125px" src={img} alt={alt} />
 
-          {/* <p width="50px" height="50px">
-            {name}
-          </p> */}
+            <Box
+              position="absolute"
+              display="flex"
+              flexDir="row"
+              width="100%"
+              height="100%"
+              alignItems="flex-end"
+              gap="15px"
+              fontSize="15px"
+              fontWeight="700"
+              textTransform="uppercase"
+              opacity="0"
+              zIndex="3"
+              transform="translateY(20%)"
+              _hover={{
+                opacity: 1,
+                transform: 'translateY(0%)',
+                transition:
+                  'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
+              }}
+            >
+              <Box
+                display="flex"
+                width="100%"
+                height="100%"
+                alignItems="flex-end"
+                flexDir="row"
+                gap="10px"
+                marginBottom="15px"
+                marginLeft="5px"
+                zIndex="1"
+              >
+                <Image
+                  src={transformAttributeIntoIconSrc(prim)}
+                  width="30px"
+                  height="30px"
+                  marginBottom="5px"
+                />
 
-          {/* <p width="50px" height="50px">
-            {transformBackendAttributeIntoReadableOne(prim)}
-          </p>
-          <img
-            src={transformAttributeIntoIconSrc(prim)}
-            width="24px"
-            height="24px"
-          /> */}
-        </Box>
+                <Text
+                  fontSize="18px"
+                  marginBottom="0"
+                  color="#fff"
+                  width="100%"
+                  height="30px"
+                  fontFamily={fontFamily}
+                  lineHeight="20px"
+                  letterSpacing="2px"
+                >
+                  {name}
+                </Text>
+              </Box>
+              <Box
+                position="absolute"
+                width="100%"
+                height="100%"
+                background="linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
+              />
+            </Box>
+          </Box>
+        </motion.div>
       </Box>
     </RowAnimation>
   );
 }
 
 export default HeroGrid;
+
+//  <p width="50px" height="50px">
+//    {transformBackendAttributeIntoReadableOne(prim)}
+//  </p>;

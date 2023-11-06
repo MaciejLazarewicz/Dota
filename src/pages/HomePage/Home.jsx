@@ -187,6 +187,7 @@ function Home() {
             </Box>
           </motion.div>
         </Box>
+
         <Box display="flex" color="#f51" marginLeft="350px" marginTop="20px">
           <HomeNews />
         </Box>
@@ -201,35 +202,37 @@ function Home() {
           background="rgb(0,0,0)"
           marginTop="-100px"
           paddingBottom="150px"
+          overflow="hidden"
         >
           <Box
             position="absolute"
             top="0"
-            left="0"
+            left="10%"
             bottom="0"
-            right="50%"
-            background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 50%)"
-            zIndex="1"
+            width="5%"
+            background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
+            zIndex="3"
           />
           <Box
             position="absolute"
             top="0"
-            left="50%"
+            width="5%"
             bottom="0"
-            right="0%"
+            right="10%"
             background="linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
-            zIndex="1"
+            zIndex="3"
           />
-
           <Box
             display="grid"
             height="70%"
             width="80%"
-            gap="10px"
             overflow="hidden"
+            gap="15px"
             gridTemplateColumns="repeat(25,1fr)"
             gridTemplateRows="repeat (5,1fr)"
             background="rgb(0,0,0)"
+            position="relative"
+            zIndex="2"
           >
             {heroes.map((hero, index) => (
               <HeroGrid
