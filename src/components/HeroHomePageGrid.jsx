@@ -34,7 +34,7 @@ const customStyles = `
   
 `;
 
-function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
+function HeroHomePageGrid({ name, img, alt, prim, icon, rowStyle }) {
   const RowAnimation = ({ children }) => {
     return (
       <Box>
@@ -164,7 +164,7 @@ function HeroGrid({ name, img, alt, prim, icon, rowStyle }) {
   );
 }
 
-export default HeroGrid;
+export default HeroHomePageGrid;
 
 //  <p width="50px" height="50px">
 //    {transformBackendAttributeIntoReadableOne(prim)}

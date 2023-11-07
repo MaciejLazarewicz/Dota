@@ -14,8 +14,8 @@ import { useState, useEffect } from 'react';
 import ProCircuitSection from './Sections/ProCircuitSection';
 import JoinBattleSection from './Sections/JoinBattleSection';
 import FooterSection from './Sections/FooterSection';
-import HeroGrid from '../../components/HeroGrid';
-import { evenRowStyle, oddRowStyle } from '../../components/HeroGrid';
+import HeroHomePageGrid from '../../components/HeroHomePageGrid';
+import { evenRowStyle, oddRowStyle } from '../../components/HeroHomePageGrid';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
@@ -234,7 +234,7 @@ function Home() {
             zIndex="2"
           >
             {heroes.map((hero, index) => (
-              <HeroGrid
+              <HeroHomePageGrid
                 key={hero.id}
                 name={hero.localized_name}
                 img={`${PUBLIC_DOMAIN}${hero.img}`}
