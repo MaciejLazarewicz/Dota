@@ -25,6 +25,7 @@ function CommonButton({ children }) {
           color="#fff"
           alignItems="center"
           gap="15px"
+          textTransform="uppercase"
         >
           {children}
         </Box>

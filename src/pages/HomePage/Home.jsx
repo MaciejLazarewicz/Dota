@@ -16,7 +16,6 @@ import JoinBattleSection from './Sections/JoinBattleSection';
 import FooterSection from './Sections/FooterSection';
 import HeroGrid from '../../components/HeroGrid';
 import { evenRowStyle, oddRowStyle } from '../../components/HeroGrid';
-import Gradient from '../../components/constants/Gradient';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 

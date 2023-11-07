@@ -1,12 +1,12 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
-import OrangeDivider from '../../../components/constants/OrangeDivider';
+import OrangeDivider from '../../../components/OrangeDivider';
 import {
   lightFont,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
 import { fontFamily } from '../../../components/constants/FontFamily';
-import BottomAnimation from '../../../components/constants/BottomAnimation';
+import BottomAnimation from '../../../components/BottomAnimation';
 
 function ProCircuitSection() {
   return (

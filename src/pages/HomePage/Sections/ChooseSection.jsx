@@ -1,18 +1,24 @@
 import { Box, Text, Image } from '@chakra-ui/react';
-import CommonButton from '../../../components/constants/CommonButton';
-import Gradient from '../../../components/constants/Gradient';
+import CommonButton from '../../../components/CommonButton';
+import Gradient from '../../../components/Gradient';
 import { fontFamily } from '../../../components/constants/FontFamily';
-import BottomAnimation from '../../../components/constants/BottomAnimation';
+import BottomAnimation from '../../../components/BottomAnimation';
 import {
   lightFont,
   darkFont,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
-import OrangeDivider from '../../../components/constants/OrangeDivider';
+import OrangeDivider from '../../../components/OrangeDivider';
 
 function ChooseSection() {
   return (
-    <Box width="100%" height="100%" position="relative">
+    <Box
+      width="100%"
+      height="100%"
+      position="relative"
+      display="flex"
+      flexDir="column"
+    >
       <Gradient />
       <Image
         width="100%"
@@ -25,9 +31,10 @@ function ChooseSection() {
         flexDir="column"
         alignItems="center"
         height="30%"
+        width="100%"
         justifyContent="center"
         position="absolute"
-        top="40%"
+        top="30%"
       >
         <BottomAnimation>
           <Text style={{ ...darkFont }} fontFamily={fontFamily}>
@@ -38,16 +45,25 @@ function ChooseSection() {
           </Text>
         </BottomAnimation>
         <OrangeDivider />
-        <Text style={{ ...descriptionFont }} textAlign="center" width="50%">
-          Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
-          pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
-          Uwolnij niesamowite umiejętności i niszczycielskie umiejętności
-          ostateczne na swojej ścieżce do zwycięstwa.
-        </Text>
-        <CommonButton>
-          <Text fontSize="20px" textTransform="uppercase">
-            Zobacz wszystkich bohaterów
+        <Box display="flex" flexDir="column" alignItems="center" width="100%">
+          <Text style={{ ...descriptionFont }} textAlign="center" width="60%">
+            Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
+            pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
+            Uwolnij niesamowite umiejętności i niszczycielskie umiejętności
+            ostateczne na swojej ścieżce do zwycięstwa.
           </Text>
+        </Box>
+      </Box>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        position="absolute"
+        top="70%"
+        width="100%"
+      >
+        <CommonButton>
+          <Text fontSize="20px">Zobacz wszystkich bohaterów</Text>
         </CommonButton>
       </Box>
     </Box>
