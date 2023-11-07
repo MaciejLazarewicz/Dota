@@ -1,15 +1,8 @@
-import {
-  Box,
-  Image,
-  Text,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from '@chakra-ui/react';
+import { Box, Image, Text, Input } from '@chakra-ui/react';
 import Header from '../../components/Header';
 import { fontFamily } from '../../components/constants/FontFamily';
 import { SearchIcon } from '@chakra-ui/icons';
-import FooterSection from '../HomePage/Sections/FooterSection';
+import HeroesGrid from './Components/HeroesGrid';
 
 function Hero() {
   const filterImagesStyles = {
@@ -67,9 +60,8 @@ function Hero() {
             maxWidth="1200px"
             display="flex"
             flexDir="row"
+            alignItems="center"
             justifyContent="space-between"
-            paddingY="10px"
-            paddingX="10px"
             border="1px solid rgba(17,17,17,.564)"
             background="linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3))"
             textTransform="uppercase"
@@ -130,15 +122,27 @@ function Hero() {
               display="flex"
               flexDir="row"
               alignItems="center"
-              border="1px solid #f51"
+              width="250px"
+              height="50px"
+              backgroundColor="#25282A"
+              marginX="10px"
             >
-              <InputGroup height="50%" border="1px solid #f15">
-                <InputLeftElement pointerEvents="none">
-                  <SearchIcon />
-                </InputLeftElement>
-
-                <Input background="inherit"></Input>
-              </InputGroup>
+              <Box display="flex" flexDir="row" alignItems="center" gap="5px">
+                <SearchIcon color="#505050" paddingLeft="10px" boxSize="30px" />
+                <Input
+                  color="#fff"
+                  width="190px"
+                  height="30px"
+                  fontSize="20px"
+                  background="inherit"
+                  variant="unstyled"
+                  border="none"
+                  outline="none"
+                  _focus={{
+                    backgroundColor: '#505050',
+                  }}
+                />
+              </Box>
             </Box>
           </Box>
         </Box>
