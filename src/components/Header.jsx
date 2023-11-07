@@ -5,7 +5,6 @@ import {
   MenuList,
   MenuItem,
   Button,
-  Link,
   Img,
   Text,
 } from '@chakra-ui/react';
@@ -13,16 +12,14 @@ import { TbWorld } from 'react-icons/tb';
 import { BsSteam } from 'react-icons/bs';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-import CommonButton from './constants/CommonButton';
+import CommonButton from './CommonButton';
 import { useBreakpoint } from './constants/BreakPoints';
+import { Link } from 'react-router-dom';
 
 const FONT_DATA = {
   color: ' #f5f4f5d1',
   fontSize: ' 25px',
   cursor: 'pointer',
-  // _hover: {
-  //   color: '#F5F4F5',
-  // },
 };
 
 function Header() {
@@ -47,7 +44,7 @@ function Header() {
         alignItems="center"
         ml="30px"
       >
-        <Link href="#" textDecoration="none" {...FONT_DATA}>
+        <Link to="#" textDecoration="none" {...FONT_DATA}>
           <Box display="flex" alignItems="center" gap="10px">
             {(!breakPoint900 || breakPoint700) && (
               <Img width="50px" height="50px" src="/dota.svg" />
@@ -102,9 +99,15 @@ function Header() {
               </MenuList>
             </Menu>
 
-            <Link {...FONT_DATA}>Bohaterowie</Link>
-            <Link {...FONT_DATA}>Wiadomosci</Link>
-            <Link {...FONT_DATA}>E-sport</Link>
+            <Link to="/Hero" {...FONT_DATA}>
+              Bohaterowie
+            </Link>
+            <Link to="#" {...FONT_DATA}>
+              Wiadomosci
+            </Link>
+            <Link to="#" {...FONT_DATA}>
+              E-sport
+            </Link>
           </Box>
         )}
       </Box>
@@ -113,7 +116,7 @@ function Header() {
           <Box display="flex" flexDir="column">
             <Link
               textDecoration="none"
-              href="https://steamcommunity.com/oauth/loginform/?goto=%2Foauth%2Flogin%3Fclient_id%3D9B2C1229%26response_type%3Dtoken%26state%3Dhome"
+              to="https://steamcommunity.com/oauth/loginform/?goto=%2Foauth%2Flogin%3Fclient_id%3D9B2C1229%26response_type%3Dtoken%26state%3Dhome"
             >
               <Box
                 display="flex"
@@ -145,7 +148,7 @@ function Header() {
         )}
         {breakPoint1200 ? null : (
           <Box display="flex">
-            <Link href="https://store.steampowered.com/app/570/Dota_2/">
+            <Link to="https://store.steampowered.com/app/570/Dota_2/">
               <CommonButton>
                 <BsSteam />
                 Graj za darmo

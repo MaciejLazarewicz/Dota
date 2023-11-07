@@ -1,6 +1,6 @@
 import { Box, Image, Text } from '@chakra-ui/react';
-import CommonButton from '../../../components/constants/CommonButton';
-import BottomAnimation from '../../../components/constants/BottomAnimation';
+import CommonButton from '../../../components/CommonButton';
+import BottomAnimation from '../../../components/BottomAnimation';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
 import {
@@ -8,7 +8,7 @@ import {
   darkFont,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
-import OrangeDivider from '../../../components/constants/OrangeDivider';
+import OrangeDivider from '../../../components/OrangeDivider';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
@@ -61,6 +61,7 @@ function BattleSection() {
           >
             Dołącz do
           </Text>
+
           <Text
             marginTop="0"
             marginBottom="10px"

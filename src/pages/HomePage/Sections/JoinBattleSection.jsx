@@ -1,6 +1,6 @@
 import { Box, Image, Text } from '@chakra-ui/react';
-import OrangeDivider from '../../../components/constants/OrangeDivider';
-import CommonButton from '../../../components/constants/CommonButton';
+import OrangeDivider from '../../../components/OrangeDivider';
+import CommonButton from '../../../components/CommonButton';
 import {
   darkFont,
   lightFont,

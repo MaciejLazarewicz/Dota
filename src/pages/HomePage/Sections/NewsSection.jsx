@@ -1,5 +1,4 @@
 import { Box, Text, Link } from '@chakra-ui/react';
-import Gradient from '../../../components/constants/Gradient';
 
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
@@ -8,17 +7,6 @@ import HomeNewsComponent from '../../../components/HomeNewsComponent';
 function NewsSection() {
   return (
     <Box>
-      <Box
-        position="absolute"
-        top={0}
-        left={0}
-        right={0}
-        bottom={0}
-        zIndex={-1}
-        background="linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 100%)"
-        filter="blur(50px)"
-        pointerEvents="none"
-      />
       <Box
         display="flex"
         flexDir="column"
@@ -37,7 +25,7 @@ function NewsSection() {
             letterSpacing="3px"
             alignItems="center"
             fontSize="18px"
-            marginTop="-40px"
+            marginTop="-45px"
           >
             <Text color="#fff">Najnowsze Wiadomości</Text>
 

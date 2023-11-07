@@ -67,7 +67,16 @@ function HomeNewsComponent() {
   const randomSentence = generateRandomDescription(20);
 
   return (
-    <Box height="30%" display="flex">
+    <Box
+      height="30%"
+      display="flex"
+      borderBottom="2px solid rgba(255,255,255,0.7)"
+      _hover={{
+        borderBottom: '2px solid #f51',
+        transform: 'scale(1.1)',
+        transition: 'transform 0.3s ease-in-out',
+      }}
+    >
       <Box
         width="100%"
         height="100%"
@@ -80,14 +89,17 @@ function HomeNewsComponent() {
           width="350px"
           src={imageUrl}
           alt="Random Gaming Image from Unsplash"
+          borderRadius="15px"
         />
+
         <Box
           position="absolute"
-          bottom="0"
+          bottom="3"
           left="0"
           width="350px"
           height="85px"
           background="rgba(255,255,255,0.2)"
+          borderRadius="15px"
         />
 
         <Box

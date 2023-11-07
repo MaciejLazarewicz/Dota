@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 
 function BackgroundVideo() {
   return (
-    <Box>
+    <Box width="100%">
       <video
         autoPlay
         loop
@@ -14,6 +14,13 @@ function BackgroundVideo() {
           type="video/mp4"
         />
       </video>
+      <Box
+        background="linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
+        position="absolute"
+        width="100%"
+        height="100%"
+        top="-150"
+      />
     </Box>
   );
 }
