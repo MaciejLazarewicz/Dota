@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import BackgroundVideo from '../../components/BackgroundVideo';
 import Header from '../../components/Header';
-import HomeNews from './Sections/NewsSection';
+import NewsSection from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
 import { useBreakpoint } from '../../components/constants/BreakPoints';
@@ -16,6 +16,7 @@ import JoinBattleSection from './Sections/JoinBattleSection';
 import FooterSection from './Sections/FooterSection';
 import HeroGrid from '../../components/HeroGrid';
 import { evenRowStyle, oddRowStyle } from '../../components/HeroGrid';
+import Gradient from '../../components/constants/Gradient';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
@@ -67,8 +68,9 @@ function Home() {
   const textBoxStyle = {
     display: 'flex',
     flexDir: 'column',
-    marginTop: '150px',
+    marginTop: '100px',
     marginLeft: '170px',
+    marginBottom: '100px',
     color: '#f5f4f5d1',
     width: '45%',
     ...defaultScreenTextStyle,
@@ -121,7 +123,6 @@ function Home() {
     <Box style={mainContainerStyle}>
       <BackgroundVideo />
       <Box
-        background="rgba(0,0,0,0.7)"
         top="0"
         left="0"
         zIndex="1"
@@ -188,11 +189,10 @@ function Home() {
           </motion.div>
         </Box>
 
-        <Box display="flex" color="#f51" marginLeft="350px" marginTop="20px">
-          <HomeNews />
-        </Box>
+        <NewsSection />
 
         <BattleSection />
+
         <ChooseSection />
         <Box
           display="flex"

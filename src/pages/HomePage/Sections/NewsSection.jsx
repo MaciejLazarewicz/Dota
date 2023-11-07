@@ -1,103 +1,68 @@
-import { Box, Text, Image } from '@chakra-ui/react';
-import { faker } from '@faker-js/faker';
+import { Box, Text, Link } from '@chakra-ui/react';
+import Gradient from '../../../components/constants/Gradient';
+
+import { ArrowForwardIcon } from '@chakra-ui/icons';
+
+import HomeNewsComponent from '../../../components/HomeNewsComponent';
 
 function NewsSection() {
-  const generateRandomDate = () => {
-    const startDate = new Date(2019, 0, 1);
-    const endDate = new Date();
-    const randomDate = new Date(
-      startDate.getTime() +
-        Math.random() * (endDate.getTime() - startDate.getTime())
-    );
-
-    const day = randomDate.getDate();
-    const monthNames = [
-      'Styczeń',
-      'Luty',
-      'Marzec',
-      'Kwiecień',
-      'Maj',
-      'Czerwiec',
-      'Lipiec',
-      'Sierpień',
-      'Wrzesień',
-      'Październik',
-      'Listopad',
-      'Grudzień',
-    ];
-    const monthName = monthNames[randomDate.getMonth()];
-    const year = randomDate.getFullYear();
-
-    return `${day} ${monthName} ${year}`;
-  };
-  const generateRandomImage = () => {
-    return faker.image.url();
-  };
-  const generateRandomTitle = () => {
-    return faker.lorem.words();
-  };
-
-  const generateRandomDescription = (wordCount) => {
-    return faker.lorem.words(wordCount);
-  };
-
-  const randomDate = generateRandomDate();
-  const randomImage = generateRandomImage();
-  const randomTitle = generateRandomTitle();
-  const randomSentence = generateRandomDescription(20);
-
   return (
-    <Box width="100%" height="30%">
+    <Box>
       <Box
-        width="25%"
-        height="100%"
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        bottom={0}
+        zIndex={-1}
+        background="linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0) 100%)"
+        filter="blur(50px)"
+        pointerEvents="none"
+      />
+      <Box
+        display="flex"
+        flexDir="column"
+        width="100%"
+        marginTop="40px"
+        alignItems="center"
         position="relative"
-        overflow="hidden"
-        cursor="pointer"
+        background="rgb(0,0,0)"
       >
-        <Image
-          height="250px"
-          width="350px"
-          src={randomImage}
-          alt="Random Image from faker.js"
-        />
-        <Box
-          gap="5px"
-          display="flex"
-          flexDir="column"
-          width="350px"
-          position="absolute"
-          zIndex="1"
-          top="75%"
-          textTransform="capitalize"
-          backgroundColor="rgba(169, 169, 169, 0.4)"
-        >
+        <Box display="flex" flexDir="column" zIndex="1">
           <Box
             display="flex"
-            flexDir="column"
-            marginLeft="10px"
-            marginTop="5px"
-            gap="5px"
-            transform="translateY(0%)"
-            transition="transform, 0.3s ease-in-out"
-            _hover={{
-              opacity: 1,
-              background:
-                'linear-gradient(rgba(19, 23, 28, 0) 60%, rgba(19, 23, 28, 0.733) 70%, rgb(19, 23, 28) 90%)',
-              width: '100%',
-
-              transform: 'translateY(-100%)',
-              transition:
-                'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
-            }}
+            flexDir="row"
+            gap="15px"
+            textTransform="uppercase"
+            letterSpacing="3px"
+            alignItems="center"
+            fontSize="18px"
+            marginTop="-40px"
           >
-            <Text margin="0" fontSize="20px" color="rgba(255,255,255,0.7)">
-              {randomDate}
-            </Text>
-            <Text margin="0" fontSize="20px" color="#fff">
-              {randomTitle}
-            </Text>
-            <Text color="rgba(255,255,255,0.7)">{randomSentence}</Text>
+            <Text color="#fff">Najnowsze Wiadomości</Text>
+
+            <Link
+              cursor="pointer"
+              color="#d0d1d3"
+              display="flex"
+              alignItems="center"
+              to="#"
+            >
+              <Text
+                _hover={{
+                  letterSpacing: '5px',
+                  transition: 'letter-spacing 0.2s ease-in-out',
+                }}
+              >
+                Zobacz wszystko
+              </Text>
+              <ArrowForwardIcon boxSize="20px" />
+            </Link>
+          </Box>
+          <Box display="flex " flexDir="row" gap="25px">
+            <HomeNewsComponent />
+            <HomeNewsComponent />
+            <HomeNewsComponent />
           </Box>
         </Box>
       </Box>
