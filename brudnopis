@@ -1,44 +1,81 @@
+export const mainBoxAnimationStyles = { position: 'absolute', display: 'flex',
+flexDir: 'row', width: '100%', height: '100%', alignItems: 'flex-end', gap:
+'15px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', opacity:
+'0', zIndex: 3, transform: 'translateY(20%)', hover: { opacity: 1, transform:
+'translateY(0%)', transition: 'opacity 0.3s ease-in-out, transform 0.3s
+ease-in-out', }, }; const secondBoxAnimationStyles = { display: 'flex', width:
+'100%', height: '100%', alignItems: 'flex-end', flexDir: 'row', gap: '19', };
+{heroes.map((hero) => (
+<HeroesGrid
+  key="{hero.id}"
+  name="{hero.localized_name}"
+  img="{`${PUBLIC_DOMAIN}${hero.img}`}"
+  alt="{hero.localized_name}"
+  prim="{hero.primary_attr}"
+/>
+))}
+
+
+
 <Box
-          gap="5px"
-          display="flex"
-          flexDir="column"
-          width="350px"
+        display="grid"
+        width="100%"
+        height="100%"
+        _hover={{
+          transform: 'scale(1.2)',
+        }}
+      >
+        <Image width="250px" height="125px" src={img} alt={name} />
+
+        <Box
           position="absolute"
-          zIndex="1"
-          top="75%"
-          textTransform="capitalize"
-          backgroundColor="rgba(169, 169, 169, 0.4)"
+          display="flex"
+          flexDir="row"
+          width="100%"
+          height="100%"
+          alignItems="flex-end"
+          gap="15px"
+          fontSize="15px"
+          fontWeight="700"
+          textTransform="uppercase"
+          opacity="0"
+          zIndex="3"
+          transform="translateY(20%)"
+          _hover={{
+            opacity: 1,
+            transform: 'translateY(0%)',
+            transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
+          }}
         >
           <Box
             display="flex"
-            flexDir="column"
-            marginLeft="10px"
-            marginTop="5px"
-            gap="5px"
-            transform="translateY(0%)"
-            transition="transform, 0.3s ease-in-out"
-            _hover={{
-              opacity: 1,
-              background:
-                'linear-gradient(rgba(19, 23, 28, 0) 60%, rgba(19, 23, 28, 0.733) 70%, rgb(19, 23, 28) 90%)',
-              width: '100%',
-
-              transform: 'translateY(-100%)',
-              transition:
-                'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
-            }}
+            width="100%"
+            height="100%"
+            alignItems="flex-end"
+            flexDir="row"
+            gap="10px"
+            marginBottom="15px"
+            marginLeft="5px"
+            zIndex="1"
           >
-            <Text margin="0" fontSize="20px" color="rgba(255,255,255,0.7)">
-              {randomDate}
+            <Image
+              src={transformAttributeIntoIconSrc(prim)}
+              width="30px"
+              height="30px"
+              marginBottom="5px"
+            />
+
+            <Text
+              fontSize="18px"
+              marginBottom="0"
+              color="#fff"
+              width="100%"
+              height="30px"
+              lineHeight="20px"
+              letterSpacing="2px"
+            >
+              {name}
             </Text>
-            <Text margin="0" fontSize="20px" color="#fff">
-              {randomTitle}
-            </Text>
-            <Text color="rgba(255,255,255,0.7)">{randomSentence}</Text>
           </Box>
         </Box>
-
-
-
-       
-          
+      </Box>
