@@ -17,14 +17,14 @@ function FooterSection() {
         justifyContent="center"
         gap="50px"
       >
-        <Link>
+        <Link cursor="pointer">
           <Image
             width="100px"
             height="30px"
             src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/valve_logo.png"
           />
         </Link>
-        <Link>
+        <Link cursor="pointer">
           <Image
             width="150px"
             height="30px"

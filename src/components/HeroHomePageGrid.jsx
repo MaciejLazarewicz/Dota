@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { Box, Image, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { fontFamily } from './constants/FontFamily';
@@ -34,7 +36,7 @@ const customStyles = `
   
 `;
 
-function HeroHomePageGrid({ name, img, alt, prim, icon, rowStyle }) {
+function HeroHomePageGrid({ name, img, alt, prim, rowStyle }) {
   const RowAnimation = ({ children }) => {
     return (
       <Box>
