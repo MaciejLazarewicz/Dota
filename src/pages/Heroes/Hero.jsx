@@ -2,9 +2,28 @@ import { Box, Image, Text, Input } from '@chakra-ui/react';
 import Header from '../../components/Header';
 import { fontFamily } from '../../components/constants/FontFamily';
 import { SearchIcon } from '@chakra-ui/icons';
+
+import { useState, useEffect } from 'react';
+
+import { fetchHeroData } from '../../components/FetchHeroData';
 import HeroesGrid from './Components/HeroesGrid';
 
+import { PUBLIC_DOMAIN } from '../HomePage/Home';
+
 function Hero() {
+  const [heroes, setHeroes] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const heroData = await fetchHeroData();
+        setHeroes(heroData);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const filterImagesStyles = {
     width: '44px',
     height: '34px',
@@ -18,7 +37,7 @@ function Hero() {
     <Box width="100%" height="100%" position="relative">
       <Image
         src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/greyfade.jpg"
-        backgroundSize="100%"
+        backgroundSize="cover"
         backgroundRepeat="no-repeat"
         backgroundPosition="center-top"
         width="100%"
@@ -144,6 +163,17 @@ function Hero() {
                 />
               </Box>
             </Box>
+          </Box>
+          <Box display="grid" gridTemplateColumns="repeat(5,1fr)">
+            {heroes.map((hero) => (
+              <HeroesGrid
+                key={hero.id}
+                name={hero.localized_name}
+                img={`${PUBLIC_DOMAIN}${hero.img}`}
+                alt={hero.localized_name}
+                prim={hero.primary_attr}
+              />
+            ))}
           </Box>
         </Box>
       </Box>
