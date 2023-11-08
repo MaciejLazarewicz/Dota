@@ -33,6 +33,7 @@ function HeroesGrid({ name, img, prim }) {
         return 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_universal.png';
     }
   };
+
   return (
     <Box display="flex">
       <Box
