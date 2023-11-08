@@ -14,6 +14,14 @@ import FooterSection from '../HomePage/Sections/FooterSection';
 
 function Hero() {
   const [heroes, setHeroes] = useState([]);
+
+  const [selectedAttribute, setSelectedAttribute] = useState('');
+  const handleAttributeClick = (attribute) => {
+    setSelectedAttribute((prevAttribute) =>
+      prevAttribute === attribute ? '' : attribute
+    );
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,6 +49,9 @@ function Hero() {
     },
   };
 
+  const complexityImageUrl =
+    'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png';
+
   return (
     <Box width="100%" height="100%" position="relative">
       <Box
@@ -61,6 +72,7 @@ function Hero() {
           alignItems="center"
         >
           <Header />
+
           <Box display="flex" flexDir="column" width="60%" alignItems="center">
             <Text
               fontFamily={fontFamily}
@@ -127,18 +139,22 @@ function Hero() {
                   <Image
                     {...filterImagesStyles}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png"
+                    onClick={() => handleAttributeClick('str')}
                   />
                   <Image
                     {...filterImagesStyles}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png"
+                    onClick={() => handleAttributeClick('agi')}
                   />
                   <Image
                     {...filterImagesStyles}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png"
+                    onClick={() => handleAttributeClick('int')}
                   />
                   <Image
                     {...filterImagesStyles}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-uni-active.png"
+                    onClick={() => handleAttributeClick('all')}
                   />
                 </Box>
               </Box>
@@ -150,10 +166,9 @@ function Hero() {
                 gap="5px"
               >
                 <Text marginRight="10px">Złożoność</Text>
-                <Image
-                  {...filterImagesStyles}
-                  src=" https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-diamond.png"
-                />
+                <Image {...filterImagesStyles} src={complexityImageUrl} />
+                <Image {...filterImagesStyles} src={complexityImageUrl} />
+                <Image {...filterImagesStyles} src={complexityImageUrl} />
               </Box>
               <Box
                 display="flex"
@@ -193,15 +208,21 @@ function Hero() {
               marginTop="10px"
               marginBottom="50px"
             >
-              {heroes.map((hero) => (
-                <HeroesGrid
-                  key={hero.id}
-                  name={hero.localized_name}
-                  img={`${PUBLIC_DOMAIN}${hero.img}`}
-                  alt={hero.localized_name}
-                  prim={hero.primary_attr}
-                />
-              ))}
+              {heroes
+                .filter(
+                  (hero) =>
+                    selectedAttribute === '' ||
+                    hero.primary_attr === selectedAttribute
+                )
+                .map((hero) => (
+                  <HeroesGrid
+                    key={hero.id}
+                    name={hero.localized_name}
+                    img={`${PUBLIC_DOMAIN}${hero.img}`}
+                    alt={hero.localized_name}
+                    prim={hero.primary_attr}
+                  />
+                ))}
             </Box>
           </Box>
         </Box>
