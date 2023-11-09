@@ -14,8 +14,48 @@ import FooterSection from '../HomePage/Sections/FooterSection';
 
 function Hero() {
   const [heroes, setHeroes] = useState([]);
-
+  const [searchText, setSearchText] = useState('');
+  const [noResults, setNoResults] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState('');
+  const [selectedComplexity, setSelectedComplexity] = useState('');
+  const [selectedIds, setSelectedIds] = useState('');
+
+  const complexityIds = {
+    1: [
+      102, 60, 1, 2, 47, 64, 99, 93, 79, 3, 33, 121, 4, 62, 58, 5, 78, 54, 55,
+      46, 105, 38, 7, 8, 9, 12, 124, 96, 117, 82, 42, 77, 57, 80, 123, 25, 100,
+      17, 48, 15, 118, 34, 19, 66, 20, 98, 84, 63, 21, 30, 24, 52, 23, 59, 29,
+    ], //1 ZA DUŻO
+    2: [
+      43, 70, 56, 36, 53, 68, 31, 114, 85, 45, 6, 101, 103, 37, 26, 27, 116,
+      120, 89, 49, 61, 72, 92, 122, 10, 113, 87, 32, 88, 69, 115, 75, 106, 13,
+      14, 35, 51, 16, 71, 39, 65, 94, 44, 18, 108, 86, 107, 95, 40, 28, 76, 97,
+      112, 119, 41, 22, 110,
+    ],
+    3: [111, 74, 50, 104, 67, 83, 73, 91, 11, 109, 81, 90],
+  };
+  const handleComplexityClick = (complexityId) => {
+    const selectedIds = complexityIds[complexityId] || [];
+    setSelectedComplexity(complexityId);
+    setSelectedIds(selectedIds);
+  };
+
+  const handleSearchTextChange = (event) => {
+    const searchText = event.target.value.toLowerCase();
+    setSearchText(searchText);
+
+    const filteredHeroes = heroes.filter(
+      (hero) =>
+        (selectedAttribute === '' || hero.primary_attr === selectedAttribute) &&
+        (selectedComplexity === '' || hero.complexity === selectedComplexity) &&
+        (selectedIds.length === 0 || selectedIds.includes(hero.id)) &&
+        (searchText === '' ||
+          hero.localized_name.toLowerCase().includes(searchText))
+    );
+
+    setNoResults(filteredHeroes.length === 0);
+  };
+
   const handleAttributeClick = (attribute) => {
     setSelectedAttribute((prevAttribute) =>
       prevAttribute === attribute ? '' : attribute
@@ -35,18 +75,17 @@ function Hero() {
     fetchData();
   }, []);
 
-  const filterImagesStyles = {
-    width: '44px',
-    height: '34px',
-    marginLeft: '-4px',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    cursor: 'pointer',
-    filter: 'brightness(0.5)',
-
-    _active: {
-      filter: 'brightness(1)',
-    },
+  const filterImagesStyles = (attribute) => {
+    return {
+      width: '44px',
+      height: '34px',
+      marginLeft: '-4px',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      cursor: 'pointer',
+      filter: 'brightness(0.5)',
+      ...(selectedAttribute === attribute && { filter: 'brightness(1.0)' }),
+    };
   };
 
   const complexityImageUrl =
@@ -137,22 +176,22 @@ function Hero() {
                   gap="5px"
                 >
                   <Image
-                    {...filterImagesStyles}
+                    {...filterImagesStyles('str')}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-str-active.png"
                     onClick={() => handleAttributeClick('str')}
                   />
                   <Image
-                    {...filterImagesStyles}
+                    {...filterImagesStyles('agi')}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-agi-active.png"
                     onClick={() => handleAttributeClick('agi')}
                   />
                   <Image
-                    {...filterImagesStyles}
+                    {...filterImagesStyles('int')}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-int-active.png"
                     onClick={() => handleAttributeClick('int')}
                   />
                   <Image
-                    {...filterImagesStyles}
+                    {...filterImagesStyles('all')}
                     src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/herogrid/filter-uni-active.png"
                     onClick={() => handleAttributeClick('all')}
                   />
@@ -165,10 +204,14 @@ function Hero() {
                 alignItems="center"
                 gap="5px"
               >
-                <Text marginRight="10px">Złożoność</Text>
-                <Image {...filterImagesStyles} src={complexityImageUrl} />
-                <Image {...filterImagesStyles} src={complexityImageUrl} />
-                <Image {...filterImagesStyles} src={complexityImageUrl} />
+                {[1, 2, 3].map((id) => (
+                  <Image
+                    key={id}
+                    {...filterImagesStyles(id.toString())}
+                    src={complexityImageUrl}
+                    onClick={() => handleComplexityClick(id.toString())}
+                  />
+                ))}
               </Box>
               <Box
                 display="flex"
@@ -197,22 +240,28 @@ function Hero() {
                     _focus={{
                       backgroundColor: '#505050',
                     }}
+                    onChange={handleSearchTextChange}
                   />
                 </Box>
               </Box>
             </Box>
             <Box
               display="grid"
-              gridTemplateColumns="repeat(5,1fr)"
+              gridTemplateColumns="repeat(5, minmax(250px, 1fr))"
               gap="15px"
-              marginTop="10px"
+              marginTop="20px"
               marginBottom="50px"
             >
               {heroes
                 .filter(
                   (hero) =>
-                    selectedAttribute === '' ||
-                    hero.primary_attr === selectedAttribute
+                    (selectedAttribute === '' ||
+                      hero.primary_attr === selectedAttribute) &&
+                    (searchText === '' ||
+                      hero.localized_name
+                        .toLowerCase()
+                        .includes(searchText.toLowerCase())) &&
+                    (selectedIds.length === 0 || selectedIds.includes(hero.id))
                 )
                 .map((hero) => (
                   <HeroesGrid
@@ -225,6 +274,18 @@ function Hero() {
                 ))}
             </Box>
           </Box>
+          {noResults && (
+            <Box
+              display="flex"
+              flexDir="row"
+              width="100%"
+              justifyContent="center"
+            >
+              <Text fontSize="60px" color="#fff">
+                Brak bohaterów pasujących do Twojego filtra
+              </Text>
+            </Box>
+          )}
         </Box>
       </Box>
       <Box
