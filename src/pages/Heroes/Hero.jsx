@@ -25,7 +25,7 @@ function Hero() {
       102, 60, 1, 2, 47, 64, 99, 93, 79, 3, 33, 121, 4, 62, 58, 5, 78, 54, 55,
       46, 105, 38, 7, 8, 9, 12, 124, 96, 117, 82, 42, 77, 57, 80, 123, 25, 100,
       17, 48, 15, 118, 34, 19, 66, 20, 98, 84, 63, 21, 30, 24, 52, 23, 59, 29,
-    ], //1 ZA DUŻO
+    ],
     2: [
       43, 70, 56, 36, 53, 68, 31, 114, 85, 45, 6, 101, 103, 37, 26, 27, 116,
       120, 89, 49, 61, 72, 92, 122, 10, 113, 87, 32, 88, 69, 115, 75, 106, 13,
@@ -167,7 +167,7 @@ function Hero() {
                 alignItems="center"
                 gap="5px"
               >
-                <Text marginRight="10px">Atrybuty</Text>
+                <Text marginRight="10px"> Atrybuty</Text>
                 <Box
                   display="flex"
                   flexDir="row"
@@ -274,6 +274,7 @@ function Hero() {
                 ))}
             </Box>
           </Box>
+
           {noResults && (
             <Box
               display="flex"
