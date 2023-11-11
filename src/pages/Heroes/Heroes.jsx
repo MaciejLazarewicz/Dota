@@ -13,6 +13,21 @@ import { PUBLIC_DOMAIN } from '../HomePage/Home';
 import FooterSection from '../HomePage/Sections/FooterSection';
 import { motion } from 'framer-motion';
 
+export const complexityIds = {
+  1: [
+    1, 2, 4, 5, 6, 8, 15, 18, 20, 22, 25, 26, 27, 28, 29, 30, 31, 32, 35, 36,
+    37, 40, 42, 43, 44, 47, 48, 49, 50, 52, 55, 57, 59, 60, 62, 64, 70, 71, 72,
+    73, 81, 84, 85, 94, 96, 99, 100, 101, 102, 104, 127, 128, 129, 135, 137,
+  ],
+  2: [
+    3, 7, 9, 11, 12, 13, 14, 16, 17, 19, 21, 23, 33, 34, 38, 39, 41, 45, 46, 51,
+    53, 54, 56, 58, 61, 63, 65, 67, 68, 69, 75, 76, 77, 79, 83, 87, 88, 89, 90,
+    93, 95, 97, 98, 103, 105, 106, 108, 109, 110, 112, 119, 120, 121, 123, 126,
+    136,
+  ],
+  3: [10, 66, 74, 78, 80, 82, 86, 91, 92, 107, 111, 113, 114],
+};
+
 function Heroes() {
   const [heroes, setHeroes] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -21,20 +36,6 @@ function Heroes() {
   const [selectedComplexity, setSelectedComplexity] = useState(null);
   const [selectedIds, setSelectedIds] = useState('');
 
-  const complexityIds = {
-    1: [
-      102, 60, 1, 2, 47, 64, 99, 93, 79, 3, 33, 121, 4, 62, 58, 5, 78, 54, 55,
-      46, 105, 38, 7, 8, 9, 12, 124, 96, 117, 82, 42, 77, 57, 80, 123, 25, 100,
-      17, 48, 15, 118, 34, 19, 66, 20, 98, 84, 63, 21, 30, 24, 52, 23, 59, 29,
-    ],
-    2: [
-      43, 70, 56, 36, 53, 68, 31, 114, 85, 45, 6, 101, 103, 37, 26, 27, 116,
-      120, 89, 49, 61, 72, 92, 122, 10, 113, 87, 32, 88, 69, 115, 75, 106, 13,
-      14, 35, 51, 16, 71, 39, 65, 94, 44, 18, 108, 86, 107, 95, 40, 28, 76, 97,
-      112, 119, 41, 22, 110,
-    ],
-    3: [111, 74, 50, 104, 67, 83, 73, 91, 11, 109, 81, 90],
-  };
   const handleComplexityClick = (complexityId) => {
     setSelectedComplexity((prevComplexity) =>
       prevComplexity === complexityId ? '' : complexityId

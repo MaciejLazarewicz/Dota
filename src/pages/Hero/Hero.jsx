@@ -1,6 +1,8 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import Header from '../../components/Header';
 import FooterSection from '../HomePage/Sections/FooterSection';
+import { fontFamily } from '../../components/constants/FontFamily';
+import { complexityIds } from '../Heroes/Heroes';
 
 function Hero({ name, img, prim, id, attackType }) {
   const transformBackendAttributeIntoReadableOne = (attr) => {
@@ -34,8 +36,19 @@ function Hero({ name, img, prim, id, attackType }) {
     }
   };
 
+  const formattedName = name
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace('-', '');
+
   return (
-    <Box width="100%" background="#b4b4b4">
+    <Box
+      width="100%"
+      position="relative"
+      display="flex"
+      flexDir="column"
+      overflow="hidden"
+    >
       <Box
         width="100%"
         height="85vh"
@@ -65,12 +78,13 @@ function Hero({ name, img, prim, id, attackType }) {
           height="100%"
           marginTop="30px"
           position="absolute"
+          right="-5%"
         >
           <video
             autoPlay
             loop
             muted
-            src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${name.toLowerCase()}.webm`}
+            src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName}.webm`}
           />
         </Box>
         <Box
@@ -89,37 +103,66 @@ function Hero({ name, img, prim, id, attackType }) {
           marginTop="100px"
           marginLeft="300px"
         >
-          <Image
-            width="30px"
-            height="30px"
-            src={transformAttributeIntoIconSrc(prim)}
-          />
-          <Text> {transformBackendAttributeIntoReadableOne(prim)}</Text>
+          <Box display="flex" flexDir="row">
+            <Image
+              width="30px"
+              height="30px"
+              src={transformAttributeIntoIconSrc(prim)}
+            />
+            <Text> {transformBackendAttributeIntoReadableOne(prim)}</Text>
+          </Box>
+
           <Text>{name}</Text>
           <Text>Text</Text>
           <Text>Text</Text>
-          <Box>
+          <Box display="flex" flexDir="row">
+            <Image
+              width="24px"
+              height="24px"
+              src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg"
+            />
             <Text>{attackType}</Text>
           </Box>
           <Box>
             <Text>Złożoność</Text>
+            <Box display="flex" flexDir="row" gap="20px">
+              {[1, 2, 3].map((index) => (
+                <Box
+                  key={index}
+                  width="15px"
+                  height="15px"
+                  border="1px solid #fff"
+                  transform="rotateZ(45deg)"
+                />
+              ))}
+            </Box>
           </Box>
         </Box>
 
         <Box
           width="800px"
           left="-320px"
-          top="0"
+          bottom="80px"
           marginRight="50px"
           display="flex"
           flexDir="row"
           alignItems="center"
           transform="rotate(270deg)"
-          position="absolute"
+          position="relative"
+          fontSize="17px"
+          fontWeight="600"
+          textTransform="uppercase"
+          gap="12px"
         >
-          <Image src={transformAttributeIntoIconSrc(prim)} />
-          <Text color="#fff">{name}</Text>
-          <Text>{id}</Text>
+          <Image
+            width="22px"
+            height="22px"
+            src={transformAttributeIntoIconSrc(prim)}
+          />
+          <Text fontFamily={fontFamily} color="#fff">
+            {name}
+          </Text>
+          <Text color="#888">{id}</Text>
           <Box flexGrow="1" height="2px" backgroundColor="#555" />
         </Box>
       </Box>
