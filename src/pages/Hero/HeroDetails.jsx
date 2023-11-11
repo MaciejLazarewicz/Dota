@@ -28,10 +28,12 @@ function HeroDetails() {
         .map((hero) => (
           <Hero
             key={hero.id}
+            id={hero.id}
             name={hero.localized_name}
             img={`${PUBLIC_DOMAIN}${hero.img}`}
             alt={hero.localized_name}
             prim={hero.primary_attr}
+            attackType={hero.attack_type}
           />
         ))}
     </Box>
