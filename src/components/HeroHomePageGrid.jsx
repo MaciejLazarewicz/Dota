@@ -3,6 +3,7 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { fontFamily } from './constants/FontFamily';
+import { Link } from 'react-router-dom';
 
 export const evenRowStyle = {
   animation: 'moveEvenRow 100s linear infinite alternate ',
@@ -85,84 +86,86 @@ function HeroHomePageGrid({ name, img, alt, prim, rowStyle }) {
   };
 
   return (
-    <RowAnimation style={rowStyle}>
-      <Box
-        display="flex"
-        style={rowStyle}
-        background="linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
-      >
-        <motion.div
-          whileHover={{
-            scale: 1.2,
-          }}
-          position="relative"
+    <Link to={`/Hero/${name}`}>
+      <RowAnimation style={rowStyle}>
+        <Box
+          display="flex"
+          style={rowStyle}
+          background="linear-gradient(to right, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
         >
-          <Box display="flex" width="100%" cursor="pointer">
-            <Image width="250px" height="125px" src={img} alt={alt} />
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+            }}
+            position="relative"
+          >
+            <Box display="flex" width="100%" cursor="pointer">
+              <Image width="250px" height="125px" src={img} alt={alt} />
 
-            <Box
-              position="absolute"
-              display="flex"
-              flexDir="row"
-              width="100%"
-              height="100%"
-              alignItems="flex-end"
-              gap="15px"
-              fontSize="15px"
-              fontWeight="700"
-              textTransform="uppercase"
-              opacity="0"
-              zIndex="3"
-              transform="translateY(20%)"
-              _hover={{
-                opacity: 1,
-                transform: 'translateY(0%)',
-                transition:
-                  'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
-              }}
-            >
               <Box
+                position="absolute"
                 display="flex"
+                flexDir="row"
                 width="100%"
                 height="100%"
                 alignItems="flex-end"
-                flexDir="row"
-                gap="10px"
-                marginBottom="15px"
-                marginLeft="5px"
-                zIndex="1"
+                gap="15px"
+                fontSize="15px"
+                fontWeight="700"
+                textTransform="uppercase"
+                opacity="0"
+                zIndex="3"
+                transform="translateY(20%)"
+                _hover={{
+                  opacity: 1,
+                  transform: 'translateY(0%)',
+                  transition:
+                    'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
+                }}
               >
-                <Image
-                  src={transformAttributeIntoIconSrc(prim)}
-                  width="30px"
-                  height="30px"
-                  marginBottom="5px"
-                />
-
-                <Text
-                  fontSize="18px"
-                  marginBottom="0"
-                  color="#fff"
+                <Box
+                  display="flex"
                   width="100%"
-                  height="30px"
-                  fontFamily={fontFamily}
-                  lineHeight="20px"
-                  letterSpacing="2px"
+                  height="100%"
+                  alignItems="flex-end"
+                  flexDir="row"
+                  gap="10px"
+                  marginBottom="15px"
+                  marginLeft="5px"
+                  zIndex="1"
                 >
-                  {name}
-                </Text>
+                  <Image
+                    src={transformAttributeIntoIconSrc(prim)}
+                    width="30px"
+                    height="30px"
+                    marginBottom="5px"
+                  />
+
+                  <Text
+                    fontSize="18px"
+                    marginBottom="0"
+                    color="#fff"
+                    width="100%"
+                    height="30px"
+                    fontFamily={fontFamily}
+                    lineHeight="20px"
+                    letterSpacing="2px"
+                  >
+                    {name}
+                  </Text>
+                </Box>
+                <Box
+                  position="absolute"
+                  width="100%"
+                  height="100%"
+                  background="linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
+                />
               </Box>
-              <Box
-                position="absolute"
-                width="100%"
-                height="100%"
-                background="linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.733) 90%, rgb(0, 0, 0) 100%)"
-              />
             </Box>
-          </Box>
-        </motion.div>
-      </Box>
-    </RowAnimation>
+          </motion.div>
+        </Box>
+      </RowAnimation>
+    </Link>
   );
 }
 
