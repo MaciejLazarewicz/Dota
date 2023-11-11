@@ -11,13 +11,14 @@ import HeroesGrid from './Components/HeroesGrid';
 
 import { PUBLIC_DOMAIN } from '../HomePage/Home';
 import FooterSection from '../HomePage/Sections/FooterSection';
+import { motion } from 'framer-motion';
 
-function Hero() {
+function Heroes() {
   const [heroes, setHeroes] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [noResults, setNoResults] = useState(false);
   const [selectedAttribute, setSelectedAttribute] = useState('');
-  const [selectedComplexity, setSelectedComplexity] = useState('');
+  const [selectedComplexity, setSelectedComplexity] = useState(null);
   const [selectedIds, setSelectedIds] = useState('');
 
   const complexityIds = {
@@ -35,9 +36,17 @@ function Hero() {
     3: [111, 74, 50, 104, 67, 83, 73, 91, 11, 109, 81, 90],
   };
   const handleComplexityClick = (complexityId) => {
-    const selectedIds = complexityIds[complexityId] || [];
-    setSelectedComplexity(complexityId);
-    setSelectedIds(selectedIds);
+    setSelectedComplexity((prevComplexity) =>
+      prevComplexity === complexityId ? '' : complexityId
+    );
+
+    setSelectedIds((prevIds) => {
+      if (prevIds.length === complexityIds[complexityId].length) {
+        return [];
+      } else {
+        return [...complexityIds[complexityId]];
+      }
+    });
   };
 
   const handleSearchTextChange = (event) => {
@@ -75,7 +84,7 @@ function Hero() {
     fetchData();
   }, []);
 
-  const filterImagesStyles = (attribute) => {
+  const filterImagesStyles = (attribute, complexityId) => {
     return {
       width: '44px',
       height: '34px',
@@ -83,8 +92,11 @@ function Hero() {
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       cursor: 'pointer',
-      filter: 'brightness(0.5)',
-      ...(selectedAttribute === attribute && { filter: 'brightness(1.0)' }),
+      filter:
+        selectedAttribute === attribute ||
+        (selectedComplexity !== null && complexityId <= selectedComplexity)
+          ? 'brightness(1.0)'
+          : 'brightness(0.5)',
     };
   };
 
@@ -207,9 +219,9 @@ function Hero() {
                 {[1, 2, 3].map((id) => (
                   <Image
                     key={id}
-                    {...filterImagesStyles(id.toString())}
+                    {...filterImagesStyles('complexity', id)}
                     src={complexityImageUrl}
-                    onClick={() => handleComplexityClick(id.toString())}
+                    onClick={() => handleComplexityClick(id)}
                   />
                 ))}
               </Box>
@@ -245,6 +257,7 @@ function Hero() {
                 </Box>
               </Box>
             </Box>
+
             <Box
               display="grid"
               gridTemplateColumns="repeat(5, minmax(250px, 1fr))"
@@ -264,13 +277,21 @@ function Hero() {
                     (selectedIds.length === 0 || selectedIds.includes(hero.id))
                 )
                 .map((hero) => (
-                  <HeroesGrid
+                  <motion.div
                     key={hero.id}
-                    name={hero.localized_name}
-                    img={`${PUBLIC_DOMAIN}${hero.img}`}
-                    alt={hero.localized_name}
-                    prim={hero.primary_attr}
-                  />
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <HeroesGrid
+                      name={hero.localized_name}
+                      img={`${PUBLIC_DOMAIN}${hero.img}`}
+                      alt={hero.localized_name}
+                      prim={hero.primary_attr}
+                    />
+                  </motion.div>
                 ))}
             </Box>
           </Box>
@@ -302,4 +323,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+export default Heroes;

@@ -99,7 +99,7 @@ function Header() {
               </MenuList>
             </Menu>
 
-            <Link to="/Hero" {...FONT_DATA}>
+            <Link to="/Heroes" {...FONT_DATA}>
               Bohaterowie
             </Link>
             <Link to="#" {...FONT_DATA}>
