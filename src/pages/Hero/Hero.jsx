@@ -4,7 +4,7 @@ import FooterSection from '../HomePage/Sections/FooterSection';
 import { fontFamily } from '../../components/constants/FontFamily';
 import { complexityIds } from '../Heroes/Heroes';
 
-function Hero({ name, img, prim, id, attackType }) {
+function Hero({ name, img, prim, id, attackType, complexity }) {
   const transformBackendAttributeIntoReadableOne = (attr) => {
     switch (attr) {
       case 'agi':
@@ -133,6 +133,9 @@ function Hero({ name, img, prim, id, attackType }) {
                   height="15px"
                   border="1px solid #fff"
                   transform="rotateZ(45deg)"
+                  backgroundColor={
+                    complexityIds[index].includes(id) ? '#fff' : 'initial'
+                  }
                 />
               ))}
             </Box>
