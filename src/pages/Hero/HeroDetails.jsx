@@ -27,15 +27,17 @@ function HeroDetails() {
       {heroes
         .filter((hero) => (name ? hero.localized_name === name : true))
         .map((hero) => (
-          <HeroUpperSection
-            key={hero.id}
-            id={hero.id}
-            name={hero.localized_name}
-            img={`${PUBLIC_DOMAIN}${hero.img}`}
-            alt={hero.localized_name}
-            prim={hero.primary_attr}
-            attackType={hero.attack_type}
-          />
+          <Box key={hero.id}>
+            <HeroUpperSection
+              key={hero.id}
+              id={hero.id}
+              name={hero.localized_name}
+              img={`${PUBLIC_DOMAIN}${hero.img}`}
+              alt={hero.localized_name}
+              prim={hero.primary_attr}
+              attackType={hero.attack_type}
+            />
+          </Box>
         ))}
     </Box>
   );

@@ -15,6 +15,9 @@ import { fontFamily } from '../../../components/constants/FontFamily';
 import { complexityIds } from '../../Heroes/Components/HeroesComplexity';
 import { useState } from 'react';
 import { faker } from '@faker-js/faker';
+import { Link } from 'react-router-dom';
+import NextAndPreviousButton from './NextAndPreviousButton';
+import Skills from './Skills';
 
 function HeroUpperSection({ name, prim, id, attackType }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -101,7 +104,8 @@ function HeroUpperSection({ name, prim, id, attackType }) {
           overflow="hidden"
           backgroundColor="rgba(0,0,0,0.37)"
         />
-        {/* <Box>Button do bohaterow</Box> */}
+        <NextAndPreviousButton />
+
         <Box
           display="flex"
           justifyContent="center"
@@ -153,20 +157,28 @@ function HeroUpperSection({ name, prim, id, attackType }) {
             {name}
           </Text>
           <Text color="#a5e0f3">{randomDescription}</Text>
-          <Box
-            maxH={isExpanded ? '100px' : 'none'}
-            transition="max-height 0.5s"
-          >
+          <Box width="500px">
             <Collapse in={isExpanded} startingHeight={125}>
-              <Text whiteSpace="pre-line" textTransform="capitalize">
+              <Text
+                whiteSpace="pre-line"
+                textTransform="capitalize"
+                maxH={isExpanded ? '50px' : 'none'}
+                transition="max-height 0.5s"
+              >
                 {randomDetails}
               </Text>
               <Slider
                 value={sliderValue}
                 onChange={handleSliderChange}
                 orientation="vertical"
-                h="200px"
                 ml="5px"
+                h="150px"
+                color="#f51"
+                display={isExpanded ? 'block' : 'none'}
+                position="absolute"
+                right="-20px"
+                zIndex="999"
+                style={{ border: '5px solid red' }}
               >
                 <SliderTrack>
                   <SliderFilledTrack />
@@ -181,7 +193,7 @@ function HeroUpperSection({ name, prim, id, attackType }) {
               cursor="pointer"
               onClick={handleReadMoreClick}
             >
-              <Text fontSize="18px" textDecoration="underline">
+              <Text color="#f51" fontSize="18px" textDecoration="underline">
                 Przeczytaj pełną historie
               </Text>
             </Button>
@@ -228,34 +240,34 @@ function HeroUpperSection({ name, prim, id, attackType }) {
             </>
           )}
         </Box>
-
-        <Box
-          width="800px"
-          left="-320px"
-          bottom="200px"
-          marginRight="50px"
-          display="flex"
-          flexDir="row"
-          alignItems="center"
-          transform="rotate(270deg)"
-          position="relative"
-          fontSize="17px"
-          fontWeight="600"
-          textTransform="uppercase"
-          gap="12px"
-        >
-          <Image
-            width="22px"
-            height="22px"
-            src={transformAttributeIntoIconSrc(prim)}
-          />
-          <Text fontFamily={fontFamily} color="#fff">
-            {name}
-          </Text>
-          <Text color="#888">{id}</Text>
-          <Box flexGrow="1" height="2px" backgroundColor="#555" />
-        </Box>
       </Box>
+      <Box
+        width="800px"
+        left="-320px"
+        marginRight="50px"
+        top="300"
+        display="flex"
+        flexDir="row"
+        alignItems="center"
+        transform="rotate(270deg)"
+        position="absolute"
+        fontSize="17px"
+        fontWeight="600"
+        textTransform="uppercase"
+        gap="12px"
+      >
+        <Image
+          width="22px"
+          height="22px"
+          src={transformAttributeIntoIconSrc(prim)}
+        />
+        <Text fontFamily={fontFamily} color="#fff">
+          {name}
+        </Text>
+        <Text color="#888">{id}</Text>
+        <Box flexGrow="1" height="2px" backgroundColor="#555" />
+      </Box>
+      <Skills />
     </Box>
   );
 }

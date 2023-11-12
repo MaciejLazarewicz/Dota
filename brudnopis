@@ -1,98 +1,107 @@
-export const mainBoxAnimationStyles = { position: 'absolute', display: 'flex',
-flexDir: 'row', width: '100%', height: '100%', alignItems: 'flex-end', gap:
-'15px', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', opacity:
-'0', zIndex: 3, transform: 'translateY(20%)', hover: { opacity: 1, transform:
-'translateY(0%)', transition: 'opacity 0.3s ease-in-out, transform 0.3s
-ease-in-out', }, }; const secondBoxAnimationStyles = { display: 'flex', width:
-'100%', height: '100%', alignItems: 'flex-end', flexDir: 'row', gap: '19', };
-{heroes.map((hero) => (
-<HeroesGrid
-  key="{hero.id}"
-  name="{hero.localized_name}"
-  img="{`${PUBLIC_DOMAIN}${hero.img}`}"
-  alt="{hero.localized_name}"
-  prim="{hero.primary_attr}"
-/>
-))}
+import { Box, Text, Image } from '@chakra-ui/react';
+import React from 'react';
+import { useState } from 'react';
 
+function Skills() {
+  const [videoVisible, setVideoVisible] = useState(false);
+  const videoUrl =
+    'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/antimage/antimage_';
 
+  const videoStyles = {
+    autoPlay: 'autoPlay',
+    muted: 'muted',
+    loop: 'loop',
+  };
 
-<Box
-        display="grid"
-        width="100%"
-        height="100%"
-        _hover={{
-          transform: 'scale(1.2)',
-        }}
+  const imagesStyles = {
+    width: '80px',
+    height: '80px',
+    cursor: 'pointer',
+    boxShadow: '0px 0px 20px #000, 0px 0px 20px #000',
+  };
+
+  const videoBoxStyles = {
+    opacity: 1,
+    display: 'none',
+    width: '100px',
+    height: '50px',
+  };
+
+  const handleMouseEnter = () => {
+    setVideoVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setVideoVisible(false);
+  };
+
+  return (
+    <Box
+      display="flex"
+      flexDir="column"
+      position="absolute"
+      right="140px"
+      bottom="80px"
+      alignItems="center"
+      zIndex="999"
+    >
+      <Text
+        marginBottom="5px"
+        letterSpacing="2px"
+        fontSize="18px"
+        textTransform="uppercase"
+        color="#fff"
       >
-        <Image width="250px" height="125px" src={img} alt={name} />
-
+        Umiejętności
+      </Text>
+      <Box display="flex" gap="15px">
         <Box
-          position="absolute"
-          display="flex"
-          flexDir="row"
-          width="100%"
-          height="100%"
-          alignItems="flex-end"
-          gap="15px"
-          fontSize="15px"
-          fontWeight="700"
-          textTransform="uppercase"
-          opacity="0"
-          zIndex="3"
-          transform="translateY(20%)"
-          _hover={{
-            opacity: 1,
-            transform: 'translateY(0%)',
-            transition: 'opacity 0.3s ease-in-out, transform 0.3s ease-in-out',
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          position="relative"
         >
-          <Box
-            display="flex"
-            width="100%"
-            height="100%"
-            alignItems="flex-end"
-            flexDir="row"
-            gap="10px"
-            marginBottom="15px"
-            marginLeft="5px"
-            zIndex="1"
-          >
-            <Image
-              src={transformAttributeIntoIconSrc(prim)}
-              width="30px"
-              height="30px"
-              marginBottom="5px"
+          <Box {...videoBoxStyles}>
+            <video
+              className="video-view"
+              {...videoStyles}
+              src={videoUrl + 'mana_break.webm'}
             />
-
-            <Text
-              fontSize="18px"
-              marginBottom="0"
-              color="#fff"
-              width="100%"
-              height="30px"
-              lineHeight="20px"
-              letterSpacing="2px"
-            >
-              {name}
-            </Text>
           </Box>
+          <Image
+            {...imagesStyles}
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_mana_break.png"
+          />
+        </Box>
+        <Box>
+          <Box {...videoBoxStyles}>
+            <video {...videoStyles} src={videoUrl + 'blink.webm'} />
+          </Box>
+          <Image
+            {...imagesStyles}
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_blink.png"
+          />
+        </Box>
+        <Box>
+          <Box {...videoBoxStyles}>
+            <video {...videoStyles} src={videoUrl + 'counterspell.webm'} />
+          </Box>
+          <Image
+            {...imagesStyles}
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_counterspell.png"
+          />
+        </Box>
+        <Box>
+          <Box {...videoBoxStyles}>
+            <video {...videoStyles} src={videoUrl + 'mana_void.webm'} />
+          </Box>
+          <Image
+            {...imagesStyles}
+            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_mana_void.png"
+          />
         </Box>
       </Box>
+    </Box>
+  );
+}
 
-
-
-export const complexityIds = {
-  1: [
-    102, 60, 1, 2, 47, 64, 99, 93, 79, 33, 121, 4, 62, 58, 5, 78, 54, 55, 46,
-    105, 38, 7, 8, 9, 12, 124, 96, 117, 82, 42, 77, 57, 80, 123, 25, 100, 17,
-    48, 15, 118, 34, 19, 66, 20, 98, 84, 63, 21, 30, 24, 52, 23, 59, 29,
-  ],
-  2: [
-    3, 43, 70, 56, 36, 53, 68, 31, 114, 85, 45, 6, 101, 103, 37, 26, 27, 116,
-    120, 89, 49, 61, 72, 92, 122, 10, 113, 87, 32, 88, 69, 115, 75, 106, 13, 14,
-    35, 51, 16, 71, 39, 65, 94, 44, 18, 108, 86, 107, 95, 40, 28, 76, 97, 112,
-    119, 41, 22, 110,
-  ],
-  3: [111, 74, 50, 104, 67, 83, 73, 91, 11, 109, 81, 90],
-};
+export default Skills;
