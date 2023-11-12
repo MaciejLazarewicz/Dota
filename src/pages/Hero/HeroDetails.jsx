@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-import Hero from './Hero';
+import HeroUpperSection from './Components/HeroUpperSection';
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { PUBLIC_DOMAIN } from '../HomePage/Home';
 import { useParams } from 'react-router-dom';
@@ -27,7 +27,7 @@ function HeroDetails() {
       {heroes
         .filter((hero) => (name ? hero.localized_name === name : true))
         .map((hero) => (
-          <Hero
+          <HeroUpperSection
             key={hero.id}
             id={hero.id}
             name={hero.localized_name}
