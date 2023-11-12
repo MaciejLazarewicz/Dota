@@ -39,7 +39,7 @@ function Skills() {
   };
 
   return (
-    <Box position="absolute" bottom="200px" right="500px">
+    <Box position="absolute" top="600px" right="500px">
       <Box
         display="flex"
         position="absolute"

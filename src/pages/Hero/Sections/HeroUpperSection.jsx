@@ -15,11 +15,32 @@ import { fontFamily } from '../../../components/constants/FontFamily';
 import { complexityIds } from '../../Heroes/Components/HeroesComplexity';
 import { useState } from 'react';
 import { faker } from '@faker-js/faker';
-import { Link } from 'react-router-dom';
-import NextAndPreviousButton from './NextAndPreviousButton';
-import Skills from './Skills';
 
-function HeroUpperSection({ name, prim, id, attackType }) {
+import NextAndPreviousButton from '../Components/NextAndPreviousButton';
+import Skills from '../Components/Skills';
+import HeroBar from './HeroBar';
+
+function HeroSections({
+  name,
+  prim,
+  id,
+  attackType,
+  img,
+  baseHP,
+  baseHPRegen,
+  baseMP,
+  baseMPRegen,
+  baseArmor,
+  baseAttackMin,
+  baseAttackMax,
+  baseStrength,
+  baseAgility,
+  baseIntelligence,
+  strengthGain,
+  agilityGain,
+  intelligenceGain,
+  attackRange,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
   const [showAdditionalContent, setShowAdditionalContent] = useState(true);
@@ -268,8 +289,27 @@ function HeroUpperSection({ name, prim, id, attackType }) {
         <Box flexGrow="1" height="2px" backgroundColor="#555" />
       </Box>
       <Skills />
+
+      <HeroBar
+        name={name}
+        img={img}
+        baseHP={baseHP}
+        baseHPRegen={baseHPRegen}
+        baseMP={baseMP}
+        baseMPRegen={baseMPRegen}
+        baseArmor={baseArmor}
+        baseAttackMin={baseAttackMin}
+        baseAttackMax={baseAttackMax}
+        baseStrength={baseStrength}
+        baseAgility={baseAgility}
+        baseIntelligence={baseIntelligence}
+        strengthGain={strengthGain}
+        agilityGain={agilityGain}
+        intelligenceGain={intelligenceGain}
+        attackRange={attackRange}
+      />
     </Box>
   );
 }
 
-export default HeroUpperSection;
+export default HeroSections;
