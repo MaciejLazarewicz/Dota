@@ -21,6 +21,7 @@ function HeroDetails() {
 
     fetchData();
   }, []);
+
   return (
     <Box>
       {heroes
