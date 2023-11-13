@@ -17,8 +17,6 @@ import { useState } from 'react';
 import { faker } from '@faker-js/faker';
 
 import NextAndPreviousButton from '../Components/NextAndPreviousButton';
-import Skills from '../Components/Skills';
-import HeroBar from './HeroBar';
 
 function HeroSections({
   name,
@@ -295,33 +293,6 @@ function HeroSections({
         <Text color="#888">{id}</Text>
         <Box flexGrow="1" height="2px" backgroundColor="#555" />
       </Box>
-      <Skills name={name} />
-
-      <HeroBar
-        name={name}
-        img={img}
-        baseHP={baseHP}
-        baseHPRegen={baseHPRegen}
-        baseMP={baseMP}
-        baseMPRegen={baseMPRegen}
-        baseArmor={baseArmor}
-        baseAttackMin={baseAttackMin}
-        baseAttackMax={baseAttackMax}
-        baseStrength={baseStrength}
-        baseAgility={baseAgility}
-        baseIntelligence={baseIntelligence}
-        strengthGain={strengthGain}
-        agilityGain={agilityGain}
-        intelligenceGain={intelligenceGain}
-        attackRange={attackRange}
-        roles={roles}
-        attackRate={attackRate}
-        baseMR={baseMR}
-        moveSpeed={moveSpeed}
-        attackPoint={attackPoint}
-        dayVision={dayVision}
-        nightVision={nightVision}
-      />
     </Box>
   );
 }
