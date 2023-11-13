@@ -51,6 +51,13 @@ function HeroDetails() {
               agilityGain={hero.agi_gain}
               intelligenceGain={hero.int_gain}
               attackRange={hero.attack_range}
+              roles={hero.roles}
+              attackRate={hero.attack_rate}
+              baseMR={hero.base_mr}
+              moveSpeed={hero.move_speed}
+              attackPoint={hero.attack_point}
+              dayVision={hero.day_vision}
+              nightVision={hero.night_vision}
             />
           </Box>
         ))}
