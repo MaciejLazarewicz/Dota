@@ -2,12 +2,15 @@ import { Box, Text, Image } from '@chakra-ui/react';
 import { useState } from 'react';
 import { heroSkills } from './HeroSkills';
 
-function Skills({ name }) {
+function Skills({ name, heroId }) {
   const formattedName = name
     .toLowerCase()
     .replace(/\s+/g, '_')
     .replace('-', '');
+
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [currentHeroId, setCurrentHeroId] = useState(heroId);
+
   const imagesStyles = {
     width: '80px',
     height: '80px',
@@ -17,7 +20,7 @@ function Skills({ name }) {
       transform: 'scale(1.1)',
     },
   };
-  const videoUrl = `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/${formattedName}/${formattedName}_`;
+
   const videoStyles = {
     autoPlay: 'autoPlay',
     muted: 'muted',
@@ -28,8 +31,8 @@ function Skills({ name }) {
   const videoBoxStyles = {
     opacity: 0,
   };
-  const handleImageHover = (videoName) => {
-    setSelectedVideo(videoName);
+  const handleImageHover = (skillId) => {
+    setSelectedVideo(heroSkills[currentHeroId][skillId]);
   };
 
   const handleImageLeave = () => {
@@ -40,10 +43,14 @@ function Skills({ name }) {
     background: '#424C55',
     zIndex: '999',
   };
+  const videoUrl = `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/${formattedName}/${formattedName}_`;
 
-  const skillsArray = heroSkills;
+  const imagePath = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_`;
 
-  const imagePath = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_${heroSkills[1][1]}.png`;
+  const firstSkill = heroSkills[heroId] && heroSkills[heroId][1];
+  const secondSkill = heroSkills[heroId] && heroSkills[heroId][2];
+  const thirdSkill = heroSkills[heroId] && heroSkills[heroId][3];
+  const quadSkill = heroSkills[heroId] && heroSkills[heroId][4];
 
   return (
     <Box position="absolute" top="600px" right="500px">
@@ -52,9 +59,14 @@ function Skills({ name }) {
         position="absolute"
         bottom="140px"
         left="-80px"
-        {...(selectedVideo === 'mana_break' ? {} : videoBoxStyles)}
+        {...(selectedVideo === firstSkill ? {} : videoBoxStyles)}
       >
-        <video {...videoStyles} src={videoUrl + 'mana_break.webm'} />
+        <video
+          {...videoStyles}
+          key={firstSkill}
+          src={`${videoUrl}${firstSkill}.webm `}
+        />
+
         <Box
           display="flex"
           flexDir="column"
@@ -64,7 +76,12 @@ function Skills({ name }) {
           position="absolute"
           {...toolTipStyles}
         >
-          <Box zIndex="5" paddingX="10px" paddingBottom="15px" marginTop="-5px">
+          <Box
+            zIndex="5"
+            paddingX="10px"
+            paddingBottom="15px"
+            marginTop="-10px"
+          >
             <Text
               color="#fff"
               textTransform="uppercase"
@@ -73,7 +90,7 @@ function Skills({ name }) {
               fontSize="20px"
               marginBottom="2.5px"
             >
-              Mana Break
+              {firstSkill}
             </Text>
 
             <Text
@@ -104,9 +121,9 @@ function Skills({ name }) {
         position="absolute"
         bottom="100px"
         left="-10px"
-        {...(selectedVideo === 'blink' ? {} : videoBoxStyles)}
+        {...(selectedVideo === secondSkill ? {} : videoBoxStyles)}
       >
-        <video {...videoStyles} src={videoUrl + 'blink.webm'} />
+        <video {...videoStyles} src={`${videoUrl}${secondSkill}.webm `} />
         <Box
           display="flex"
           flexDir="column"
@@ -125,7 +142,7 @@ function Skills({ name }) {
               fontSize="20px"
               marginBottom="2.5px"
             >
-              Blink
+              {secondSkill}
             </Text>
 
             <Text
@@ -155,9 +172,9 @@ function Skills({ name }) {
         position="absolute"
         bottom="165px"
         left="100px"
-        {...(selectedVideo === 'counterspell' ? {} : videoBoxStyles)}
+        {...(selectedVideo === thirdSkill ? {} : videoBoxStyles)}
       >
-        <video {...videoStyles} src={videoUrl + 'counterspell.webm'} />
+        <video {...videoStyles} src={`${videoUrl}${thirdSkill}.webm `} />
         <Box
           display="flex"
           flexDir="column"
@@ -176,7 +193,7 @@ function Skills({ name }) {
               fontSize="20px"
               marginBottom="2.5px"
             >
-              Counterspell
+              {thirdSkill}
             </Text>
 
             <Text
@@ -208,12 +225,12 @@ function Skills({ name }) {
         position="absolute"
         bottom="135px"
         left="200px"
-        {...(selectedVideo === 'mana_void' ? {} : videoBoxStyles)}
+        {...(selectedVideo === quadSkill ? {} : videoBoxStyles)}
       >
         <video
           className="video"
           {...videoStyles}
-          src={videoUrl + 'mana_void.webm'}
+          src={`${videoUrl}${quadSkill}.webm `}
         />
         <Box
           display="flex"
@@ -233,7 +250,7 @@ function Skills({ name }) {
               fontSize="20px"
               marginBottom="2.5px"
             >
-              Mana Void
+              {quadSkill}
             </Text>
 
             <Text
@@ -254,7 +271,7 @@ function Skills({ name }) {
             height="25px"
             transform="rotate(45deg)"
             {...toolTipStyles}
-            bottom="-10px"
+            bottom="-15px"
             left="110px"
           />
         </Box>
@@ -276,34 +293,42 @@ function Skills({ name }) {
           Umiejętności
         </Text>
         <Box display="flex" gap="15px">
-          {Object.keys(heroSkills).map((heroId) => (
+          {firstSkill && (
             <Image
-              key={heroId}
-              onMouseEnter={() => handleImageHover(heroSkills[heroId][1])}
+              key={firstSkill}
+              onMouseEnter={() => handleImageHover(1)}
               onMouseLeave={handleImageLeave}
               {...imagesStyles}
-              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_${heroSkills[heroId][1]}.png`}
+              src={`${imagePath}${firstSkill}.png`}
             />
-          ))}
-
-          <Image
-            onMouseEnter={() => handleImageHover('blink')}
-            onMouseLeave={handleImageLeave}
-            {...imagesStyles}
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_blink.png"
-          />
-          <Image
-            onMouseEnter={() => handleImageHover('counterspell')}
-            onMouseLeave={handleImageLeave}
-            {...imagesStyles}
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_counterspell.png"
-          />
-          <Image
-            onMouseEnter={() => handleImageHover('mana_void')}
-            onMouseLeave={handleImageLeave}
-            {...imagesStyles}
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_mana_void.png"
-          />
+          )}
+          {secondSkill && (
+            <Image
+              key={secondSkill}
+              onMouseEnter={() => handleImageHover(2)}
+              onMouseLeave={handleImageLeave}
+              {...imagesStyles}
+              src={`${imagePath}${secondSkill}.png`}
+            />
+          )}
+          {thirdSkill && (
+            <Image
+              key={thirdSkill}
+              onMouseEnter={() => handleImageHover(3)}
+              onMouseLeave={handleImageLeave}
+              {...imagesStyles}
+              src={`${imagePath}${thirdSkill}.png`}
+            />
+          )}
+          {quadSkill && (
+            <Image
+              key={quadSkill}
+              onMouseEnter={() => handleImageHover(4)}
+              onMouseLeave={handleImageLeave}
+              {...imagesStyles}
+              src={`${imagePath}${quadSkill}.png`}
+            />
+          )}
         </Box>
       </Box>
     </Box>

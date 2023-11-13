@@ -4,7 +4,8 @@ import HeroUpperSection from './Sections/HeroUpperSection';
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { PUBLIC_DOMAIN } from '../HomePage/Home';
 import { useParams } from 'react-router-dom';
-import { ar } from '@faker-js/faker';
+
+import Skills from './Components/Skills';
 
 function HeroDetails() {
   const [heroes, setHeroes] = useState([]);
@@ -59,6 +60,7 @@ function HeroDetails() {
               dayVision={hero.day_vision}
               nightVision={hero.night_vision}
             />
+            <Skills key={hero.id} heroId={hero.id} name={hero.localized_name} />
           </Box>
         ))}
     </Box>
