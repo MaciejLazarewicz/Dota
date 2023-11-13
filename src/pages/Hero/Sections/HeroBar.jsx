@@ -387,9 +387,9 @@ function HeroBar({
         width="100%"
         display="flex"
         justifyContent="center"
-        position="absolute"
-        bottom="0"
         gap="500px"
+        position="relative"
+        marginTop="-60px"
       >
         <Text
           color="#969696"
