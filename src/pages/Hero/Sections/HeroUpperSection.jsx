@@ -40,6 +40,13 @@ function HeroSections({
   agilityGain,
   intelligenceGain,
   attackRange,
+  roles,
+  attackRate,
+  baseMR,
+  moveSpeed,
+  attackPoint,
+  dayVision,
+  nightVision,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
@@ -288,7 +295,7 @@ function HeroSections({
         <Text color="#888">{id}</Text>
         <Box flexGrow="1" height="2px" backgroundColor="#555" />
       </Box>
-      <Skills />
+      <Skills name={name} />
 
       <HeroBar
         name={name}
@@ -307,6 +314,13 @@ function HeroSections({
         agilityGain={agilityGain}
         intelligenceGain={intelligenceGain}
         attackRange={attackRange}
+        roles={roles}
+        attackRate={attackRate}
+        baseMR={baseMR}
+        moveSpeed={moveSpeed}
+        attackPoint={attackPoint}
+        dayVision={dayVision}
+        nightVision={nightVision}
       />
     </Box>
   );

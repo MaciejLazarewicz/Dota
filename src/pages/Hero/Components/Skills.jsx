@@ -1,8 +1,12 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import { useState } from 'react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { heroSkills } from './HeroSkills';
 
-function Skills() {
+function Skills({ name }) {
+  const formattedName = name
+    .toLowerCase()
+    .replace(/\s+/g, '_')
+    .replace('-', '');
   const [selectedVideo, setSelectedVideo] = useState(null);
   const imagesStyles = {
     width: '80px',
@@ -13,8 +17,7 @@ function Skills() {
       transform: 'scale(1.1)',
     },
   };
-  const videoUrl =
-    'https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/antimage/antimage_';
+  const videoUrl = `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/${formattedName}/${formattedName}_`;
   const videoStyles = {
     autoPlay: 'autoPlay',
     muted: 'muted',
@@ -37,6 +40,10 @@ function Skills() {
     background: '#424C55',
     zIndex: '999',
   };
+
+  const skillsArray = heroSkills;
+
+  const imagePath = `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_${heroSkills[1][1]}.png`;
 
   return (
     <Box position="absolute" top="600px" right="500px">
@@ -269,12 +276,16 @@ function Skills() {
           Umiejętności
         </Text>
         <Box display="flex" gap="15px">
-          <Image
-            onMouseEnter={() => handleImageHover('mana_break')}
-            onMouseLeave={handleImageLeave}
-            {...imagesStyles}
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/antimage_mana_break.png"
-          />
+          {Object.keys(heroSkills).map((heroId) => (
+            <Image
+              key={heroId}
+              onMouseEnter={() => handleImageHover(heroSkills[heroId][1])}
+              onMouseLeave={handleImageLeave}
+              {...imagesStyles}
+              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_${heroSkills[heroId][1]}.png`}
+            />
+          ))}
+
           <Image
             onMouseEnter={() => handleImageHover('blink')}
             onMouseLeave={handleImageLeave}
