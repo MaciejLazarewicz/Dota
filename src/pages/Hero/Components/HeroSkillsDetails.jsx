@@ -3,17 +3,20 @@ import getHeroSkills, { formattedName } from './HeroSkillsConstants';
 import { useState, useEffect } from 'react';
 
 import { imagesStyles } from '../Constants/imageSkillStyles';
+import { heroSkills } from './HeroSkills';
 
-function HeroSkillsDetails({
-  name,
-  heroId,
-  refs,
-  selectedSkill,
-  onSkillSelect,
-}) {
+function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
-  const [selectedImage, setSelectedImage] = useState(1);
+
   const [brightness, setBrightness] = useState({});
+
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const [selectedText, setSelectedText] = useState('');
+
+  const [selectedDescription, setSelectedDescription] = useState('');
+
+  const [selectedImage, setSelectedImage] = useState('');
 
   const {
     firstSkill,
@@ -44,10 +47,23 @@ function HeroSkillsDetails({
       return newBrightness;
     });
   }, [selectedSkill]);
+  useEffect(() => {
+    handleImageClick(1);
+  }, []);
 
-  const handleImageClick = (index) => {
-    onSkillSelect(index);
-    setSelectedImage(index);
+  const handleImageClick = (index, skill) => {
+    setBrightness((prevBrightness) => {
+      const newBrightness = {};
+      for (let i = 1; i <= 6; i++) {
+        newBrightness[i] = i === index ? 1 : 0.5;
+      }
+      return newBrightness;
+    });
+    setSelectedVideo(index);
+
+    setSelectedText(heroSkills[currentHeroId][index]);
+    setSelectedDescription(heroSkills[currentHeroId][index + 6]);
+    setSelectedImage(`${imagePath}${heroSkills[currentHeroId][index]}.png`);
   };
 
   return (
@@ -79,13 +95,27 @@ function HeroSkillsDetails({
         gap="20px"
       >
         <Box display="flex" flexDir="column" width="40%">
-          <video
-            autoPlay
-            muted
-            loop
-            width="100%"
-            src={`${videoUrl}${fourthSkill}.webm `}
-          />
+          <Box width="100%">
+            {[
+              firstSkill,
+              secondSkill,
+              thirdSkill,
+              fourthSkill,
+              fifthSkill,
+              sixthSkill,
+            ].map((skill, index) => (
+              <video
+                key={index}
+                autoPlay
+                muted
+                loop
+                width="100%"
+                src={`${videoUrl}${skill}.webm`}
+                style={{ display: index === selectedVideo ? 'block' : 'none' }}
+              />
+            ))}
+          </Box>
+
           <Box
             width="100%"
             display="flex"
@@ -110,30 +140,82 @@ function HeroSkillsDetails({
                 ref={refs[index + 1]}
                 src={`${imagePath}${skill}.png`}
                 onClick={() => handleImageClick(index + 1)}
-                style={{ filter: `brightness(${brightness[index + 1] || 1})` }}
+                style={{
+                  filter: `brightness(${brightness[index + 1] || 1})`,
+                }}
               />
             ))}
           </Box>
         </Box>
         <Box width="40%" display="flex" flexDir="column">
-          <Box display="flex" flexDir="row">
-            <Box>
-              <Box width="100px" height="100px" bgColor="#f51" />
+          <Box display="flex" flexDir="row" bgColor="rgba(0,0,0,0.6)">
+            <Box margin=" 25px 5px 25px 25px">
+              <Image
+                boxShadow="0px 0px 8px #888"
+                width="96px"
+                height="96px"
+                src={selectedImage}
+              />
             </Box>
             <Box
               display="flex"
               height="fit-content"
               flexDir="column"
               width="100%"
-              bgColor="#ffff"
+              marginLeft="30px"
             >
-              <Text>Mana Break</Text>
-
-              <Text>
-                Spala manę wroga z każdym atakiem i zadaje celowi obrażenia
-                równe pewnemu procentowi spalonej many. Jednostki bez many są
-                spowalniane na krótki czas.
+              <Text
+                color="#fff"
+                fontSize="22px"
+                textTransform="uppercase"
+                letterSpacing="1px"
+                fontWeight="bold"
+                marginBottom="5px"
+              >
+                {selectedText}
               </Text>
+
+              <Text
+                color="#959595"
+                fontSize="18px"
+                whiteSpace="pre-wrap"
+                marginBottom="10px"
+                marginTop="5px"
+              >
+                {selectedDescription}
+              </Text>
+            </Box>
+          </Box>
+          <Box display="flex" flexDir="column" bgColor="#fff" width="100%">
+            <Box
+              height="fit-content"
+              display="flex"
+              flexDir="row"
+              justifyContent="space-between"
+            >
+              <Box display="flex" flexDir="column">
+                <Text>dada</Text>
+                <Text>dada</Text>
+              </Box>
+              <Box>
+                <Text>dada</Text>
+                <Text>dada</Text>
+              </Box>
+            </Box>
+            <Box>
+              <Text>dada</Text>
+              <Text>da</Text>
+              <Text>d</Text>
+              <Text>d</Text>
+              <Text>d</Text>
+              <Text>d</Text>
+            </Box>
+            <Box display="flex" flexDir="row" justifyContent="space-between">
+              <Text>dada</Text>
+              <Text>dada</Text>
+            </Box>
+            <Box>
+              <Text>dada</Text>
             </Box>
           </Box>
         </Box>

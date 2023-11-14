@@ -9,11 +9,13 @@ import HeroBar from './Sections/HeroBar';
 import Skills from './Components/Skills';
 import HeroSkillsDetails from './Components/HeroSkillsDetails';
 import FooterSection from '../HomePage/Sections/FooterSection';
+import HeroBottomBar from './Components/HeroBottomBar';
 
 function HeroDetails() {
   const [heroes, setHeroes] = useState([]);
   const { name } = useParams();
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   const skillRefs = {
     1: useRef(),
@@ -39,14 +41,19 @@ function HeroDetails() {
     fetchData();
   }, []);
 
+  const currentHero = heroes[currentHeroIndex + 1];
+
+  const handleNextHeroClick = () => {
+    setCurrentHeroIndex((prevIndex) => (prevIndex + 1) % heroes.length);
+  };
+
   return (
     <Box>
       {heroes
         .filter((hero) => (name ? hero.localized_name === name : true))
         .map((hero) => (
-          <Box key={hero.id}>
+          <Box key={hero.id} name={hero.localized_name}>
             <HeroUpperSection
-              key={hero.id}
               id={hero.id}
               name={hero.localized_name}
               img={`${PUBLIC_DOMAIN}${hero.img}`}
@@ -76,7 +83,6 @@ function HeroDetails() {
               nightVision={hero.night_vision}
             />
             <HeroBar
-              key={hero.id}
               id={hero.id}
               name={hero.localized_name}
               img={`${PUBLIC_DOMAIN}${hero.img}`}
@@ -107,17 +113,20 @@ function HeroDetails() {
             />
 
             <Skills
-              key={hero.id}
               heroId={hero.id}
               name={hero.localized_name}
               onImageClick={handleImageClick}
             />
             <HeroSkillsDetails
-              key={hero.id}
               heroId={hero.id}
-              name={hero.localized_name}
               refs={skillRefs}
+              name={name}
               selectedSkill={selectedSkill}
+            />
+            <HeroBottomBar
+              heroId={hero.id}
+              name={name}
+              onNextHeroClick={handleNextHeroClick}
             />
             <FooterSection />
           </Box>
