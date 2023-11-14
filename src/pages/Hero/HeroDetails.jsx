@@ -14,6 +14,7 @@ function HeroDetails() {
   const [heroes, setHeroes] = useState([]);
   const { name } = useParams();
   const [selectedSkill, setSelectedSkill] = useState(null);
+
   const skillRefs = {
     1: useRef(),
     2: useRef(),
