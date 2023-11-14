@@ -2,8 +2,10 @@ import { Box, Text, Image } from '@chakra-ui/react';
 import { useState } from 'react';
 import { heroSkills } from './HeroSkills';
 import getHeroSkills, { formattedName } from './HeroSkillsConstants';
+import { imagesStyles } from '../Constants/imageSkillStyles';
+import { videoStyles } from '../Constants/videoSkillStyles';
 
-function Skills({ name, heroId }) {
+function Skills({ name, heroId, onImageClick, handleImageClick }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
 
@@ -22,23 +24,6 @@ function Skills({ name, heroId }) {
     imagePath,
   } = getHeroSkills(currentHeroId, formattedName(name));
 
-  const imagesStyles = {
-    width: '80px',
-    height: '80px',
-    cursor: 'pointer',
-    boxShadow: '0px 0px 20px #000, 0px 0px 20px #000',
-    _hover: {
-      transform: 'scale(1.1)',
-    },
-  };
-
-  const videoStyles = {
-    autoPlay: 'autoPlay',
-    muted: 'muted',
-    loop: 'loop',
-    width: '250px',
-    height: '150px',
-  };
   const videoBoxStyles = {
     opacity: 0,
   };
@@ -303,6 +288,7 @@ function Skills({ name, heroId }) {
             {firstSkill && (
               <Image
                 key={firstSkill}
+                onClick={() => onImageClick(1)}
                 onMouseEnter={() => handleImageHover(1)}
                 onMouseLeave={handleImageLeave}
                 {...imagesStyles}
@@ -312,6 +298,7 @@ function Skills({ name, heroId }) {
             {secondSkill && (
               <Image
                 key={secondSkill}
+                onClick={() => onImageClick(2)}
                 onMouseEnter={() => handleImageHover(2)}
                 onMouseLeave={handleImageLeave}
                 {...imagesStyles}
@@ -321,6 +308,7 @@ function Skills({ name, heroId }) {
             {thirdSkill && (
               <Image
                 key={thirdSkill}
+                onClick={() => onImageClick(3)}
                 onMouseEnter={() => handleImageHover(3)}
                 onMouseLeave={handleImageLeave}
                 {...imagesStyles}
@@ -330,6 +318,7 @@ function Skills({ name, heroId }) {
             {fourthSkill && (
               <Image
                 key={fourthSkill}
+                onClick={() => onImageClick(4)}
                 onMouseEnter={() => handleImageHover(4)}
                 onMouseLeave={handleImageLeave}
                 {...imagesStyles}
