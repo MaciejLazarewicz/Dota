@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react';
 
-import HeroSections from './Sections/HeroUpperSection';
+import HeroDetails from './HeroDetails';
 
 function Hero() {
   return (
     <Box>
-      <HeroSections />
+      <HeroDetails />
     </Box>
   );
 }
