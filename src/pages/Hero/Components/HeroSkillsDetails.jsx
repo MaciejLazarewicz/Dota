@@ -1,10 +1,19 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import getHeroSkills, { formattedName } from './HeroSkillsConstants';
-import { useState } from 'react';
-import { heroSkills } from './HeroSkills';
+import { useState, useEffect } from 'react';
 
-function HeroSkillsDetails({ name, heroId }) {
+import { imagesStyles } from '../Constants/imageSkillStyles';
+
+function HeroSkillsDetails({
+  name,
+  heroId,
+  refs,
+  selectedSkill,
+  onSkillImageClick,
+}) {
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
+  const [selectedImage, setSelectedImage] = useState(1);
+  const [brightness, setBrightness] = useState({});
 
   const {
     firstSkill,
@@ -20,10 +29,29 @@ function HeroSkillsDetails({ name, heroId }) {
     videoUrl,
     imagePath,
   } = getHeroSkills(currentHeroId, formattedName(name));
+  useEffect(() => {
+    if (refs && refs[selectedSkill] && refs[selectedSkill].current) {
+      refs[selectedSkill].current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [refs, selectedSkill]);
 
-  console.log('HeroSkills:', heroSkills); // Dodaj log
-  console.log('HeroId:', heroId); // Dodaj log
-  console.log('FormattedName:', formattedName);
+  useEffect(() => {
+    const initialBrightness = {};
+    for (let i = 1; i <= 6; i++) {
+      initialBrightness[i] = i === 1 ? 1 : 0.5;
+    }
+    setBrightness(initialBrightness);
+  }, []);
+
+  const handleImageClick = (index) => {
+    setBrightness((prevBrightness) => {
+      const newBrightness = {};
+      for (let i = 1; i <= 6; i++) {
+        newBrightness[i] = i === index ? 1 : 0.5;
+      }
+      return newBrightness;
+    });
+  };
 
   return (
     <Box
@@ -54,7 +82,13 @@ function HeroSkillsDetails({ name, heroId }) {
         gap="20px"
       >
         <Box display="flex" flexDir="column" width="40%">
-          <video width="100%" src={`${videoUrl}${fourthSkill}.webm `} />
+          <video
+            autoPlay
+            muted
+            loop
+            width="100%"
+            src={`${videoUrl}${fourthSkill}.webm `}
+          />
           <Box
             width="100%"
             display="flex"
@@ -63,12 +97,25 @@ function HeroSkillsDetails({ name, heroId }) {
             marginTop="-25px"
             zIndex="999"
           >
-            <Image width="75px" height="75px" />
-            <Image width="75px" height="75px" />
-            <Image width="75px" height="75px" />
-            <Image width="75px" height="75px" />
-            <Image width="75px" height="75px" />
-            <Image width="75px" height="75px" />
+            {[
+              firstSkill,
+              secondSkill,
+              thirdSkill,
+              fourthSkill,
+              fifthSkill,
+              sixthSkill,
+            ].map((skill, index) => (
+              <Image
+                key={index}
+                {...imagesStyles}
+                width="75px"
+                height="75px"
+                ref={refs[index + 1]}
+                src={`${imagePath}${skill}.png`}
+                onClick={() => handleImageClick(index + 1)}
+                style={{ filter: `brightness(${brightness[index + 1] || 1})` }}
+              />
+            ))}
           </Box>
         </Box>
         <Box width="40%" display="flex" flexDir="column">
@@ -84,6 +131,7 @@ function HeroSkillsDetails({ name, heroId }) {
               bgColor="#ffff"
             >
               <Text>Mana Break</Text>
+
               <Text>
                 Spala manę wroga z każdym atakiem i zadaje celowi obrażenia
                 równe pewnemu procentowi spalonej many. Jednostki bez many są
