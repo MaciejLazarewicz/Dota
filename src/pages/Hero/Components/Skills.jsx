@@ -5,7 +5,7 @@ import getHeroSkills, { formattedName } from './HeroSkillsConstants';
 import { imagesStyles } from '../Constants/imageSkillStyles';
 import { videoStyles } from '../Constants/videoSkillStyles';
 
-function Skills({ name, heroId, onImageClick, handleImageClick }) {
+function Skills({ name, heroId, onImageClick }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
 
@@ -14,8 +14,7 @@ function Skills({ name, heroId, onImageClick, handleImageClick }) {
     secondSkill,
     thirdSkill,
     fourthSkill,
-    fifthSkill,
-    sixthSkill,
+
     seventhSkill,
     eighthSkill,
     ninthSkill,
@@ -31,13 +30,18 @@ function Skills({ name, heroId, onImageClick, handleImageClick }) {
     setSelectedVideo(heroSkills[currentHeroId][skillId]);
   };
 
-  const handleImageLeave = () => {
+  const handleImageLeave = (index) => {
+    console.log('Clicked on Skill with index:', index);
     setSelectedVideo(null);
   };
 
   const toolTipStyles = {
     background: '#424C55',
     zIndex: '999',
+  };
+
+  const handleImageClick = (index) => {
+    onImageClick(index);
   };
 
   return (
@@ -285,45 +289,19 @@ function Skills({ name, heroId, onImageClick, handleImageClick }) {
             Umiejętności
           </Text>
           <Box display="flex" gap="15px">
-            {firstSkill && (
-              <Image
-                key={firstSkill}
-                onClick={() => onImageClick(1)}
-                onMouseEnter={() => handleImageHover(1)}
-                onMouseLeave={handleImageLeave}
-                {...imagesStyles}
-                src={`${imagePath}${firstSkill}.png`}
-              />
-            )}
-            {secondSkill && (
-              <Image
-                key={secondSkill}
-                onClick={() => onImageClick(2)}
-                onMouseEnter={() => handleImageHover(2)}
-                onMouseLeave={handleImageLeave}
-                {...imagesStyles}
-                src={`${imagePath}${secondSkill}.png`}
-              />
-            )}
-            {thirdSkill && (
-              <Image
-                key={thirdSkill}
-                onClick={() => onImageClick(3)}
-                onMouseEnter={() => handleImageHover(3)}
-                onMouseLeave={handleImageLeave}
-                {...imagesStyles}
-                src={`${imagePath}${thirdSkill}.png`}
-              />
-            )}
-            {fourthSkill && (
-              <Image
-                key={fourthSkill}
-                onClick={() => onImageClick(4)}
-                onMouseEnter={() => handleImageHover(4)}
-                onMouseLeave={handleImageLeave}
-                {...imagesStyles}
-                src={`${imagePath}${fourthSkill}.png`}
-              />
+            {[firstSkill, secondSkill, thirdSkill, fourthSkill].map(
+              (skill, index) => (
+                <Image
+                  key={index}
+                  {...imagesStyles}
+                  width="75px"
+                  height="75px"
+                  src={`${imagePath}${skill}.png`}
+                  onMouseEnter={() => handleImageHover(index + 1)}
+                  onMouseLeave={handleImageLeave}
+                  onClick={() => handleImageClick(index + 1)}
+                />
+              )
             )}
           </Box>
         </Box>

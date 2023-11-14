@@ -9,7 +9,7 @@ function HeroSkillsDetails({
   heroId,
   refs,
   selectedSkill,
-  onSkillImageClick,
+  onSkillSelect,
 }) {
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
   const [selectedImage, setSelectedImage] = useState(1);
@@ -36,21 +36,18 @@ function HeroSkillsDetails({
   }, [refs, selectedSkill]);
 
   useEffect(() => {
-    const initialBrightness = {};
-    for (let i = 1; i <= 6; i++) {
-      initialBrightness[i] = i === 1 ? 1 : 0.5;
-    }
-    setBrightness(initialBrightness);
-  }, []);
-
-  const handleImageClick = (index) => {
     setBrightness((prevBrightness) => {
       const newBrightness = {};
       for (let i = 1; i <= 6; i++) {
-        newBrightness[i] = i === index ? 1 : 0.5;
+        newBrightness[i] = i === selectedSkill ? 1 : 0.5;
       }
       return newBrightness;
     });
+  }, [selectedSkill]);
+
+  const handleImageClick = (index) => {
+    onSkillSelect(index);
+    setSelectedImage(index);
   };
 
   return (
