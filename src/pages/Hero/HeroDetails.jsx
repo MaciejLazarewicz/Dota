@@ -15,7 +15,6 @@ function HeroDetails() {
   const [heroes, setHeroes] = useState([]);
   const { name } = useParams();
   const [selectedSkill, setSelectedSkill] = useState(null);
-  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
 
   const skillRefs = {
     1: useRef(),
@@ -40,12 +39,6 @@ function HeroDetails() {
 
     fetchData();
   }, []);
-
-  const currentHero = heroes[currentHeroIndex + 1];
-
-  const handleNextHeroClick = () => {
-    setCurrentHeroIndex((prevIndex) => (prevIndex + 1) % heroes.length);
-  };
 
   return (
     <Box>
@@ -123,11 +116,7 @@ function HeroDetails() {
               name={name}
               selectedSkill={selectedSkill}
             />
-            <HeroBottomBar
-              heroId={hero.id}
-              name={name}
-              onNextHeroClick={handleNextHeroClick}
-            />
+            <HeroBottomBar heroId={hero.id} name={name} />
             <FooterSection />
           </Box>
         ))}
