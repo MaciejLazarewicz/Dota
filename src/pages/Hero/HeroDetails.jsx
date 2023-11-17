@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import HeroUpperSection from './Sections/HeroUpperSection';
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { PUBLIC_DOMAIN } from '../HomePage/Home';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import HeroBar from './Sections/HeroBar';
 
 import Skills from './Components/Skills';
@@ -15,6 +15,10 @@ function HeroDetails() {
   const [heroes, setHeroes] = useState([]);
   const { name } = useParams();
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [nextHeroName, setNextHeroName] = useState(null);
+  const [prevHeroName, setPrevHeroName] = useState(null);
+  const [nextHeroImage, setNextHeroImage] = useState(null);
+  const [prevHeroImage, setPrevHeroImage] = useState(null);
 
   const skillRefs = {
     1: useRef(),
@@ -39,6 +43,35 @@ function HeroDetails() {
 
     fetchData();
   }, []);
+
+  const navigate = useNavigate();
+
+  const handleNextHero = () => {
+    const currentIndex = heroes.findIndex(
+      (hero) => hero.localized_name === name
+    );
+    const nextIndex = (currentIndex + 1) % heroes.length;
+    const nextHero = heroes[nextIndex];
+    navigate(`/Hero/${nextHero.localized_name}`);
+    setNextHeroName(nextHero.localized_name);
+    setPrevHeroName(name);
+
+    setNextHeroImage(`${PUBLIC_DOMAIN}${nextHero.img}`);
+    setPrevHeroImage(`${PUBLIC_DOMAIN}${heroes[currentIndex].img}`);
+  };
+
+  const handlePrevHero = () => {
+    const currentIndex = heroes.findIndex(
+      (hero) => hero.localized_name === name
+    );
+    const prevIndex = (currentIndex - 1 + heroes.length) % heroes.length;
+    const prevHero = heroes[prevIndex];
+    navigate(`/Hero/${prevHero.localized_name}`);
+    setPrevHeroName(prevHero.localized_name);
+    setNextHeroName(null);
+    setNextHeroImage(`${PUBLIC_DOMAIN}${heroes[currentIndex].img}`);
+    setPrevHeroImage(`${PUBLIC_DOMAIN}${prevHero.img}`);
+  };
 
   return (
     <Box>
@@ -116,7 +149,16 @@ function HeroDetails() {
               name={name}
               selectedSkill={selectedSkill}
             />
-            <HeroBottomBar heroId={hero.id} name={name} />
+            <HeroBottomBar
+              heroId={hero.id}
+              name={name}
+              nextHero={handleNextHero}
+              nextHeroName={nextHeroName}
+              previousHero={handlePrevHero}
+              previousHeroName={prevHeroName}
+              nextHeroImg={nextHeroImage}
+              prevHeroImg={prevHeroImage}
+            />
             <FooterSection />
           </Box>
         ))}

@@ -2,7 +2,16 @@ import { Box, Image, Text } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
 
-function HeroBottomBar({ heroId, name }) {
+function HeroBottomBar({
+  heroId,
+  name,
+  nextHero,
+  nextHeroName,
+  previousHero,
+  previousHeroName,
+  nextHeroImg,
+  prevHeroImg,
+}) {
   const formattedName = name.toLowerCase();
 
   return (
@@ -18,6 +27,7 @@ function HeroBottomBar({ heroId, name }) {
           backgroundPosition="center"
           position="relative"
           cursor="pointer"
+          onClick={previousHero}
           filter="brightness(1.0)"
           transition="filter 0.3s ease-in-out"
           _hover={{
@@ -51,7 +61,7 @@ function HeroBottomBar({ heroId, name }) {
                 lineHeight="112%"
                 textShadow="1px 1px 4px #000"
               >
-                {name}
+                {previousHeroName}
               </Text>
             </Box>
           </Box>
@@ -127,6 +137,7 @@ function HeroBottomBar({ heroId, name }) {
           backgroundPosition="center"
           position="relative"
           cursor="pointer"
+          onClick={nextHero}
           filter="brightness(1.0)"
           transition="filter 0.3s ease-in-out"
           _hover={{
@@ -160,7 +171,7 @@ function HeroBottomBar({ heroId, name }) {
                 lineHeight="112%"
                 textShadow="1px 1px 4px #000"
               >
-                {name}
+                {nextHeroName}
               </Text>
               <Box display="flex" alignItems="center" flexDir="row">
                 <Text></Text>
