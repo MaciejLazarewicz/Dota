@@ -1,7 +1,7 @@
 import { Box, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-function NextAndPreviousButton() {
+function NextAndPreviousButton({ previousHero, nextHero }) {
   return (
     <Box
       position="absolute"
@@ -14,30 +14,31 @@ function NextAndPreviousButton() {
       zIndex="999"
       gap="5px"
     >
-      <Link>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          border="2px solid #888"
-          width="30px"
-          height="64px"
-          _hover={{
-            borderColor: '#fff',
-            '& .inner-image': {
-              filter: 'brightness(1.0)',
-            },
-          }}
-        >
-          <Image
-            filter="brightness(0.5)"
-            className="inner-image"
-            width="15px"
-            height="32px"
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
-          />
-        </Box>
-      </Link>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        border="2px solid #888"
+        width="30px"
+        height="64px"
+        onClick={previousHero}
+        cursor="pointer"
+        _hover={{
+          borderColor: '#fff',
+          '& .inner-image': {
+            filter: 'brightness(1.0)',
+          },
+        }}
+      >
+        <Image
+          filter="brightness(0.5)"
+          className="inner-image"
+          width="15px"
+          height="32px"
+          src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
+        />
+      </Box>
+
       <Link to="/Heroes">
         <Box
           display="grid"
@@ -66,31 +67,32 @@ function NextAndPreviousButton() {
           ))}
         </Box>
       </Link>
-      <Link>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          border="2px solid #888"
-          width="30px"
-          height="64px"
-          transform="rotate(180deg)"
-          _hover={{
-            borderColor: '#fff',
-            '& .inner-image': {
-              filter: 'brightness(1.0)',
-            },
-          }}
-        >
-          <Image
-            filter="brightness(0.5)"
-            className="inner-image"
-            width="15px"
-            height="32px"
-            src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
-          />
-        </Box>
-      </Link>
+
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        border="2px solid #888"
+        width="30px"
+        height="64px"
+        transform="rotate(180deg)"
+        onClick={nextHero}
+        cursor="pointer"
+        _hover={{
+          borderColor: '#fff',
+          '& .inner-image': {
+            filter: 'brightness(1.0)',
+          },
+        }}
+      >
+        <Image
+          filter="brightness(0.5)"
+          className="inner-image"
+          width="15px"
+          height="32px"
+          src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
+        />
+      </Box>
     </Box>
   );
 }

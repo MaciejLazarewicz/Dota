@@ -1,6 +1,7 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
+import { iconsAndAttributes } from '../../../components/IconsAndAttributes';
 
 function HeroBottomBar({
   heroId,
@@ -11,8 +12,28 @@ function HeroBottomBar({
   previousHeroName,
   nextHeroImg,
   prevHeroImg,
+  attackType,
+  nextIndexAttr,
+  prevIndexAttr,
+  nextIndexAttackType,
+  prevIndexAttackType,
 }) {
   const formattedName = name.toLowerCase();
+
+  const iconUrl = ` https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_`;
+
+  const nextAndPreviousIconAttribute = (nextIndexAttr, prevIndexAttr) => {
+    switch (nextIndexAttr || prevIndexAttr) {
+      case 'agi':
+        return `${iconUrl}agility.png`;
+      case 'str':
+        return `${iconUrl}strength.png`;
+      case 'int':
+        return `${iconUrl}intelligence.png`;
+      case 'all':
+        return `${iconUrl}universal.png`;
+    }
+  };
 
   return (
     <Box width="100%" display="flex" flexDir="column" justifyContent="center">
@@ -27,7 +48,13 @@ function HeroBottomBar({
           backgroundPosition="center"
           position="relative"
           cursor="pointer"
-          onClick={previousHero}
+          onClick={() => {
+            previousHero();
+            window.scrollTo({
+              top: 0,
+              behavior: 'auto',
+            });
+          }}
           filter="brightness(1.0)"
           transition="filter 0.3s ease-in-out"
           _hover={{
@@ -40,7 +67,7 @@ function HeroBottomBar({
             },
           }}
         >
-          <Box display="flex" flexDir="row" position="absolute" right="10%">
+          <Box display="flex" flexDir="row" position="absolute" right="5%">
             <Box display="flex" flexDir="column">
               <Text
                 color="#9f9f9f"
@@ -48,9 +75,10 @@ function HeroBottomBar({
                 textTransform="uppercase"
                 letterSpacing="2px"
                 textShadow="1px 1px 4px #000"
+                marginTop="35px"
                 marginBottom="5px"
               >
-                Następny bohater
+                Poprzedni bohater
               </Text>
               <Text
                 color="#fff"
@@ -60,9 +88,32 @@ function HeroBottomBar({
                 fontWeight="bold"
                 lineHeight="112%"
                 textShadow="1px 1px 4px #000"
+                marginY="0"
               >
                 {previousHeroName}
               </Text>
+              <Box
+                display="flex"
+                alignItems="center"
+                flexDir="row"
+                gap="10px"
+                marginTop="-10px"
+              >
+                <Image
+                  width="20px"
+                  height="20px"
+                  src={nextAndPreviousIconAttribute(prevIndexAttr)}
+                />
+
+                <Text
+                  color="#ddd"
+                  fontSize="15px"
+                  letterSpacing="2px"
+                  textTransform="uppercase"
+                >
+                  {prevIndexAttackType}
+                </Text>
+              </Box>
             </Box>
           </Box>
           <Box position="absolute" bottom="-20px" right="50%">
@@ -72,7 +123,7 @@ function HeroBottomBar({
               transition="transform 0.3s ease-in-out"
               height="250px"
               className="hero-image"
-              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/${formattedName}.png`}
+              src={prevHeroImg}
             />
           </Box>
         </Box>
@@ -137,7 +188,13 @@ function HeroBottomBar({
           backgroundPosition="center"
           position="relative"
           cursor="pointer"
-          onClick={nextHero}
+          onClick={() => {
+            nextHero();
+            window.scrollTo({
+              top: 0,
+              behavior: 'auto',
+            });
+          }}
           filter="brightness(1.0)"
           transition="filter 0.3s ease-in-out"
           _hover={{
@@ -150,7 +207,7 @@ function HeroBottomBar({
             },
           }}
         >
-          <Box display="flex" flexDir="row" position="absolute" left="10%">
+          <Box display="flex" flexDir="row" position="absolute" left="5%">
             <Box display="flex" flexDir="column">
               <Text
                 color="#9f9f9f"
@@ -158,6 +215,7 @@ function HeroBottomBar({
                 textTransform="uppercase"
                 letterSpacing="2px"
                 textShadow="1px 1px 4px #000"
+                marginTop="35px"
                 marginBottom="5px"
               >
                 Następny bohater
@@ -170,12 +228,32 @@ function HeroBottomBar({
                 fontWeight="bold"
                 lineHeight="112%"
                 textShadow="1px 1px 4px #000"
+                marginY="0"
               >
                 {nextHeroName}
               </Text>
-              <Box display="flex" alignItems="center" flexDir="row">
-                <Text></Text>
-                <Text>dada</Text>
+              <Box
+                display="flex"
+                alignItems="center"
+                flexDir="row"
+                gap="10px"
+                marginTop="-10px"
+              >
+                <Image
+                  width="20px"
+                  height="20px"
+                  src={nextAndPreviousIconAttribute(nextIndexAttr)}
+                />
+
+                <Text
+                  color="#ddd"
+                  fontSize="15px"
+                  letterSpacing="2px"
+                  textTransform="uppercase"
+                >
+                  {' '}
+                  {nextIndexAttackType}
+                </Text>
               </Box>
             </Box>
           </Box>
@@ -186,7 +264,7 @@ function HeroBottomBar({
               transition="transform 0.3s ease-in-out"
               height="250px"
               className="hero-image"
-              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/${formattedName}.png`}
+              src={nextHeroImg}
             />
           </Box>
         </Box>

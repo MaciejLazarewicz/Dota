@@ -1,29 +1,27 @@
-<HeroBar
-  name={name}
-  img={img}
-  baseHP={baseHP}
-  baseHPRegen={baseHPRegen}
-  baseMP={baseMP}
-  baseMPRegen={baseMPRegen}
-  baseArmor={baseArmor}
-  baseAttackMin={baseAttackMin}
-  baseAttackMax={baseAttackMax}
-  baseStrength={baseStrength}
-  baseAgility={baseAgility}
-  baseIntelligence={baseIntelligence}
-  strengthGain={strengthGain}
-  agilityGain={agilityGain}
-  intelligenceGain={intelligenceGain}
-  attackRange={attackRange}
-  roles={roles}
-  attackRate={attackRate}
-  baseMR={baseMR}
-  moveSpeed={moveSpeed}
-  attackPoint={attackPoint}
-  dayVision={dayVision}
-  nightVision={nightVision}
-/>;
+const navigate = useNavigate();
 
+  const handlePrevHero = () => {
+    const currentIndex = heroes.findIndex(
+      (hero) => hero.localized_name === name
+    );
+    const prevIndex = (currentIndex - 1 + heroes.length) % heroes.length;
+    const prevHero = heroes[prevIndex];
+    navigate(`/Hero/${prevHero.localized_name}`);
+    setPrevHeroName(prevHero.localized_name);
+    setNextHeroName(null);
+    setNextHeroImage(`${PUBLIC_DOMAIN}${heroes[currentIndex].img}`);
+    setPrevHeroImage(`${PUBLIC_DOMAIN}${prevHero.img}`);
+  };
+  const handleNextHero = () => {
+    const currentIndex = heroes.findIndex(
+      (hero) => hero.localized_name === name
+    );
+    const nextIndex = (currentIndex + 1) % heroes.length;
+    const nextHero = heroes[nextIndex];
+    navigate(`/Hero/${nextHero.localized_name}`);
+    setNextHeroName(nextHero.localized_name);
+    setPrevHeroName(name);
 
-
-
+    setNextHeroImage(`${PUBLIC_DOMAIN}${nextHero.img}`);
+    setPrevHeroImage(`${PUBLIC_DOMAIN}${heroes[currentIndex].img}`);
+  };

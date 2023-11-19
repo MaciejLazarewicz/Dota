@@ -18,34 +18,7 @@ import { faker } from '@faker-js/faker';
 
 import NextAndPreviousButton from '../Components/NextAndPreviousButton';
 
-function HeroSections({
-  name,
-  prim,
-  id,
-  attackType,
-  img,
-  baseHP,
-  baseHPRegen,
-  baseMP,
-  baseMPRegen,
-  baseArmor,
-  baseAttackMin,
-  baseAttackMax,
-  baseStrength,
-  baseAgility,
-  baseIntelligence,
-  strengthGain,
-  agilityGain,
-  intelligenceGain,
-  attackRange,
-  roles,
-  attackRate,
-  baseMR,
-  moveSpeed,
-  attackPoint,
-  dayVision,
-  nightVision,
-}) {
+function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
   const [showAdditionalContent, setShowAdditionalContent] = useState(true);
@@ -130,7 +103,10 @@ function HeroSections({
           overflow="hidden"
           backgroundColor="rgba(0,0,0,0.37)"
         />
-        <NextAndPreviousButton />
+        <NextAndPreviousButton
+          nextHero={nextHero}
+          previousHero={previousHero}
+        />
 
         <Box
           display="flex"
