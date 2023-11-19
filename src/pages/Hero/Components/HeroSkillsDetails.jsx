@@ -84,7 +84,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
           textTransform="uppercase"
           color="#fff"
         >
-          Szczegóły umiejętności
+          Ability Details
         </Text>
       </Box>
       <Box

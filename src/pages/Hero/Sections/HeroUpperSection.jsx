@@ -208,14 +208,14 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                 onClick={handleReadMoreClick}
               >
                 <Text color="#f51" fontSize="18px" textDecoration="underline">
-                  Przeczytaj pełną historie
+                  Read full history
                 </Text>
               </Button>
             </Box>
             {showAdditionalContent && (
               <>
                 <Box display="flex" flexDir="column">
-                  <Text color="#959595">Typ ataku</Text>
+                  <Text color="#959595">Attack Type</Text>
                   <Box
                     display="flex"
                     flexDir="row"
@@ -231,7 +231,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                   </Box>
                 </Box>
                 <Box>
-                  <Text color="#959595">Złożoność</Text>
+                  <Text color="#959595">Complexity</Text>
                   <Box display="flex" flexDir="row" gap="20px">
                     {[1, 2, 3].map((index) => (
                       <Box
@@ -256,33 +256,38 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           </Box>
         </motion.div>
       </Box>
-
-      <Box
-        width="800px"
-        left="-320px"
-        marginRight="50px"
-        top="300px"
-        display="flex"
-        flexDir="row"
-        alignItems="center"
-        transform="rotate(270deg)"
-        position="absolute"
-        fontSize="17px"
-        fontWeight="600"
-        textTransform="uppercase"
-        gap="12px"
+      <motion.div
+        initial={{ y: -1600 }}
+        animate={{ y: -800 }}
+        transition={{ duration: 1 }}
       >
-        <Image
-          width="22px"
-          height="22px"
-          src={transformAttributeIntoIconSrc(prim)}
-        />
-        <Text fontFamily={fontFamily} color="#fff">
-          {name}
-        </Text>
-        <Text color="#888">{id}</Text>
-        <Box flexGrow="1" height="2px" backgroundColor="#555" />
-      </Box>
+        <Box
+          width="800px"
+          left="-320px"
+          marginRight="50px"
+          top="300px"
+          display="flex"
+          flexDir="row"
+          alignItems="center"
+          transform="rotate(270deg)"
+          position="absolute"
+          fontSize="17px"
+          fontWeight="600"
+          textTransform="uppercase"
+          gap="12px"
+        >
+          <Image
+            width="22px"
+            height="22px"
+            src={transformAttributeIntoIconSrc(prim)}
+          />
+          <Text fontFamily={fontFamily} color="#fff">
+            {name}
+          </Text>
+          <Text color="#888">{id}</Text>
+          <Box flexGrow="1" height="2px" backgroundColor="#555" />
+        </Box>
+      </motion.div>
     </Box>
   );
 }
