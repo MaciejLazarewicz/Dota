@@ -18,6 +18,8 @@ import { faker } from '@faker-js/faker';
 
 import NextAndPreviousButton from '../Components/NextAndPreviousButton';
 
+import { motion } from 'framer-motion';
+
 function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
@@ -112,17 +114,22 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           display="flex"
           justifyContent="center"
           width="80%"
-          height="100%"
-          marginTop="30px"
           position="absolute"
           right="-5%"
+          bottom="-70%"
         >
-          <video
-            autoPlay
-            loop
-            muted
-            src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName}.webm`}
-          />
+          <motion.div
+            initial={{ x: '-10%' }}
+            animate={{ x: 0 }}
+            transition={{ duration: 2 }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName}.webm`}
+            />
+          </motion.div>
         </Box>
         <Box
           left="0px"
@@ -133,121 +140,128 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           height="100%"
           background="linear-gradient(rgba(0,0,0,0) 70%, rgba(0,0,0,0.733) 100%,rgb(0,0,0)100%)"
         />
-        <Box
-          display="flex"
-          flexDir="column"
-          position="relative"
-          marginTop="100px"
-          marginLeft="300px"
-          textTransform="uppercase"
-          color="#fff"
-          letterSpacing="2px"
-          width="600px"
+        <motion.div
+          initial={{ y: '20%' }}
+          animate={{ y: 0 }}
+          transition={{ duration: 1 }}
         >
-          <Box display="flex" flexDir="row" alignItems="center" gap="10px">
-            <Image
-              width="30px"
-              height="30px"
-              src={transformAttributeIntoIconSrc(prim)}
-            />
-            <Text fontSize="24px">
-              {transformBackendAttributeIntoReadableOne(prim)}
-            </Text>
-          </Box>
+          <Box
+            display="flex"
+            flexDir="column"
+            position="relative"
+            marginTop="100px"
+            marginLeft="300px"
+            textTransform="uppercase"
+            color="#fff"
+            letterSpacing="2px"
+            width="600px"
+          >
+            <Box display="flex" flexDir="row" alignItems="center" gap="10px">
+              <Image
+                width="30px"
+                height="30px"
+                src={transformAttributeIntoIconSrc(prim)}
+              />
+              <Text fontSize="24px">
+                {transformBackendAttributeIntoReadableOne(prim)}
+              </Text>
+            </Box>
 
-          <Text fontSize="80px" marginY="0">
-            {name}
-          </Text>
-          <Text color="#a5e0f3">{randomDescription}</Text>
-          <Box width="500px">
-            <Collapse in={isExpanded} startingHeight={125}>
-              <Text
-                whiteSpace="pre-line"
-                textTransform="capitalize"
-                maxH={isExpanded ? '50px' : 'none'}
-                transition="max-height 0.5s"
-              >
-                {randomDetails}
-              </Text>
-              <Slider
-                value={sliderValue}
-                onChange={handleSliderChange}
-                orientation="vertical"
-                ml="5px"
-                h="150px"
-                color="#f51"
-                display={isExpanded ? 'block' : 'none'}
-                position="absolute"
-                right="-20px"
-                zIndex="999"
-                style={{ border: '5px solid red' }}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-            </Collapse>
-            <Button
-              background="inherit"
-              variant="unstyled"
-              border="none"
-              cursor="pointer"
-              onClick={handleReadMoreClick}
-            >
-              <Text color="#f51" fontSize="18px" textDecoration="underline">
-                Przeczytaj pełną historie
-              </Text>
-            </Button>
-          </Box>
-          {showAdditionalContent && (
-            <>
-              <Box display="flex" flexDir="column">
-                <Text color="#959595">Typ ataku</Text>
-                <Box
-                  display="flex"
-                  flexDir="row"
-                  alignItems="center"
-                  gap="10px"
+            <Text fontSize="80px" marginY="0">
+              {name}
+            </Text>
+            <Text color="#a5e0f3">{randomDescription}</Text>
+            <Box width="500px">
+              <Collapse in={isExpanded} startingHeight={125}>
+                <Text
+                  whiteSpace="pre-line"
+                  textTransform="capitalize"
+                  maxH={isExpanded ? '50px' : 'none'}
+                  transition="max-height 0.5s"
                 >
-                  <Image
-                    width="24px"
-                    height="24px"
-                    src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg"
-                  />
-                  <Text>{attackType}</Text>
-                </Box>
-              </Box>
-              <Box>
-                <Text color="#959595">Złożoność</Text>
-                <Box display="flex" flexDir="row" gap="20px">
-                  {[1, 2, 3].map((index) => (
-                    <Box
-                      key={index}
-                      width="15px"
-                      height="15px"
-                      border="1px solid #fff"
-                      transform="rotateZ(45deg)"
-                      backgroundColor={
-                        complexityIds[index].includes(id) ||
-                        complexityIds[index].includes(id - 1) ||
-                        complexityIds[index].includes(id - 2)
-                          ? '#fff'
-                          : 'initial'
-                      }
+                  {randomDetails}
+                </Text>
+                <Slider
+                  value={sliderValue}
+                  onChange={handleSliderChange}
+                  orientation="vertical"
+                  ml="5px"
+                  h="150px"
+                  color="#f51"
+                  display={isExpanded ? 'block' : 'none'}
+                  position="absolute"
+                  right="-20px"
+                  zIndex="999"
+                  style={{ border: '5px solid red' }}
+                >
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb />
+                </Slider>
+              </Collapse>
+              <Button
+                background="inherit"
+                variant="unstyled"
+                border="none"
+                cursor="pointer"
+                onClick={handleReadMoreClick}
+              >
+                <Text color="#f51" fontSize="18px" textDecoration="underline">
+                  Przeczytaj pełną historie
+                </Text>
+              </Button>
+            </Box>
+            {showAdditionalContent && (
+              <>
+                <Box display="flex" flexDir="column">
+                  <Text color="#959595">Typ ataku</Text>
+                  <Box
+                    display="flex"
+                    flexDir="row"
+                    alignItems="center"
+                    gap="10px"
+                  >
+                    <Image
+                      width="24px"
+                      height="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg"
                     />
-                  ))}
+                    <Text>{attackType}</Text>
+                  </Box>
                 </Box>
-              </Box>
-            </>
-          )}
-        </Box>
+                <Box>
+                  <Text color="#959595">Złożoność</Text>
+                  <Box display="flex" flexDir="row" gap="20px">
+                    {[1, 2, 3].map((index) => (
+                      <Box
+                        key={index}
+                        width="15px"
+                        height="15px"
+                        border="1px solid #fff"
+                        transform="rotateZ(45deg)"
+                        backgroundColor={
+                          complexityIds[index].includes(id) ||
+                          complexityIds[index].includes(id - 1) ||
+                          complexityIds[index].includes(id - 2)
+                            ? '#fff'
+                            : 'initial'
+                        }
+                      />
+                    ))}
+                  </Box>
+                </Box>
+              </>
+            )}
+          </Box>
+        </motion.div>
       </Box>
+
       <Box
         width="800px"
         left="-320px"
         marginRight="50px"
-        top="300"
+        top="300px"
         display="flex"
         flexDir="row"
         alignItems="center"

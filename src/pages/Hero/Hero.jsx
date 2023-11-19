@@ -150,6 +150,7 @@ function Hero() {
               name={hero.localized_name}
               onImageClick={handleImageClick}
             />
+
             <HeroSkillsDetails
               heroId={hero.id}
               refs={skillRefs}

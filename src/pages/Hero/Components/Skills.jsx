@@ -4,6 +4,7 @@ import { heroSkills } from './HeroSkills';
 import getHeroSkills, { formattedName } from './HeroSkillsConstants';
 import { imagesStyles } from '../Constants/imageSkillStyles';
 import { videoStyles } from '../Constants/videoSkillStyles';
+import { motion } from 'framer-motion';
 
 function Skills({ name, heroId, onImageClick }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -273,38 +274,44 @@ function Skills({ name, heroId, onImageClick }) {
           </Box>
         </Box>
 
-        <Box
-          display="flex"
-          flexDir="column"
-          position="absolute"
-          alignItems="center"
+        <motion.div
+          initial={{ y: '50px' }}
+          animate={{ y: '0' }}
+          transition={{ duration: 1 }}
         >
-          <Text
-            marginBottom="15px"
-            letterSpacing="2px"
-            fontSize="18px"
-            textTransform="uppercase"
-            color="#fff"
+          <Box
+            display="flex"
+            flexDir="column"
+            position="absolute"
+            alignItems="center"
           >
-            Umiejętności
-          </Text>
-          <Box display="flex" gap="15px">
-            {[firstSkill, secondSkill, thirdSkill, fourthSkill].map(
-              (skill, index) => (
-                <Image
-                  key={index}
-                  {...imagesStyles}
-                  width="75px"
-                  height="75px"
-                  src={`${imagePath}${skill}.png`}
-                  onMouseEnter={() => handleImageHover(index + 1)}
-                  onMouseLeave={handleImageLeave}
-                  onClick={() => handleImageClick(index + 1)}
-                />
-              )
-            )}
+            <Text
+              marginBottom="15px"
+              letterSpacing="2px"
+              fontSize="18px"
+              textTransform="uppercase"
+              color="#fff"
+            >
+              Umiejętności
+            </Text>
+            <Box display="flex" gap="15px">
+              {[firstSkill, secondSkill, thirdSkill, fourthSkill].map(
+                (skill, index) => (
+                  <Image
+                    key={index}
+                    {...imagesStyles}
+                    width="75px"
+                    height="75px"
+                    src={`${imagePath}${skill}.png`}
+                    onMouseEnter={() => handleImageHover(index + 1)}
+                    onMouseLeave={handleImageLeave}
+                    onClick={() => handleImageClick(index + 1)}
+                  />
+                )
+              )}
+            </Box>
           </Box>
-        </Box>
+        </motion.div>
       </Box>
     </Box>
   );
