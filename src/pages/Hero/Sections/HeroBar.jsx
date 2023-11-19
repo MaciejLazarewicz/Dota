@@ -1,4 +1,9 @@
 import { Box, Image, Text } from '@chakra-ui/react';
+import {
+  GiHealthNormal,
+  GiHealthIncrease,
+  GiFizzingFlask,
+} from 'react-icons/gi';
 
 function HeroBar({
   name,
@@ -28,6 +33,37 @@ function HeroBar({
   dayVision,
   nightVision,
 }) {
+  console.log(roles);
+
+  const renderRoleBox = (role) => (
+    <Box key={role}>
+      <Text>{role}</Text>
+      <Box
+        marginTop="-10px"
+        width="130px"
+        height="6px"
+        backgroundColor={roles.includes(role) ? '#fff' : '#4c4c4c'}
+        boxShadow={
+          roles.includes(role)
+            ? '0px 0px 10px #427ed1, 0px 0px 10px #427ed1'
+            : 'none'
+        }
+      />
+    </Box>
+  );
+
+  const rolesToRender = [
+    'Carry',
+    'Support',
+    'Nuker',
+    'Disabler',
+    'Jungler',
+    'Durable',
+    'Escape',
+    'Pusher',
+    'Initiator',
+  ];
+
   return (
     <Box width="100%">
       <Box
@@ -62,32 +98,45 @@ function HeroBar({
                 alignItems="center"
               >
                 <Image width="150px" height="84px" src={img} />
-                <Box display="flex" flexDir="column" width="100%" height="60px">
+                <Box
+                  display="flex"
+                  flexDir="column"
+                  width="150px"
+                  height="60px"
+                >
                   <Box
                     display="flex"
-                    width="100%"
                     height="30px"
-                    justifyContent="center"
+                    justifyContent="space-between"
                     alignItems="center"
-                    background="linear-gradient(45deg, #8B0000, #BF3030)"
-                    gap="70px"
+                    background="linear-gradient(45deg, #fc0000, #e99797)"
+                    paddingX="15px"
                   >
-                    <Text>{baseHP}</Text>
+                    <Text fontSize="15px" color="#fff" fontWeight="bold">
+                      {baseHP}
+                    </Text>
+                    <GiHealthNormal />
 
-                    <Text>{baseHPRegen}</Text>
+                    <Text color="#fff" fontWeight="bold">
+                      {baseHPRegen}
+                    </Text>
                   </Box>
                   <Box
                     display="flex"
-                    justifyContent="center"
+                    justifyContent="space-between"
                     alignItems="center"
                     height="30px"
-                    width="100%"
-                    background="linear-gradient(to right, #1056DB, #73F5FE)"
-                    gap="70px"
+                    background="linear-gradient(to right, #0059ff, #b0bbf8)"
+                    paddingX="15px"
                   >
-                    <Text>{baseMP}</Text>
+                    <Text color="#fff" fontWeight="bold">
+                      {baseMP}
+                    </Text>
+                    <GiFizzingFlask />
 
-                    <Text>{baseMPRegen}</Text>
+                    <Text color="#fff" fontWeight="bold">
+                      {baseMPRegen}
+                    </Text>
                   </Box>
                 </Box>
               </Box>
@@ -200,43 +249,9 @@ function HeroBar({
             color="#fff"
             letterSpacing="1px"
           >
-            <Box>
-              <Text>Carry</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Wsparcie</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Nuker</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Wyłączający</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Dżungler</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Wytrzymały</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Ucieczka</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Przepychający</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
-            <Box>
-              <Text>Inicjator</Text>
-              <Box width="100px" height="2px" backgroundColor="#4c4c4c"></Box>
-            </Box>
+            {rolesToRender.map(renderRoleBox)}
           </Box>
+
           <Box backgroundColor="#4f4f4f" width="1px" height="80%" />
           <Box width="30%" display="grid" gridTemplateColumns="repeat(3,1fr)">
             <Box>
@@ -247,7 +262,7 @@ function HeroBar({
                 letterSpacing="1px"
                 fontWeight="bold"
               >
-                Atak
+                Attack
               </Text>
               <Box
                 display="flex"
@@ -299,7 +314,7 @@ function HeroBar({
                 letterSpacing="1px"
                 fontWeight="bold"
               >
-                Obrona
+                Defense
               </Text>
               <Box
                 display="flex"
@@ -336,7 +351,7 @@ function HeroBar({
                 letterSpacing="1px"
                 fontWeight="bold"
               >
-                Mobilność
+                Mobiility
               </Text>
               <Box
                 display="flex"
@@ -387,9 +402,10 @@ function HeroBar({
         width="100%"
         display="flex"
         justifyContent="center"
-        gap="500px"
         position="relative"
         marginTop="-60px"
+        gap="500px"
+        left="-2.5%"
       >
         <Text
           color="#969696"
@@ -397,7 +413,7 @@ function HeroBar({
           textTransform="uppercase"
           letterSpacing="2px"
         >
-          Atrybuty
+          Attributes
         </Text>
         <Text
           color="#969696"
@@ -405,7 +421,7 @@ function HeroBar({
           textTransform="uppercase"
           letterSpacing="2px"
         >
-          Role
+          Roles
         </Text>
         <Text
           color="#969696"
@@ -413,7 +429,7 @@ function HeroBar({
           textTransform="uppercase"
           letterSpacing="2px"
         >
-          Statystyki
+          Stats
         </Text>
       </Box>
     </Box>

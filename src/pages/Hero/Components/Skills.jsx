@@ -292,7 +292,7 @@ function Skills({ name, heroId, onImageClick }) {
               textTransform="uppercase"
               color="#fff"
             >
-              Umiejętności
+              Abilities
             </Text>
             <Box display="flex" gap="15px">
               {[firstSkill, secondSkill, thirdSkill, fourthSkill].map(

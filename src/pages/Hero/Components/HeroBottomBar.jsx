@@ -78,7 +78,7 @@ function HeroBottomBar({
                 marginTop="35px"
                 marginBottom="5px"
               >
-                Poprzedni bohater
+                Previous Hero
               </Text>
               <Text
                 color="#fff"
@@ -172,7 +172,7 @@ function HeroBottomBar({
                 textAlign="center"
                 lineHeight="1.5"
               >
-                Wszyscy Bohaterowie
+                All Heroes
               </Text>
             </Box>
           </Box>
@@ -218,7 +218,7 @@ function HeroBottomBar({
                 marginTop="35px"
                 marginBottom="5px"
               >
-                Następny bohater
+                Next Hero
               </Text>
               <Text
                 color="#fff"
