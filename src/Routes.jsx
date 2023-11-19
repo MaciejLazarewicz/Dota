@@ -3,7 +3,7 @@ import Heroes from './pages/Heroes/Heroes';
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 
-import HeroDetails from './pages/Hero/HeroDetails';
+import Hero from './pages/Hero/Hero';
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/Hero/:name',
-    element: <HeroDetails />,
+    element: <Hero />,
   },
 ]);
 
