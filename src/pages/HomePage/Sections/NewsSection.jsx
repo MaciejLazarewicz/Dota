@@ -27,7 +27,7 @@ function NewsSection() {
             fontSize="18px"
             marginTop="-45px"
           >
-            <Text color="#fff">Najnowsze Wiadomości</Text>
+            <Text color="#fff">Latest news</Text>
 
             <Link
               cursor="pointer"
@@ -42,7 +42,7 @@ function NewsSection() {
                   transition: 'letter-spacing 0.2s ease-in-out',
                 }}
               >
-                Zobacz wszystko
+                view all
               </Text>
               <ArrowForwardIcon boxSize="20px" />
             </Link>

@@ -2,6 +2,29 @@ import { Box, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 function NextAndPreviousButton({ previousHero, nextHero }) {
+  const arrowBoxStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: '2px solid #888',
+    width: '30px',
+    height: '64px',
+    cursor: 'pointer',
+    _hover: {
+      borderColor: '#fff',
+      '& .inner-image': {
+        filter: 'brightness(1.0)',
+      },
+    },
+  };
+  const arrowImageStyles = {
+    filter: 'brightness(0.5)',
+    className: 'inner-image',
+    width: '15px',
+    height: '32px',
+    src: 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png',
+  };
+
   return (
     <Box
       position="absolute"
@@ -14,29 +37,8 @@ function NextAndPreviousButton({ previousHero, nextHero }) {
       zIndex="999"
       gap="5px"
     >
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        border="2px solid #888"
-        width="30px"
-        height="64px"
-        onClick={previousHero}
-        cursor="pointer"
-        _hover={{
-          borderColor: '#fff',
-          '& .inner-image': {
-            filter: 'brightness(1.0)',
-          },
-        }}
-      >
-        <Image
-          filter="brightness(0.5)"
-          className="inner-image"
-          width="15px"
-          height="32px"
-          src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
-        />
+      <Box {...arrowBoxStyles} onClick={previousHero}>
+        <Image {...arrowImageStyles} />
       </Box>
 
       <Link to="/Heroes">
@@ -68,30 +70,8 @@ function NextAndPreviousButton({ previousHero, nextHero }) {
         </Box>
       </Link>
 
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        border="2px solid #888"
-        width="30px"
-        height="64px"
-        transform="rotate(180deg)"
-        onClick={nextHero}
-        cursor="pointer"
-        _hover={{
-          borderColor: '#fff',
-          '& .inner-image': {
-            filter: 'brightness(1.0)',
-          },
-        }}
-      >
-        <Image
-          filter="brightness(0.5)"
-          className="inner-image"
-          width="15px"
-          height="32px"
-          src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/arrow_solid_left.png"
-        />
+      <Box {...arrowBoxStyles} transform="rotate(180deg)" onClick={nextHero}>
+        <Image {...arrowImageStyles} />
       </Box>
     </Box>
   );

@@ -51,9 +51,11 @@ function Header() {
             )}
 
             {breakPoint1300 ? null : (
-              <Text fontSize="30px" letterSpacing="5px">
-                DOTA 2
-              </Text>
+              <Link to="/Home">
+                <Text fontSize="30px" letterSpacing="5px">
+                  DOTA 2
+                </Text>
+              </Link>
             )}
           </Box>
         </Link>
@@ -70,7 +72,6 @@ function Header() {
                 fontSize="inherit"
                 _hover={{
                   padding: '12px 20px',
-
                   borderTopLeftRadius: '5px',
                   borderTopRightRadius: '5px',
                   backgroundColor: 'rgba(244,244,244,.2)',
@@ -80,7 +81,7 @@ function Header() {
                 }}
                 {...FONT_DATA}
               >
-                GRA
+                Game
               </MenuButton>
 
               <MenuList
@@ -88,24 +89,31 @@ function Header() {
                 {...FONT_DATA}
               >
                 <MenuItem>
-                  <Link>Łatki</Link>
+                  <Link to="https://www.dota2.com/patches/7.34e">Patches</Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link>Aktualizacje Rozgrywki</Link>
+                  <Link to="https://www.dota2.com/news/updates">
+                    Gameplay updates
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <Link>Poprzednie aktualizacje</Link>
+                  <Link to="https://www.dota2.com/pastupdates">
+                    Previous updates
+                  </Link>
                 </MenuItem>
               </MenuList>
             </Menu>
 
             <Link to="/Heroes" {...FONT_DATA}>
-              Bohaterowie
+              Heroes
             </Link>
-            <Link to="#" {...FONT_DATA}>
-              Wiadomosci
+            <Link to="https://www.dota2.com/news" {...FONT_DATA}>
+              News
             </Link>
-            <Link to="#" {...FONT_DATA}>
+            <Link
+              to="https://www.dota2.com/esports/ti12/watch/15728/48/game1vod"
+              {...FONT_DATA}
+            >
               E-sport
             </Link>
           </Box>
@@ -126,7 +134,7 @@ function Header() {
                 {...FONT_DATA}
                 fontSize="15px"
               >
-                Zaloguj sie
+                Login
               </Box>
             </Link>
             <Menu>
@@ -136,7 +144,7 @@ function Header() {
                 rightIcon={<ChevronDownIcon />}
                 border="none"
               >
-                Wybierz Język
+                select language
               </MenuButton>
               <MenuList>
                 <MenuItem>d</MenuItem>
@@ -151,7 +159,7 @@ function Header() {
             <Link to="https://store.steampowered.com/app/570/Dota_2/">
               <CommonButton>
                 <BsSteam />
-                Graj za darmo
+                Play for free
               </CommonButton>
             </Link>
           </Box>

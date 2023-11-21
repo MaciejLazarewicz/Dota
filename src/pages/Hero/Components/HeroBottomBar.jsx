@@ -1,7 +1,6 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
-import { iconsAndAttributes } from '../../../components/IconsAndAttributes';
 
 function HeroBottomBar({
   heroId,
@@ -19,6 +18,90 @@ function HeroBottomBar({
   prevIndexAttackType,
 }) {
   const formattedName = name.toLowerCase();
+
+  const commonTextStyles = {
+    fontSize: '15px',
+    textTransform: 'uppercase',
+  };
+
+  const prevAndNextHeroMainTextStyles = {
+    color: '#9f9f9f',
+    letterSpacing: '2px',
+    textShadow: '1px 1px 4px #000',
+    marginTop: '35px',
+    marginBottom: '5px',
+  };
+  const prevAndNextHeroSecondTextStyles = {
+    color: '#fff',
+    fontSize: '28px',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontWeight: 'bold',
+    lineHeight: '112%',
+    textShadow: '1px 1px 4px #000',
+    marginY: '0',
+  };
+
+  const indexAttackTypeBoxStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: '10px',
+    marginTop: '-10px',
+  };
+
+  const indexAttackTypeTextStyles = {
+    color: '#ddd',
+    fontSize: '15px',
+    letterSpacing: '2px',
+    textTransform: 'uppercase',
+  };
+
+  const nextAndPrevHeroImageStyles = {
+    transform: 'translateY(0)',
+    border: 'initial',
+    transition: 'transform 0.3s ease-in-out',
+    height: '250px',
+    className: 'hero-image',
+  };
+
+  const backgroundImageStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '45%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    position: 'relative',
+    cursor: 'pointer',
+    backgroundImage:
+      'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/grey_painterly_wide.png',
+    filter: 'brightness(1.0)',
+    transition: 'filter 0.3s ease-in-out',
+    _hover: {
+      filter: 'brightness(1.2)',
+      transition: 'filter 0.3s ease-in-out',
+      '& .hero-image': {
+        transform: 'translateY(-15px)',
+        border: 'none',
+        transition: 'transform 0.3s ease-in-out',
+      },
+    },
+  };
+
+  const previousHeroImageClick = () => {
+    previousHero();
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  };
+  const nextHeroImageClick = () => {
+    nextHero();
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto',
+    });
+  };
 
   const iconUrl = ` https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_`;
 
@@ -38,93 +121,30 @@ function HeroBottomBar({
   return (
     <Box width="100%" display="flex" flexDir="column" justifyContent="center">
       <Box width="100%" display="flex" flexDir="row" justifyContent="center">
-        <Box
-          display="flex"
-          flexDir="column"
-          width="45%"
-          backgroundImage="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/grey_painterly_wide.png"
-          backgroundSize="cover"
-          backgroundRepeat="no-repeat"
-          backgroundPosition="center"
-          position="relative"
-          cursor="pointer"
-          onClick={() => {
-            previousHero();
-            window.scrollTo({
-              top: 0,
-              behavior: 'auto',
-            });
-          }}
-          filter="brightness(1.0)"
-          transition="filter 0.3s ease-in-out"
-          _hover={{
-            filter: 'brightness(1.2)',
-            transition: 'filter 0.3s ease-in-out',
-            '& .hero-image': {
-              transform: 'translateY(-15px)',
-              border: 'none',
-              transition: 'transform 0.3s ease-in-out',
-            },
-          }}
-        >
+        <Box {...backgroundImageStyles} onClick={previousHeroImageClick}>
           <Box display="flex" flexDir="row" position="absolute" right="5%">
             <Box display="flex" flexDir="column">
-              <Text
-                color="#9f9f9f"
-                fontSize="15px"
-                textTransform="uppercase"
-                letterSpacing="2px"
-                textShadow="1px 1px 4px #000"
-                marginTop="35px"
-                marginBottom="5px"
-              >
+              <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
                 Previous Hero
               </Text>
-              <Text
-                color="#fff"
-                fontSize="28px"
-                textTransform="uppercase"
-                letterSpacing="1px"
-                fontWeight="bold"
-                lineHeight="112%"
-                textShadow="1px 1px 4px #000"
-                marginY="0"
-              >
+              <Text {...prevAndNextHeroSecondTextStyles}>
                 {previousHeroName}
               </Text>
-              <Box
-                display="flex"
-                alignItems="center"
-                flexDir="row"
-                gap="10px"
-                marginTop="-10px"
-              >
+              <Box {...indexAttackTypeBoxStyles}>
                 <Image
                   width="20px"
                   height="20px"
                   src={nextAndPreviousIconAttribute(prevIndexAttr)}
                 />
 
-                <Text
-                  color="#ddd"
-                  fontSize="15px"
-                  letterSpacing="2px"
-                  textTransform="uppercase"
-                >
+                <Text {...indexAttackTypeTextStyles}>
                   {prevIndexAttackType}
                 </Text>
               </Box>
             </Box>
           </Box>
           <Box position="absolute" bottom="-20px" right="50%">
-            <Image
-              transform="translateY(0)"
-              border="initial"
-              transition="transform 0.3s ease-in-out"
-              height="250px"
-              className="hero-image"
-              src={prevHeroImg}
-            />
+            <Image {...nextAndPrevHeroImageStyles} src={prevHeroImg} />
           </Box>
         </Box>
 
@@ -165,12 +185,11 @@ function HeroBottomBar({
             <Box display="flex" justifyContent="center">
               <Text
                 color="#fff"
-                fontSize="14px"
-                textTransform="uppercase"
                 fontWeight="bold"
                 maxWidth="100px"
                 textAlign="center"
                 lineHeight="1.5"
+                {...commonTextStyles}
               >
                 All Heroes
               </Text>
@@ -178,79 +197,21 @@ function HeroBottomBar({
           </Box>
         </Link>
 
-        <Box
-          display="flex"
-          flexDir="column"
-          width="45%"
-          backgroundImage="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/backgrounds/grey_painterly_wide.png"
-          backgroundSize="cover"
-          backgroundRepeat="no-repeat"
-          backgroundPosition="center"
-          position="relative"
-          cursor="pointer"
-          onClick={() => {
-            nextHero();
-            window.scrollTo({
-              top: 0,
-              behavior: 'auto',
-            });
-          }}
-          filter="brightness(1.0)"
-          transition="filter 0.3s ease-in-out"
-          _hover={{
-            filter: 'brightness(1.2)',
-            transition: 'filter 0.3s ease-in-out',
-            '& .hero-image': {
-              transform: 'translateY(-15px)',
-              border: 'none',
-              transition: 'transform 0.3s ease-in-out',
-            },
-          }}
-        >
+        <Box {...backgroundImageStyles} onClick={nextHeroImageClick}>
           <Box display="flex" flexDir="row" position="absolute" left="5%">
             <Box display="flex" flexDir="column">
-              <Text
-                color="#9f9f9f"
-                fontSize="15px"
-                textTransform="uppercase"
-                letterSpacing="2px"
-                textShadow="1px 1px 4px #000"
-                marginTop="35px"
-                marginBottom="5px"
-              >
+              <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
                 Next Hero
               </Text>
-              <Text
-                color="#fff"
-                fontSize="28px"
-                textTransform="uppercase"
-                letterSpacing="1px"
-                fontWeight="bold"
-                lineHeight="112%"
-                textShadow="1px 1px 4px #000"
-                marginY="0"
-              >
-                {nextHeroName}
-              </Text>
-              <Box
-                display="flex"
-                alignItems="center"
-                flexDir="row"
-                gap="10px"
-                marginTop="-10px"
-              >
+              <Text {...prevAndNextHeroSecondTextStyles}>{nextHeroName}</Text>
+              <Box {...indexAttackTypeBoxStyles}>
                 <Image
                   width="20px"
                   height="20px"
                   src={nextAndPreviousIconAttribute(nextIndexAttr)}
                 />
 
-                <Text
-                  color="#ddd"
-                  fontSize="15px"
-                  letterSpacing="2px"
-                  textTransform="uppercase"
-                >
+                <Text {...indexAttackTypeTextStyles}>
                   {' '}
                   {nextIndexAttackType}
                 </Text>
@@ -258,14 +219,7 @@ function HeroBottomBar({
             </Box>
           </Box>
           <Box position="absolute" bottom="-20px" left="50%">
-            <Image
-              transform="translateY(0)"
-              border="initial"
-              transition="transform 0.3s ease-in-out"
-              height="250px"
-              className="hero-image"
-              src={nextHeroImg}
-            />
+            <Image {...nextAndPrevHeroImageStyles} src={nextHeroImg} />
           </Box>
         </Box>
       </Box>

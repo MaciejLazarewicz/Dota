@@ -173,7 +173,7 @@ function HeroBar({
                     fontSize="15px"
                     textShadow="1px 1px 2px #000"
                   >
-                    {strengthGain}
+                    + {strengthGain}
                   </Text>
                 </Box>
                 <Box
@@ -202,7 +202,7 @@ function HeroBar({
                     fontSize="15px"
                     textShadow="1px 1px 2px #000"
                   >
-                    {agilityGain}
+                    + {agilityGain}
                   </Text>
                 </Box>
                 <Box
@@ -231,7 +231,7 @@ function HeroBar({
                     fontSize="15px"
                     textShadow="1px 1px 2px #000"
                   >
-                    {intelligenceGain}
+                    + {intelligenceGain}
                   </Text>
                 </Box>
               </Box>

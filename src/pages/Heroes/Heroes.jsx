@@ -121,7 +121,7 @@ function Heroes() {
               letterSpacing="3px"
               color="#fff"
             >
-              Wybierz swojego bohatera
+              Choose your hero
             </Text>
             <Text
               maxWidth="1000px"
@@ -129,10 +129,10 @@ function Heroes() {
               textAlign="center"
               color="#ddd"
             >
-              Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
-              pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
-              Uwolnij niesamowite umiejętności i niszczycielskie umiejętności
-              ostateczne na swojej ścieżce do zwycięstwa.
+              From magical tacticians to fierce brutes and cunning rogues, Dota
+              2's hero pool is massive and limitlessly diverse. Unleash
+              incredible abilities and devastating ultimates on your way to
+              victory.
             </Text>
 
             <Box
@@ -154,7 +154,7 @@ function Heroes() {
                   fontSize="18px"
                   marginX="10px"
                 >
-                  Filtruj Bohaterów
+                  Filter heroes
                 </Text>
               </Box>
               <Box
@@ -166,7 +166,7 @@ function Heroes() {
                 alignItems="center"
                 gap="5px"
               >
-                <Text marginRight="10px"> Atrybuty</Text>
+                <Text marginRight="10px"> Attribute</Text>
                 <Box
                   display="flex"
                   flexDir="row"
@@ -203,6 +203,7 @@ function Heroes() {
                 alignItems="center"
                 gap="5px"
               >
+                <Text>Complexity</Text>
                 {[1, 2, 3].map((id) => (
                   <Image
                     key={id}
@@ -291,7 +292,7 @@ function Heroes() {
               justifyContent="center"
             >
               <Text fontSize="60px" color="#fff">
-                Brak bohaterów pasujących do Twojego filtra
+                No heroes match your filter
               </Text>
             </Box>
           )}

@@ -140,7 +140,7 @@ function Home() {
           >
             <Box style={textBoxStyle} display="flex" flexDir="column">
               <Text marginBottom="5px" lineHeight="1.2" letterSpacing="5px">
-                „WSPÓŁCZESNE WIELOOSOBOWE DZIEŁO SZTUKI”.
+                “A MODERN MULTIPLAYER MASTERPIECE.”
               </Text>
               <Box
                 width="300px"
@@ -164,12 +164,12 @@ function Home() {
                     <Box display="flex" alignItems="center">
                       <BsSteam size="40px" />
                     </Box>
-                    <Box>
+                    <Box textTransform="uppercase">
                       <Text
                         marginBottom="2px"
                         fontSize={breakPoint350 ? '15px' : '22px'}
                       >
-                        GRAJ ZA DARMO
+                        Play for free
                       </Text>
 
                       <Text
@@ -178,7 +178,7 @@ function Home() {
                         className="hover-text"
                         color="#959392"
                       >
-                        POBIERZ NA STEAM
+                        download on steam
                       </Text>
                     </Box>
                   </Button>

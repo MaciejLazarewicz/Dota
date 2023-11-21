@@ -1,4 +1,5 @@
-import { Box, Text, Image, Link } from '@chakra-ui/react';
+import { Box, Text, Image } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 function FooterSection() {
   return (
@@ -17,14 +18,14 @@ function FooterSection() {
         justifyContent="center"
         gap="50px"
       >
-        <Link cursor="pointer">
+        <Link to="https://www.valvesoftware.com/en/about" cursor="pointer">
           <Image
             width="100px"
             height="30px"
             src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/valve_logo.png"
           />
         </Link>
-        <Link cursor="pointer">
+        <Link to="/Home" cursor="pointer">
           <Image
             width="150px"
             height="30px"

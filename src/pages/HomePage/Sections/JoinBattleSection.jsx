@@ -29,12 +29,12 @@ function JoinBattleSection() {
         top="10%"
         left="5%"
       >
-        <Text style={{ ...darkFont }}>Dołącz do</Text>
-        <Text style={{ ...lightFont }}>Bitwy</Text>
+        <Text style={{ ...darkFont }}>Join the</Text>
+        <Text style={{ ...lightFont }}>Battle</Text>
 
         <OrangeDivider />
         <CommonButton>
-          <Text style={{ ...buttonFont }}>Graj za darmo teraz</Text>
+          <Text style={{ ...buttonFont }}>Play for free</Text>
         </CommonButton>
       </Box>
     </Box>
