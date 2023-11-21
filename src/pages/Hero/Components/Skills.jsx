@@ -15,7 +15,7 @@ function Skills({ name, heroId, onImageClick }) {
     secondSkill,
     thirdSkill,
     fourthSkill,
-
+    sixthSkill,
     seventhSkill,
     eighthSkill,
     ninthSkill,
@@ -50,9 +50,11 @@ function Skills({ name, heroId, onImageClick }) {
       <Box position="absolute" top="600px" right="500px">
         <Box
           display="flex"
+          flexDir="column"
           position="absolute"
-          bottom="140px"
           left="-80px"
+          bottom="-20"
+          backgroundColor="#424C55"
           {...(selectedVideo === firstSkill ? {} : videoBoxStyles)}
         >
           <video
@@ -62,51 +64,41 @@ function Skills({ name, heroId, onImageClick }) {
           />
 
           <Box
-            display="flex"
-            flexDir="column"
-            width="250px"
-            height="fit-content"
-            bottom="-160px"
-            position="absolute"
-            {...toolTipStyles}
+            zIndex="5"
+            paddingX="10px"
+            paddingBottom="15px"
+            marginTop="-10px"
           >
-            <Box
-              zIndex="5"
-              paddingX="10px"
-              paddingBottom="15px"
-              marginTop="-10px"
+            <Text
+              color="#fff"
+              textTransform="uppercase"
+              fontWeight="bold"
+              letterSpacing="2px"
+              fontSize="20px"
+              marginBottom="2.5px"
             >
-              <Text
-                color="#fff"
-                textTransform="uppercase"
-                fontWeight="bold"
-                letterSpacing="2px"
-                fontSize="20px"
-                marginBottom="2.5px"
-              >
-                {firstSkill}
-              </Text>
+              {firstSkill}
+            </Text>
 
-              <Text
-                color="#ddd"
-                fontSize="17px"
-                letterSpacing="0px"
-                marginTop="2.5px"
-                textAlign="left"
-              >
-                {seventhSkill}
-              </Text>
-            </Box>
-            <Box
-              position="absolute"
-              width="25px"
-              height="25px"
-              transform="rotate(45deg)"
-              {...toolTipStyles}
-              bottom="-10px"
-              left="110px"
-            />
+            <Text
+              color="#ddd"
+              fontSize="17px"
+              letterSpacing="0px"
+              marginTop="2.5px"
+              textAlign="left"
+            >
+              {seventhSkill}
+            </Text>
           </Box>
+          <Box
+            position="absolute"
+            width="25px"
+            height="25px"
+            transform="rotate(45deg)"
+            {...toolTipStyles}
+            bottom="-10px"
+            left="110px"
+          />
         </Box>
         <Box
           display="flex"
@@ -119,8 +111,7 @@ function Skills({ name, heroId, onImageClick }) {
           <Box
             display="flex"
             flexDir="column"
-            width="250px"
-            height="fit-content"
+            width="300px"
             bottom="-120px"
             position="absolute"
             {...toolTipStyles}
@@ -174,8 +165,8 @@ function Skills({ name, heroId, onImageClick }) {
           <Box
             display="flex"
             flexDir="column"
-            width="250px"
-            height="190px"
+            width="300px"
+            height="fit-content"
             bottom="-180px"
             position="absolute"
             {...toolTipStyles}
@@ -229,7 +220,7 @@ function Skills({ name, heroId, onImageClick }) {
           <Box
             display="flex"
             flexDir="column"
-            width="250px"
+            width="300px"
             height="fit-content"
             bottom="-160px"
             position="absolute"
