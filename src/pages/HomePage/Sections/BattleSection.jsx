@@ -59,7 +59,7 @@ function BattleSection() {
             style={{ ...darkFont }}
             fontFamily={fontFamily}
           >
-            Dołącz do
+            Join the
           </Text>
 
           <Text
@@ -68,7 +68,7 @@ function BattleSection() {
             style={{ ...lightFont }}
             fontFamily={fontFamily}
           >
-            bitwy starożytnych
+            battle of the ancients
           </Text>
         </BottomAnimation>
 
@@ -80,15 +80,14 @@ function BattleSection() {
           width="60%"
           style={{ ...descriptionFont }}
         >
-          Każdego dnia miliony graczy na całym świecie wkracza do walki jako
-          jeden z ponad setki bohaterów Dota w drużynowych starciach 5 na 5.
-          Dota to najgłębsza wieloosobowa strategiczna gra akcji czasu
-          rzeczywistego, jaka kiedykolwiek powstała, i zawsze istnieje jakaś
-          strategia lub taktyka do odkrycia. Gra jest całkowicie darmowa i
-          zawsze będzie – zacznij bronić swojego Starożytnego już teraz.
+          Every day, millions of players worldwide enter the battle as one of
+          over a hundred Dota Heroes in a 5v5 team clash. Dota is the deepest
+          multi-player action RTS game ever made and there's always a new
+          strategy or tactic to discover. It's completely free to play and
+          always will be – start defending your ancient now.
         </Text>
         <CommonButton>
-          <Text textTransform="uppercase">Zobacz, co nowego</Text>
+          <Text textTransform="uppercase">See what's new</Text>
         </CommonButton>
       </Box>
     </Box>

@@ -15,10 +15,9 @@ function Skills({ name, heroId, onImageClick }) {
     secondSkill,
     thirdSkill,
     fourthSkill,
-    sixthSkill,
     seventhSkill,
     eighthSkill,
-    ninthSkill,
+    ninthSkill: { ninthFirstValue },
     tenthSkill,
     videoUrl,
     imagePath,
@@ -36,25 +35,56 @@ function Skills({ name, heroId, onImageClick }) {
     setSelectedVideo(null);
   };
 
-  const toolTipStyles = {
-    background: '#424C55',
-    zIndex: '999',
-  };
-
   const handleImageClick = (index) => {
     onImageClick(index);
+  };
+
+  const mainBoxStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'absolute',
+    bottom: '-20px',
+    backgroundColor: '#424c55',
+  };
+  const secondBoxStyles = {
+    zIndex: 5,
+    paddingX: '10px',
+    paddingBottom: '15px',
+    marginTop: '-10px',
+  };
+  const mainTextStyles = {
+    color: '#fff',
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+    letterSpacing: '2px',
+    fontSize: '20px',
+    marginBottom: '2.5px',
+  };
+  const secondTextStyles = {
+    color: '#ddd',
+    fontSize: '17px',
+    letterSpacing: '0px',
+    marginTop: '2.5px',
+    textAlign: 'left',
+  };
+
+  const rotateBoxStyles = {
+    position: 'absolute',
+    width: '25px',
+    height: '25px',
+    transform: 'rotate(45deg)',
+    bottom: '-10px',
+    left: '110px',
+    zIndex: '999',
+    backgroundColor: '#424c55',
   };
 
   return (
     <Box>
       <Box position="absolute" top="600px" right="500px">
         <Box
-          display="flex"
-          flexDir="column"
-          position="absolute"
+          {...mainBoxStyles}
           left="-80px"
-          bottom="-20"
-          backgroundColor="#424C55"
           {...(selectedVideo === firstSkill ? {} : videoBoxStyles)}
         >
           <video
@@ -63,206 +93,54 @@ function Skills({ name, heroId, onImageClick }) {
             src={`${videoUrl}${firstSkill}.webm `}
           />
 
-          <Box
-            zIndex="5"
-            paddingX="10px"
-            paddingBottom="15px"
-            marginTop="-10px"
-          >
-            <Text
-              color="#fff"
-              textTransform="uppercase"
-              fontWeight="bold"
-              letterSpacing="2px"
-              fontSize="20px"
-              marginBottom="2.5px"
-            >
-              {firstSkill}
-            </Text>
+          <Box {...secondBoxStyles}>
+            <Text {...mainTextStyles}>{firstSkill}</Text>
 
-            <Text
-              color="#ddd"
-              fontSize="17px"
-              letterSpacing="0px"
-              marginTop="2.5px"
-              textAlign="left"
-            >
-              {seventhSkill}
-            </Text>
+            <Text {...secondTextStyles}>{seventhSkill}</Text>
           </Box>
-          <Box
-            position="absolute"
-            width="25px"
-            height="25px"
-            transform="rotate(45deg)"
-            {...toolTipStyles}
-            bottom="-10px"
-            left="110px"
-          />
+          <Box {...rotateBoxStyles} />
         </Box>
         <Box
-          display="flex"
-          position="absolute"
-          bottom="100px"
+          {...mainBoxStyles}
           left="-10px"
           {...(selectedVideo === secondSkill ? {} : videoBoxStyles)}
         >
           <video {...videoStyles} src={`${videoUrl}${secondSkill}.webm `} />
-          <Box
-            display="flex"
-            flexDir="column"
-            width="300px"
-            bottom="-120px"
-            position="absolute"
-            {...toolTipStyles}
-          >
-            <Box
-              zIndex="5"
-              paddingX="10px"
-              paddingBottom="15px"
-              marginTop="-5px"
-            >
-              <Text
-                color="#fff"
-                textTransform="uppercase"
-                fontWeight="bold"
-                letterSpacing="2px"
-                fontSize="20px"
-                marginBottom="2.5px"
-              >
-                {secondSkill}
-              </Text>
 
-              <Text
-                color="#ddd"
-                fontSize="17px"
-                letterSpacing="0px"
-                marginTop="2.5px"
-                textAlign="left"
-              >
-                {eighthSkill}
-              </Text>
-            </Box>
-            <Box
-              position="absolute"
-              width="25px"
-              height="25px"
-              transform="rotate(45deg)"
-              {...toolTipStyles}
-              bottom="-10px"
-              left="110px"
-            />
+          <Box {...secondBoxStyles}>
+            <Text {...mainTextStyles}>{secondSkill}</Text>
+
+            <Text {...secondTextStyles}>{eighthSkill}</Text>
           </Box>
+          <Box {...rotateBoxStyles} />
         </Box>
         <Box
-          display="flex"
-          position="absolute"
-          bottom="165px"
-          left="100px"
+          {...mainBoxStyles}
+          left="110px"
           {...(selectedVideo === thirdSkill ? {} : videoBoxStyles)}
         >
           <video {...videoStyles} src={`${videoUrl}${thirdSkill}.webm `} />
-          <Box
-            display="flex"
-            flexDir="column"
-            width="300px"
-            height="fit-content"
-            bottom="-180px"
-            position="absolute"
-            {...toolTipStyles}
-          >
-            <Box
-              zIndex="5"
-              paddingX="10px"
-              paddingBottom="15px"
-              marginTop="-5px"
-            >
-              <Text
-                color="#fff"
-                textTransform="uppercase"
-                fontWeight="bold"
-                letterSpacing="2px"
-                fontSize="20px"
-                marginBottom="2.5px"
-              >
-                {thirdSkill}
-              </Text>
 
-              <Text
-                color="#ddd"
-                fontSize="17px"
-                letterSpacing="0px"
-                marginTop="2.5px"
-                textAlign="left"
-              >
-                {ninthSkill}
-              </Text>
-            </Box>
-            <Box
-              position="absolute"
-              width="25px"
-              height="25px"
-              transform="rotate(45deg)"
-              {...toolTipStyles}
-              bottom="-10px"
-              left="110px"
-            />
+          <Box {...secondBoxStyles}>
+            <Text {...mainTextStyles}>{thirdSkill}</Text>
+
+            <Text {...secondTextStyles}>{ninthFirstValue}</Text>
           </Box>
+          <Box {...rotateBoxStyles} />
         </Box>
         <Box
-          display="flex"
-          position="absolute"
-          bottom="135px"
+          {...mainBoxStyles}
           left="200px"
           {...(selectedVideo === fourthSkill ? {} : videoBoxStyles)}
         >
           <video {...videoStyles} src={`${videoUrl}${fourthSkill}.webm `} />
-          <Box
-            display="flex"
-            flexDir="column"
-            width="300px"
-            height="fit-content"
-            bottom="-160px"
-            position="absolute"
-            {...toolTipStyles}
-          >
-            <Box
-              zIndex="5"
-              paddingX="10px"
-              paddingBottom="15px"
-              marginTop="-5px"
-            >
-              <Text
-                color="#fff"
-                textTransform="uppercase"
-                fontWeight="bold"
-                letterSpacing="2px"
-                fontSize="20px"
-                marginBottom="2.5px"
-              >
-                {fourthSkill}
-              </Text>
 
-              <Text
-                color="#ddd"
-                fontSize="17px"
-                letterSpacing="0px"
-                marginTop="2.5px"
-                textAlign="left"
-              >
-                {tenthSkill}
-              </Text>
-            </Box>
-            <Box
-              position="absolute"
-              width="25px"
-              height="25px"
-              transform="rotate(45deg)"
-              {...toolTipStyles}
-              bottom="-15px"
-              left="110px"
-            />
+          <Box {...secondBoxStyles}>
+            <Text {...mainTextStyles}>{fourthSkill}</Text>
+
+            <Text {...secondTextStyles}>{tenthSkill}</Text>
           </Box>
+          <Box {...rotateBoxStyles} />
         </Box>
 
         <motion.div
@@ -309,5 +187,3 @@ function Skills({ name, heroId, onImageClick }) {
 }
 
 export default Skills;
-
-// DO POPRAWKI, ZA DUŻO POWTÓRZEŃ

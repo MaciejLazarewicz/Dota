@@ -23,11 +23,9 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     secondSkill,
     thirdSkill,
     fourthSkill,
-    fifthSkill,
-    sixthSkill,
-    seventhSkill,
-    eighthSkill,
-    ninthSkill,
+    fifthSkill: { fifthFirstValue, fifthSecondValue },
+    sixthSkill: { sixthFirstValue, sixthSecondValue, sixthThirdValue },
+    ninthSkill: { ninthSecondValue },
     tenthSkill,
     eleventhSkill,
     videoUrl,
@@ -65,6 +63,15 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     setSelectedText(heroSkills[currentHeroId][index]);
     setSelectedDescription(heroSkills[currentHeroId][index + 6]);
     setSelectedImage(`${imagePath}${heroSkills[currentHeroId][index]}.png`);
+    if (index === 5) {
+      setSelectedText(fifthFirstValue);
+      setSelectedImage(`${imagePath}${fifthFirstValue}.png`);
+      setSelectedDescription(ninthSecondValue);
+    } else if (index === 6) {
+      setSelectedText(sixthThirdValue);
+      setSelectedImage(`${imagePath}${sixthFirstValue}.png`);
+      setSelectedDescription(eleventhSkill);
+    }
   };
 
   return (
@@ -102,8 +109,8 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
               secondSkill,
               thirdSkill,
               fourthSkill,
-              fifthSkill,
-              sixthSkill,
+              fifthSecondValue,
+              sixthSecondValue,
             ].map((skill, index) => (
               <video
                 key={index}
@@ -112,7 +119,9 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
                 loop
                 width="100%"
                 src={`${videoUrl}${skill}.webm`}
-                style={{ display: index === selectedVideo ? 'block' : 'none' }}
+                style={{
+                  display: index + 1 === selectedVideo ? 'block' : 'none',
+                }}
               />
             ))}
           </Box>
@@ -130,8 +139,8 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
               secondSkill,
               thirdSkill,
               fourthSkill,
-              fifthSkill,
-              sixthSkill,
+              fifthFirstValue,
+              sixthFirstValue,
             ].map((skill, index) => (
               <Image
                 key={index}
@@ -148,7 +157,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
             ))}
           </Box>
         </Box>
-        <Box width="40%" display="flex" flexDir="column">
+        <Box width="40%" display="flex" flexDir="column" alignItems="center">
           <Box display="flex" flexDir="row" bgColor="rgba(0,0,0,0.6)">
             <Box margin=" 25px 5px 25px 25px">
               <Image
@@ -173,7 +182,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
                 fontWeight="bold"
                 marginBottom="5px"
               >
-                {selectedText}
+                {selectedText.replace('_', ' ')}
               </Text>
 
               <Text
@@ -187,37 +196,18 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
               </Text>
             </Box>
           </Box>
-          <Box display="flex" flexDir="column" bgColor="#fff" width="100%">
-            <Box
-              height="fit-content"
-              display="flex"
-              flexDir="row"
-              justifyContent="space-between"
-            >
-              <Box display="flex" flexDir="column">
-                <Text>dada</Text>
-                <Text>dada</Text>
-              </Box>
-              <Box>
-                <Text>dada</Text>
-                <Text>dada</Text>
-              </Box>
-            </Box>
-            <Box>
-              <Text>dada</Text>
-              <Text>da</Text>
-              <Text>d</Text>
-              <Text>d</Text>
-              <Text>d</Text>
-              <Text>d</Text>
-            </Box>
-            <Box display="flex" flexDir="row" justifyContent="space-between">
-              <Text>dada</Text>
-              <Text>dada</Text>
-            </Box>
-            <Box>
-              <Text>dada</Text>
-            </Box>
+
+          <Box width="50%" display="flex" justifyContent="center">
+            <video
+              autoPlay
+              loop
+              muted
+              width="700px"
+              height="400px"
+              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName(
+                name
+              )}.webm`}
+            />
           </Box>
         </Box>
       </Box>

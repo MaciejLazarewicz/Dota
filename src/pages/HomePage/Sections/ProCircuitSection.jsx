@@ -3,6 +3,7 @@ import { Box, Image, Text } from '@chakra-ui/react';
 import OrangeDivider from '../../../components/OrangeDivider';
 import {
   lightFont,
+  darkFont,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
 import { fontFamily } from '../../../components/constants/FontFamily';
@@ -41,6 +42,13 @@ function ProCircuitSection() {
         >
           <Text
             marginBottom="25px"
+            style={{ ...darkFont }}
+            fontFamily={fontFamily.fontFamily}
+          >
+            The
+          </Text>
+          <Text
+            marginBottom="25px"
             style={{ ...lightFont }}
             fontFamily={fontFamily.fontFamily}
           >
@@ -50,13 +58,11 @@ function ProCircuitSection() {
           <OrangeDivider />
           <Box />
           <Text style={{ ...descriptionFont }}>
-            Gdy akurat nie wspinasz się po szczeblach rankingów, będziesz w
-            stanie uczyć się od najlepszych. Dota Pro Circuit to rozgrywki
-            rywalizacyjne w Dota 2 na najwyższym poziomie, które są
-            transmitowane regularnie w kliencie gry, w serwisie Twitch oraz na
-            SteamTV. Ich kulminację stanowią największe zawody e-sportowe na
-            świecie, czyli The International; profesjonalna scena Dota 2 jest
-            wydarzeniem, którego nie można przegapić.
+            When not climbing the ranks, you'll be able to learn from the best.
+            The Dota Pro Circuit features ultra-high-level Dota 2 competition
+            streaming regularly in the game client, on Twitch and Steam.TV.
+            Culminating in the largest e-sports championship in the world, The
+            International, professional Dota 2 is an event not to be missed.
           </Text>
         </Box>
 

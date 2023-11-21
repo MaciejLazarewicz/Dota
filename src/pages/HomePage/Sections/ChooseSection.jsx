@@ -38,19 +38,18 @@ function ChooseSection() {
       >
         <BottomAnimation>
           <Text style={{ ...darkFont }} fontFamily={fontFamily}>
-            Kogo
+            Who will you
           </Text>
           <Text style={{ ...lightFont }} fontFamily={fontFamily}>
-            Wybierzesz ?
+            choose ?
           </Text>
         </BottomAnimation>
         <OrangeDivider />
         <Box display="flex" flexDir="column" alignItems="center" width="100%">
           <Text style={{ ...descriptionFont }} textAlign="center" width="60%">
-            Od magicznych taktyków po zaciekłych brutali i przebiegłe szelmy –
-            pula bohaterów w Dota 2 jest ogromna i bezgranicznie różnorodna.
-            Uwolnij niesamowite umiejętności i niszczycielskie umiejętności
-            ostateczne na swojej ścieżce do zwycięstwa.
+            From magical tacticians to fierce brutes and cunning rogues, Dota
+            2's hero pool is massive and limitlessly diverse. Unleash incredible
+            abilities and devastating ultimates on your way to victory.
           </Text>
         </Box>
       </Box>
@@ -63,7 +62,7 @@ function ChooseSection() {
         width="100%"
       >
         <CommonButton>
-          <Text fontSize="20px">Zobacz wszystkich bohaterów</Text>
+          <Text fontSize="20px">View all heroes</Text>
         </CommonButton>
       </Box>
     </Box>
