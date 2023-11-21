@@ -29,6 +29,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     eighthSkill,
     ninthSkill,
     tenthSkill,
+    eleventhSkill,
     videoUrl,
     imagePath,
   } = getHeroSkills(currentHeroId, formattedName(name));

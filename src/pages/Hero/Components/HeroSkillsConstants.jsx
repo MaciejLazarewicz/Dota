@@ -16,6 +16,7 @@ export const getHeroSkills = (heroId, formattedName) => {
     eighthSkill: heroSkills[heroId] && heroSkills[heroId][8],
     ninthSkill: heroSkills[heroId] && heroSkills[heroId][9],
     tenthSkill: heroSkills[heroId] && heroSkills[heroId][10],
+
     videoUrl: `https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/abilities/${formattedName}/${formattedName}_`,
     imagePath: `https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/abilities/${formattedName}_`,
   };
