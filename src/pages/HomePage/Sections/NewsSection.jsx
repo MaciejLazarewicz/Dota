@@ -49,8 +49,6 @@ function NewsSection() {
           </Box>
           <Box display="flex " flexDir="row" gap="25px">
             <HomeNewsComponent />
-            <HomeNewsComponent />
-            <HomeNewsComponent />
           </Box>
         </Box>
       </Box>
