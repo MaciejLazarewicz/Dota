@@ -143,6 +143,9 @@ function Header() {
                 leftIcon={<TbWorld />}
                 rightIcon={<ChevronDownIcon />}
                 border="none"
+                textTransform="uppercase"
+                outline="none"
+                background="transparent"
               >
                 select language
               </MenuButton>

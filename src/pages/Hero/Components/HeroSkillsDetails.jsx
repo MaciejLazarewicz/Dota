@@ -23,7 +23,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     secondSkill,
     thirdSkill,
     fourthSkill,
-    fifthSkill: { fifthFirstValue, fifthSecondValue },
+    fifthSkill: { fifthFirstValue, fifthSecondValue, fifthThirdValue },
     sixthSkill: { sixthFirstValue, sixthSecondValue, sixthThirdValue },
     ninthSkill: { ninthSecondValue },
     tenthSkill,
@@ -64,7 +64,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     setSelectedDescription(heroSkills[currentHeroId][index + 6]);
     setSelectedImage(`${imagePath}${heroSkills[currentHeroId][index]}.png`);
     if (index === 5) {
-      setSelectedText(fifthFirstValue);
+      setSelectedText(fifthThirdValue);
       setSelectedImage(`${imagePath}${fifthFirstValue}.png`);
       setSelectedDescription(ninthSecondValue);
     } else if (index === 6) {
@@ -158,7 +158,12 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
           </Box>
         </Box>
         <Box width="40%" display="flex" flexDir="column" alignItems="center">
-          <Box display="flex" flexDir="row" bgColor="rgba(0,0,0,0.6)">
+          <Box
+            width="100%"
+            display="flex"
+            flexDir="row"
+            bgColor="rgba(0,0,0,0.6)"
+          >
             <Box margin=" 25px 5px 25px 25px">
               <Image
                 boxShadow="0px 0px 8px #888"

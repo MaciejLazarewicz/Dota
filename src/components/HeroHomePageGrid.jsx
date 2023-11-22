@@ -170,7 +170,3 @@ function HeroHomePageGrid({ name, img, alt, prim, rowStyle }) {
 }
 
 export default HeroHomePageGrid;
-
-//  <p width="50px" height="50px">
-//    {transformBackendAttributeIntoReadableOne(prim)}
-//  </p>;

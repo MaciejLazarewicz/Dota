@@ -15,6 +15,7 @@ export const getHeroSkills = (heroId, formattedName) => {
         ? {
             fifthFirstValue: heroSkills[heroId][5][0],
             fifthSecondValue: heroSkills[heroId][5][1],
+            fifthThirdValue: heroSkills[heroId][5][2],
           }
         : {},
     sixthSkill:
