@@ -50,7 +50,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     handleImageClick(1);
   }, []);
 
-  const handleImageClick = (index, skill) => {
+  const handleImageClick = (index) => {
     setBrightness((prevBrightness) => {
       const newBrightness = {};
       for (let i = 1; i <= 6; i++) {
@@ -59,7 +59,6 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
       return newBrightness;
     });
     setSelectedVideo(index);
-
     setSelectedText(heroSkills[currentHeroId][index]);
     setSelectedDescription(heroSkills[currentHeroId][index + 6]);
     setSelectedImage(`${imagePath}${heroSkills[currentHeroId][index]}.png`);

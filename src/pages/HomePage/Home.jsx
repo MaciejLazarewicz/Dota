@@ -7,7 +7,10 @@ import Header from '../../components/Header';
 import NewsSection from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
-import { useBreakpoint } from '../../components/constants/BreakPoints';
+import {
+  breakpoints,
+  useBreakpoint,
+} from '../../components/constants/BreakPoints';
 
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { useState, useEffect } from 'react';
@@ -55,14 +58,28 @@ function Home() {
     fontSize: '50px',
   };
 
-  const defaultScreenTextStyle = {
-    fontSize: '60px',
+  const {
+    isBreakPoint300,
+    isBreakPoint350,
+    isBreakPoint450,
+    isBreakPoint550,
+    isBreakPoint700,
+    isBreakpoint600,
+    isBreakPoint900,
+    isBreakPoint1200,
+    isBreakPoint1300,
+    isBreakpoint1900,
+  } = useBreakpoint();
+
+  const bigScreenTextStyle = {
+    display: 'flex',
+    flexDir: 'column',
+    marginTop: '10px',
+    marginLeft: '70px',
+    marginBottom: '10px',
+    color: '#881888d1',
+    width: '35%',
   };
-  const [breakPoint300] = useBreakpoint('isBreakPoint300');
-  const [breakPoint350] = useBreakpoint('isBreakPoint350');
-  const [breakPoint450] = useBreakpoint('isBreakPoint450');
-  const [breakPoint550] = useBreakpoint('isBreakPoint550');
-  const [breakPoint700] = useBreakpoint('isBreakPoint700');
 
   const textBoxStyle = {
     display: 'flex',
@@ -72,11 +89,13 @@ function Home() {
     marginBottom: '100px',
     color: '#f5f4f5d1',
     width: '45%',
-    ...defaultScreenTextStyle,
-    ...(breakPoint700 && largeScreenTextStyle),
-    ...(breakPoint550 && mediumScreenTextStyle),
-    ...(breakPoint450 && smallScreenTextStyle),
-    ...(breakPoint300 && mobileScreenTextStyle),
+    fontSize: '60px',
+
+    ...(isBreakPoint900 && bigScreenTextStyle),
+    ...(isBreakPoint700 && largeScreenTextStyle),
+    ...(isBreakPoint550 && mediumScreenTextStyle),
+    ...(isBreakPoint450 && smallScreenTextStyle),
+    ...(isBreakPoint300 && mobileScreenTextStyle),
   };
 
   const buttonQueryStyle = {
@@ -94,14 +113,16 @@ function Home() {
     marginTop: '30px',
     color: '#f5f4f5d1',
     gap: '15px',
-    transition: 'margin-top 0.1s ease-in-out',
+
+    marginBottom: '10px',
     _hover: {
       '.hover-text': {
         color: '#aaaaa8',
       },
-      marginTop: '28px',
+      transform: 'translateY(-2px)',
+      transition: 'translateY 0.1s ease-in-out',
     },
-    ...(breakPoint350 && buttonQueryStyle),
+    ...(isBreakPoint350 && buttonQueryStyle),
   };
 
   const [heroes, setHeroes] = useState([]);
@@ -121,14 +142,7 @@ function Home() {
   return (
     <Box style={mainContainerStyle}>
       <BackgroundVideo />
-      <Box
-        top="0"
-        left="0"
-        zIndex="1"
-        width="inherit"
-        height="100vh"
-        position="absolute"
-      >
+      <Box top="0" left="0" zIndex="1" width="inherit" position="absolute">
         <Box style={headerStyle}>
           <Header />
         </Box>
@@ -167,14 +181,14 @@ function Home() {
                     <Box textTransform="uppercase">
                       <Text
                         marginBottom="2px"
-                        fontSize={breakPoint350 ? '15px' : '22px'}
+                        fontSize={isBreakPoint350 ? '15px' : '22px'}
                       >
                         Play for free
                       </Text>
 
                       <Text
                         marginTop="5px"
-                        fontSize={breakPoint350 ? '10px' : '20px'}
+                        fontSize={isBreakPoint350 ? '10px' : '15px'}
                         className="hover-text"
                         color="#959392"
                       >

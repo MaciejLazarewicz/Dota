@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 
 function BackgroundVideo() {
   return (
-    <Box width="100%">
+    <Box width="100%" height="800px">
       <video
         autoPlay
         loop
