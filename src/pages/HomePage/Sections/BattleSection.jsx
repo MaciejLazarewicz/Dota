@@ -5,13 +5,18 @@ import { fontFamily } from '../../../components/constants/FontFamily';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
 import {
   lightFont,
+  lightFontWidth600,
+  lightFontWidth900,
+  lightFontWidth1500,
   darkFont,
+  darkFontWidth1500,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
 import OrangeDivider from '../../../components/OrangeDivider';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [isBreakPoint1500] = useBreakpoint('isBreakPoint1500');
 
   return (
     <Box
@@ -50,13 +55,14 @@ function BattleSection() {
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        top="35%"
+        top="10%"
         width="100%"
       >
         <BottomAnimation>
           <Text
-            marginBottom="0"
-            style={{ ...darkFont }}
+            style={
+              isBreakPoint1500 ? { ...darkFontWidth1500 } : { ...darkFont }
+            }
             fontFamily={fontFamily}
             width="60%"
             marginLeft="40%"
@@ -65,9 +71,14 @@ function BattleSection() {
           </Text>
 
           <Text
-            marginTop="0"
-            marginBottom="10px"
-            style={{ ...lightFont }}
+            style={
+              isBreakPoint1500
+                ? {
+                    ...((lightFontWidth1500 && lightFontWidth900) ||
+                      lightFontWidth600),
+                  }
+                : { ...lightFont }
+            }
             fontFamily={fontFamily}
             marginLeft="5%"
           >
