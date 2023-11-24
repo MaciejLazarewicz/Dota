@@ -48,16 +48,18 @@ function BattleSection() {
         display="flex"
         flexDir="column"
         alignItems="center"
+        justifyContent="center"
         position="absolute"
-        top="40%"
-        width="80%"
-        left="10%"
+        top="35%"
+        width="100%"
       >
         <BottomAnimation>
           <Text
             marginBottom="0"
             style={{ ...darkFont }}
             fontFamily={fontFamily}
+            width="60%"
+            marginLeft="40%"
           >
             Join the
           </Text>
@@ -67,6 +69,7 @@ function BattleSection() {
             marginBottom="10px"
             style={{ ...lightFont }}
             fontFamily={fontFamily}
+            marginLeft="5%"
           >
             battle of the ancients
           </Text>

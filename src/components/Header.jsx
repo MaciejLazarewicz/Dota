@@ -8,7 +8,7 @@ import {
   Img,
   Text,
 } from '@chakra-ui/react';
-import { TbWorld } from 'react-icons/tb';
+
 import { BsSteam } from 'react-icons/bs';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
@@ -63,7 +63,8 @@ function Header() {
           <Box display="flex" fontSize="25px" gap="40px" alignItems="center">
             <Menu isOpen={isMenuHovered} onClose={() => setMenuHovered(false)}>
               <MenuButton
-                border="none"
+                width="110px"
+                border="2px solid transparent"
                 as={Button}
                 rightIcon={<ChevronDownIcon />}
                 cursor="pointer"
@@ -71,7 +72,6 @@ function Header() {
                 background="transparent"
                 fontSize="inherit"
                 _hover={{
-                  padding: '12px 20px',
                   borderTopLeftRadius: '5px',
                   borderTopRightRadius: '5px',
                   backgroundColor: 'rgba(244,244,244,.2)',
@@ -85,6 +85,7 @@ function Header() {
               </MenuButton>
 
               <MenuList
+                onMouseEnter={() => setMenuHovered(true)}
                 onMouseLeave={() => setMenuHovered(false)}
                 {...FONT_DATA}
               >
@@ -122,10 +123,7 @@ function Header() {
       <Box display="flex" mr="50px" gap="40px" alignItems="center">
         {breakPoint700 ? null : (
           <Box display="flex" flexDir="column">
-            <Link
-              textDecoration="none"
-              to="https://steamcommunity.com/oauth/loginform/?goto=%2Foauth%2Flogin%3Fclient_id%3D9B2C1229%26response_type%3Dtoken%26state%3Dhome"
-            >
+            <Link to="https://steamcommunity.com/oauth/loginform/?goto=%2Foauth%2Flogin%3Fclient_id%3D9B2C1229%26response_type%3Dtoken%26state%3Dhome">
               <Box
                 display="flex"
                 justifyContent="flex-end"
@@ -137,24 +135,6 @@ function Header() {
                 Login
               </Box>
             </Link>
-            <Menu>
-              <MenuButton
-                as={Button}
-                leftIcon={<TbWorld />}
-                rightIcon={<ChevronDownIcon />}
-                border="none"
-                textTransform="uppercase"
-                outline="none"
-                background="transparent"
-              >
-                select language
-              </MenuButton>
-              <MenuList>
-                <MenuItem>d</MenuItem>
-                <MenuItem>d</MenuItem>
-                <MenuItem>a</MenuItem>
-              </MenuList>
-            </Menu>
           </Box>
         )}
         {breakPoint1200 ? null : (
