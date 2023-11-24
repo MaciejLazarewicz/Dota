@@ -1,7 +1,19 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import { faker } from '@faker-js/faker';
+import { useBreakpoint } from './constants/BreakPoints';
 
 function HomeNewsComponent() {
+  const [isBreakPoint300] = useBreakpoint('isBreakPoint300');
+  const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
+  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
+  const [isBreakPoint550] = useBreakpoint('isBreakPoint550');
+  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
+  const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [isBreakPoint1300] = useBreakpoint('isBreakPoint1300');
+  const [isBreakPoint1900] = useBreakpoint('isBreakPoint1900');
+
   const generateRandomDate = () => {
     const startDate = new Date(2019, 0, 1);
     const endDate = new Date();
@@ -58,15 +70,91 @@ function HomeNewsComponent() {
   };
   const imagesUrl = generateImages();
 
+  const mainBoxStyles = {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    overflow: 'hidden',
+    cursor: 'pointer',
+  };
+
+  const imageWidth1200 = {
+    height: '200px',
+    width: '270px',
+  };
+
+  const imageWidth900 = {
+    width: '200px',
+    height: '100px',
+  };
+
+  const imageStyles = {
+    height: '250px',
+    width: '350px',
+    borderRadius: '15px',
+    ...(isBreakPoint1200 && imageWidth1200),
+    ...(isBreakPoint900 && imageWidth900),
+  };
+
+  const imageOverlayWidth1200 = {
+    width: '300px',
+    height: '55px',
+  };
+  const imageOverlayWidth900 = {
+    display: 'none',
+  };
+
+  const imageOverlayStyles = {
+    width: '350px',
+    height: '75px',
+    position: 'absolute',
+    bottom: 3,
+    left: '0',
+    background: 'rgba(0, 0, 0, 0.6)',
+    borderRadius: '15px',
+
+    ...(isBreakPoint1200 && imageOverlayWidth1200),
+    ...(isBreakPoint900 && imageOverlayWidth900),
+  };
+
+  const imageTextBoxWidth1200 = {
+    paddingTop: '190px',
+  };
+  const imageTextBoxWidth900 = {
+    paddingTop: '60px',
+    transform: 'translateY(5px)',
+  };
+
+  const imageTextBoxStyles = {
+    display: 'flex',
+    flexDir: 'column',
+    gap: '5px',
+    width: '350px',
+    height: '100%',
+    paddingTop: '230px',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 1,
+    textTransform: 'capitalize',
+    textAlign: 'justify',
+    transform: 'translateY(-10%)',
+    transition: 'transform 0.3s ease-in-out',
+    _hover: {
+      transform: 'translateY(-30%)',
+      transition:
+        'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
+      backgroundColor: 'rgba(0,0,0,0.8)',
+    },
+    ...(isBreakPoint1200 && imageTextBoxWidth1200),
+    ...(isBreakPoint900 && imageTextBoxWidth900),
+  };
+
   return (
     <Box height="30%" display="flex" gap="35px">
       {imagesUrl.map((image, index) => (
         <Box
-          width="100%"
-          height="100%"
-          position="relative"
-          overflow="hidden"
-          cursor="pointer"
+          style={mainBoxStyles}
           key={index}
           _hover={{
             borderBottom: '2px solid #f51',
@@ -76,54 +164,28 @@ function HomeNewsComponent() {
           borderBottom="2px solid rgba(255,255,255,0.7)"
         >
           <Image
-            height="250px"
-            width="350px"
+            style={imageStyles}
             src={image.src}
             alt="Random Gaming Image from Unsplash"
             borderRadius="15px"
           />
 
-          <Box
-            position="absolute"
-            bottom="3"
-            left="0"
-            width="350px"
-            height="85px"
-            background="rgba(255,255,255,0.2)"
-            borderRadius="15px"
-          />
+          <Box style={imageOverlayStyles} borderRadius="15px" />
 
-          <Box
-            gap="5px"
-            display="flex"
-            flexDir="column"
-            width="350px"
-            height="100%"
-            paddingTop="230px"
-            position="absolute"
-            top="0"
-            left="0"
-            zIndex="1"
-            textTransform="capitalize"
-            textAlign="justify"
-            transform="translateY(-10%)"
-            transition="transform 0.3s ease-in-out"
-            _hover={{
-              transform: 'translateY(-30%)',
-              transition:
-                'transform 0.3s ease-in-out, background-color 0.3s ease-in-out',
-              backgroundColor: 'rgba(0,0,0,0.8)',
-            }}
-          >
-            <Box marginLeft="15px" marginRight="15px">
-              <Text margin="0" fontSize="20px" color="rgba(255,255,255,0.7)">
+          <Box style={imageTextBoxStyles}>
+            <Box marginX="10px" width="250px">
+              <Text
+                margin="0"
+                fontSize={isBreakPoint900 ? '10px' : '20px'}
+                color="rgba(255,255,255,0.7)"
+              >
                 {randomDate}
               </Text>
               <Text
                 marginX="0"
-                marginTop="0"
+                marginTop={isBreakPoint900 ? '5px' : '0'}
                 marginBottom="30px"
-                fontSize="20px"
+                fontSize={isBreakPoint900 ? ' 10px' : '20px'}
                 color="#fff"
               >
                 {randomTitle}

@@ -7,10 +7,7 @@ import Header from '../../components/Header';
 import NewsSection from './Sections/NewsSection';
 import BattleSection from './Sections/BattleSection';
 import ChooseSection from './Sections/ChooseSection';
-import {
-  breakpoints,
-  useBreakpoint,
-} from '../../components/constants/BreakPoints';
+import { useBreakpoint } from '../../components/constants/BreakPoints';
 
 import { fetchHeroData } from '../../components/FetchHeroData';
 import { useState, useEffect } from 'react';
@@ -23,6 +20,14 @@ import { evenRowStyle, oddRowStyle } from '../../components/HeroHomePageGrid';
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
 function Home() {
+  const [isBreakPoint300] = useBreakpoint('isBreakPoint300');
+  const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
+  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
+  const [isBreakPoint550] = useBreakpoint('isBreakPoint550');
+
+  const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+
   const mainContainerStyle = {
     position: 'relative',
     display: 'flex',
@@ -46,11 +51,13 @@ function Home() {
   const smallScreenTextStyle = {
     fontSize: '30px',
     marginLeft: '30px',
+    marginTop: '50px',
   };
 
   const mediumScreenTextStyle = {
     fontSize: '40px',
     marginLeft: '50px',
+    marginTop: '30px',
   };
 
   const largeScreenTextStyle = {
@@ -58,28 +65,13 @@ function Home() {
     fontSize: '50px',
   };
 
-  const {
-    isBreakPoint300,
-    isBreakPoint350,
-    isBreakPoint450,
-    isBreakPoint550,
-    isBreakPoint700,
-    isBreakpoint600,
-    isBreakPoint900,
-    isBreakPoint1200,
-    isBreakPoint1300,
-    isBreakpoint1900,
-  } = useBreakpoint();
-
-  const test = {};
-
   const bigScreenTextStyle = {
     display: 'flex',
     flexDir: 'column',
     marginTop: '10px',
     marginLeft: '70px',
     marginBottom: '10px',
-    color: '#881888d1',
+
     width: '35%',
   };
 
@@ -204,7 +196,7 @@ function Home() {
           </motion.div>
         </Box>
 
-        <NewsSection />
+        {isBreakPoint700 ? null : <NewsSection />}
 
         <BattleSection />
 
