@@ -71,6 +71,8 @@ function Home() {
     isBreakpoint1900,
   } = useBreakpoint();
 
+  const test = {};
+
   const bigScreenTextStyle = {
     display: 'flex',
     flexDir: 'column',
