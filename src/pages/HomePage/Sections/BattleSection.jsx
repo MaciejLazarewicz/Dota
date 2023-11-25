@@ -5,11 +5,7 @@ import { fontFamily } from '../../../components/constants/FontFamily';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
 import {
   lightFont,
-  lightFontWidth600,
-  lightFontWidth900,
-  lightFontWidth1500,
   darkFont,
-  darkFontWidth1500,
   descriptionFont,
 } from '../../../components/constants/FontVariables';
 import OrangeDivider from '../../../components/OrangeDivider';
@@ -17,6 +13,82 @@ import OrangeDivider from '../../../components/OrangeDivider';
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
   const [isBreakPoint1500] = useBreakpoint('isBreakPoint1500');
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
+  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
+
+  const darkFont1500 = {
+    fontSize: '50px',
+    width: '55%',
+  };
+  const darkFont1200 = {
+    fontSize: '44px',
+    transform: 'translateX(-5%)',
+  };
+  const darkFont900 = {
+    fontSize: '36px',
+    transform: 'translateX(-4%)',
+  };
+  const darkFont600 = {
+    fontSize: '28px',
+    transform: 'translateX(-10%)',
+  };
+  const darkFont450 = {
+    fontSize: '20px',
+  };
+
+  const darkFontBreakpoints = {
+    ...darkFont,
+    ...(isBreakPoint1500 && darkFont1500),
+    ...(isBreakPoint1200 && darkFont1200),
+
+    ...(isBreakPoint900 && darkFont900),
+    ...(isBreakPoint600 && darkFont600),
+    ...(isBreakPoint450 && darkFont450),
+  };
+
+  const lightFont1500 = {
+    fontSize: '56px',
+    marginRight: '35px',
+  };
+  const lightFont900 = {
+    fontSize: '34px',
+  };
+  const lightFont600 = {
+    fontSize: '20px',
+  };
+  const lightFont450 = {
+    fontSize: '14px',
+  };
+
+  const lightFontBreakpoints = {
+    ...lightFont,
+    ...(isBreakPoint1500 && lightFont1500),
+    ...(isBreakPoint900 && lightFont900),
+    ...(isBreakPoint600 && lightFont600),
+    ...(isBreakPoint450 && lightFont450),
+  };
+
+  const descriptionFont1500 = {
+    fontSize: '24px',
+    marginTop: '16px',
+  };
+  const descriptionFont900 = {
+    fontSize: '16px',
+  };
+  const descriptionFont600 = {
+    fontSize: '14px',
+    marginTop: '-15px',
+  };
+  const descriptionFont450 = {};
+
+  const descriptionFontBreakpoints = {
+    ...descriptionFont,
+    ...(isBreakPoint1500 && descriptionFont1500),
+    ...(isBreakPoint900 && descriptionFont900),
+    ...(isBreakPoint600 && descriptionFont600),
+    ...(isBreakPoint450 && descriptionFont450),
+  };
 
   return (
     <Box
@@ -55,30 +127,21 @@ function BattleSection() {
         alignItems="center"
         justifyContent="center"
         position="absolute"
-        top="10%"
+        top={isBreakPoint1200 ? '30%' : '10%'}
         width="100%"
       >
         <BottomAnimation>
           <Text
-            style={
-              isBreakPoint1500 ? { ...darkFontWidth1500 } : { ...darkFont }
-            }
+            style={darkFontBreakpoints}
             fontFamily={fontFamily}
-            width="60%"
+            width="58%"
             marginLeft="40%"
           >
             Join the
           </Text>
 
           <Text
-            style={
-              isBreakPoint1500
-                ? {
-                    ...((lightFontWidth1500 && lightFontWidth900) ||
-                      lightFontWidth600),
-                  }
-                : { ...lightFont }
-            }
+            style={lightFontBreakpoints}
             fontFamily={fontFamily}
             marginLeft="5%"
           >
@@ -92,7 +155,7 @@ function BattleSection() {
           marginTop="10px"
           textAlign="center"
           width="60%"
-          style={{ ...descriptionFont }}
+          style={descriptionFontBreakpoints}
         >
           Every day, millions of players worldwide enter the battle as one of
           over a hundred Dota Heroes in a 5v5 team clash. Dota is the deepest
@@ -101,7 +164,7 @@ function BattleSection() {
           always will be – start defending your ancient now.
         </Text>
         <CommonButton>
-          <Text textTransform="uppercase">See what's new</Text>
+          <Text>See what's new</Text>
         </CommonButton>
       </Box>
     </Box>
