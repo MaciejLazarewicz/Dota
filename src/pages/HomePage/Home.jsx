@@ -207,7 +207,7 @@ function Home() {
           alignItems="center"
           position="relative"
           background="rgb(0,0,0)"
-          marginTop="-100px"
+          marginTop="-500px"
           paddingBottom="150px"
           overflow="hidden"
         >
