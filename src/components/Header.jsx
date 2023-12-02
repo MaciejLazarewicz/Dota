@@ -44,18 +44,16 @@ function Header() {
         alignItems="center"
         ml="30px"
       >
-        <Link to="#" textDecoration="none" {...FONT_DATA}>
+        <Link to="/Home" textDecoration="none" {...FONT_DATA}>
           <Box display="flex" alignItems="center" gap="10px">
             {(!breakPoint900 || breakPoint700) && (
               <Img width="50px" height="50px" src="/dota.svg" />
             )}
 
             {breakPoint1300 ? null : (
-              <Link to="/Home">
-                <Text fontSize="30px" letterSpacing="5px">
-                  DOTA 2
-                </Text>
-              </Link>
+              <Text fontSize="30px" letterSpacing="5px">
+                DOTA 2
+              </Text>
             )}
           </Box>
         </Link>
