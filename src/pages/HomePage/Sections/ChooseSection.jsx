@@ -18,13 +18,15 @@ function ChooseSection() {
     <Box
       width="100%"
       maxW="100%"
-      height={isBreakPoint900 ? '1400px' : '1800px'}
+      height="100vh"
+      backgroundSize="2000px"
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       position="relative"
       display="flex"
       flexDir="column"
       backgroundImage="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//home/heroes_full.jpg"
+      marginBottom={isBreakPoint900 ? '200px' : '400px'}
     >
       <Gradient />
 
@@ -34,7 +36,7 @@ function ChooseSection() {
         alignItems="center"
         width="100%"
         position="absolute"
-        top={isBreakPoint900 ? '25%' : '40%'}
+        top={isBreakPoint900 ? '25%' : '30%'}
       >
         <BottomAnimation>
           <Box display="flex" flexDir="column" alignItems="center" width="100%">
@@ -62,9 +64,10 @@ function ChooseSection() {
       <Box
         display="flex"
         justifyContent="center"
+        git
         alignItems="center"
         position="absolute"
-        top={isBreakPoint900 ? '55%' : '65%'}
+        top={isBreakPoint900 ? '55%' : '75%'}
         width="100%"
         marginTop={isBreakPoint350 ? '35px' : '5px'}
       >

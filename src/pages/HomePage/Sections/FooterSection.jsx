@@ -1,7 +1,31 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function FooterSection() {
+  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
+
+  const valveLogoSizes450 = {
+    width: '70px',
+    height: '25px',
+  };
+
+  const valveLogoSize = {
+    width: '100px',
+    height: '30px',
+    ...(isBreakPoint450 && valveLogoSizes450),
+  };
+
+  const dotaLogoSizes450 = {
+    width: '100px',
+    height: '20px',
+  };
+  const dotaLogoSize = {
+    width: '150px',
+    height: '30px',
+    ...(isBreakPoint450 && dotaLogoSizes450),
+  };
+
   return (
     <Box
       display="flex"
@@ -17,18 +41,17 @@ function FooterSection() {
         alignItems="center"
         justifyContent="center"
         gap="50px"
+        marginTop="50px"
       >
         <Link to="https://www.valvesoftware.com/en/about" cursor="pointer">
           <Image
-            width="100px"
-            height="30px"
+            style={valveLogoSize}
             src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/valve_logo.png"
           />
         </Link>
         <Link to="/Home" cursor="pointer">
           <Image
-            width="150px"
-            height="30px"
+            style={dotaLogoSize}
             src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/dota_footer_logo.png"
           />
         </Link>
