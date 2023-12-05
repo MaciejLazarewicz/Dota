@@ -1,15 +1,12 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
 import OrangeDivider from '../../../components/OrangeDivider';
-import {
-  lightFont,
-  darkFont,
-  descriptionFont,
-} from '../../../components/constants/FontVariables';
+import FontStyles from '../../../components/constants/FontVariables';
 import { fontFamily } from '../../../components/constants/FontFamily';
 import BottomAnimation from '../../../components/BottomAnimation';
 
 function ProCircuitSection() {
+  const styles = FontStyles();
   return (
     <Box width="100%" position="relative">
       <Box
@@ -42,14 +39,14 @@ function ProCircuitSection() {
         >
           <Text
             marginBottom="25px"
-            style={{ ...darkFont }}
+            style={styles.darkFontBreakpoints}
             fontFamily={fontFamily.fontFamily}
           >
             The
           </Text>
           <Text
             marginBottom="25px"
-            style={{ ...lightFont }}
+            style={styles.lightFontBreakpoints}
             fontFamily={fontFamily.fontFamily}
           >
             Dota Pro Circuit
@@ -57,7 +54,7 @@ function ProCircuitSection() {
 
           <OrangeDivider />
           <Box />
-          <Text style={{ ...descriptionFont }}>
+          <Text style={styles.descriptionFontBreakpoints}>
             When not climbing the ranks, you'll be able to learn from the best.
             The Dota Pro Circuit features ultra-high-level Dota 2 competition
             streaming regularly in the game client, on Twitch and Steam.TV.
