@@ -6,6 +6,7 @@ import OrangeDivider from '../../../components/OrangeDivider';
 
 import FontStyles from '../../../components/constants/FontVariables';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
+import Gradient from '../../../components/Gradient';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
@@ -77,22 +78,27 @@ function BattleSection() {
         </BottomAnimation>
 
         <OrangeDivider />
-
-        <Text
-          marginTop="10px"
-          textAlign="center"
-          width="60%"
-          style={styles.descriptionFontBreakpoints}
+        <Box
+          display="flex "
+          flexDir="column"
+          alignItems="center"
+          marginTop="-15px"
         >
-          Every day, millions of players worldwide enter the battle as one of
-          over a hundred Dota Heroes in a 5v5 team clash. Dota is the deepest
-          multi-player action RTS game ever made and there's always a new
-          strategy or tactic to discover. It's completely free to play and
-          always will be – start defending your ancient now.
-        </Text>
-        <CommonButton>
-          <Text>See what's new</Text>
-        </CommonButton>
+          <Text
+            textAlign="center"
+            width="60%"
+            style={styles.descriptionFontBreakpoints}
+          >
+            Every day, millions of players worldwide enter the battle as one of
+            over a hundred Dota Heroes in a 5v5 team clash. Dota is the deepest
+            multi-player action RTS game ever made and there's always a new
+            strategy or tactic to discover. It's completely free to play and
+            always will be – start defending your ancient now.
+          </Text>
+          <CommonButton>
+            <Text>See what's new</Text>
+          </CommonButton>
+        </Box>
       </Box>
     </Box>
   );

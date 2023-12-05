@@ -151,7 +151,7 @@ function Home() {
                 “A MODERN MULTIPLAYER MASTERPIECE.”
               </Text>
               <Box
-                width="300px"
+                width={isBreakPoint450 ? '250px' : '300px'}
                 color="#919FA6"
                 fontSize="20px"
                 display="flex"
