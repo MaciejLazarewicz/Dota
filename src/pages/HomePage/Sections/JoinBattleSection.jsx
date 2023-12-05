@@ -1,13 +1,10 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 import OrangeDivider from '../../../components/OrangeDivider';
 import CommonButton from '../../../components/CommonButton';
-import {
-  darkFont,
-  lightFont,
-  buttonFont,
-} from '../../../components/constants/FontVariables';
+import FontStyles from '../../../components/constants/FontVariables';
 
 function JoinBattleSection() {
+  const styles = FontStyles();
   return (
     <Box
       width="100%"
@@ -29,12 +26,12 @@ function JoinBattleSection() {
         top="10%"
         left="5%"
       >
-        <Text style={{ ...darkFont }}>Join the</Text>
-        <Text style={{ ...lightFont }}>Battle</Text>
+        <Text style={styles.darkFontBreakpoints}>Join the</Text>
+        <Text style={styles.lightFontBreakpoints}>Battle</Text>
 
         <OrangeDivider />
         <CommonButton>
-          <Text style={{ ...buttonFont }}>Play for free</Text>
+          <Text style={styles.buttonFont}>Play for free</Text>
         </CommonButton>
       </Box>
     </Box>
