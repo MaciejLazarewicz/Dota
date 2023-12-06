@@ -9,6 +9,7 @@ import Skills from './Components/Skills';
 import HeroSkillsDetails from './Components/HeroSkillsDetails';
 import FooterSection from '../HomePage/Sections/FooterSection';
 import HeroBottomBar from './Components/HeroBottomBar';
+import { useBreakpoint } from '../../components/constants/BreakPoints';
 
 function Hero() {
   const [heroes, setHeroes] = useState([]);
@@ -101,6 +102,8 @@ function Hero() {
     navigate(`/Hero/${prevHero.localized_name}`);
   };
 
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+
   return (
     <Box>
       {heroes
@@ -145,11 +148,13 @@ function Hero() {
               nightVision={hero.night_vision}
             />
 
-            <Skills
-              heroId={hero.id}
-              name={hero.localized_name}
-              onImageClick={handleImageClick}
-            />
+            {isBreakPoint1200 ? null : (
+              <Skills
+                heroId={hero.id}
+                name={hero.localized_name}
+                onImageClick={handleImageClick}
+              />
+            )}
 
             <HeroSkillsDetails
               heroId={hero.id}

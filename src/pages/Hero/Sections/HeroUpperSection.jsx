@@ -19,6 +19,7 @@ import { faker } from '@faker-js/faker';
 import NextAndPreviousButton from '../Components/NextAndPreviousButton';
 
 import { motion } from 'framer-motion';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -72,9 +73,12 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
   };
 
   const formattedName = name
+    // eslint-disable-next-line react/prop-types
     .toLowerCase()
     .replace(/\s+/g, '_')
     .replace('-', '');
+
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
 
   return (
     <Box
@@ -98,12 +102,14 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           <Header />
         </Box>
         <Box
-          width="150%"
+          width="100%"
           height="650px"
           transform="skewY(-45deg) "
           position="absolute"
           overflow="hidden"
           backgroundColor="rgba(0,0,0,0.37)"
+          top="35%"
+          left="25%"
         />
         <NextAndPreviousButton
           nextHero={nextHero}
@@ -112,11 +118,10 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
 
         <Box
           display="flex"
-          justifyContent="center"
-          width="80%"
           position="absolute"
-          right="-5%"
-          bottom="-70%"
+          width="100%"
+          left={isBreakPoint1200 ? '25%' : '30%'}
+          top={isBreakPoint1200 ? '10%' : ''}
         >
           <motion.div
             initial={{ x: '-10%' }}
@@ -124,6 +129,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             transition={{ duration: 2 }}
           >
             <video
+              width="80%"
               autoPlay
               loop
               muted
@@ -149,12 +155,12 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             display="flex"
             flexDir="column"
             position="relative"
-            marginTop="100px"
-            marginLeft="300px"
+            marginTop={isBreakPoint1200 ? '400px' : '100px'}
+            marginLeft={isBreakPoint1200 ? '20px' : '300px'}
             textTransform="uppercase"
             color="#fff"
             letterSpacing="2px"
-            width="600px"
+            width={isBreakPoint1200 ? '100%' : '30%'}
           >
             <Box display="flex" flexDir="row" alignItems="center" gap="10px">
               <Image
@@ -170,50 +176,62 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             <Text fontSize="80px" marginY="0">
               {name}
             </Text>
-            <Text color="#a5e0f3">{randomDescription}</Text>
-            <Box width="500px">
-              <Collapse in={isExpanded} startingHeight={125}>
-                <Text
-                  whiteSpace="pre-line"
-                  textTransform="capitalize"
-                  maxH={isExpanded ? '50px' : 'none'}
-                  transition="max-height 0.5s"
-                >
-                  {randomDetails}
-                </Text>
-                <Slider
-                  value={sliderValue}
-                  onChange={handleSliderChange}
-                  orientation="vertical"
-                  ml="5px"
-                  h="150px"
-                  color="#f51"
-                  display={isExpanded ? 'block' : 'none'}
-                  position="absolute"
-                  right="-20px"
-                  zIndex="999"
-                  style={{ border: '5px solid red' }}
-                >
-                  <SliderTrack>
-                    <SliderFilledTrack />
-                  </SliderTrack>
-                  <SliderThumb />
-                </Slider>
-              </Collapse>
-              <Button
-                background="inherit"
-                variant="unstyled"
-                border="none"
-                cursor="pointer"
-                onClick={handleReadMoreClick}
-              >
-                <Text color="#f51" fontSize="18px" textDecoration="underline">
-                  Read full history
-                </Text>
-              </Button>
-            </Box>
-            {showAdditionalContent && (
+            {isBreakPoint1200 ? null : (
               <>
+                <Text color="#a5e0f3">{randomDescription}</Text>
+                <Box width="500px">
+                  <Collapse in={isExpanded} startingHeight={125}>
+                    <Text
+                      whiteSpace="pre-line"
+                      textTransform="capitalize"
+                      maxH={isExpanded ? '50px' : 'none'}
+                      transition="max-height 0.5s"
+                    >
+                      {randomDetails}
+                    </Text>
+                    <Slider
+                      value={sliderValue}
+                      onChange={handleSliderChange}
+                      orientation="vertical"
+                      ml="5px"
+                      h="150px"
+                      color="#f51"
+                      display={isExpanded ? 'block' : 'none'}
+                      position="absolute"
+                      right="-20px"
+                      zIndex="999"
+                      style={{ border: '5px solid red' }}
+                    >
+                      <SliderTrack>
+                        <SliderFilledTrack />
+                      </SliderTrack>
+                      <SliderThumb />
+                    </Slider>
+                  </Collapse>
+                  <Button
+                    background="inherit"
+                    variant="unstyled"
+                    border="none"
+                    cursor="pointer"
+                    onClick={handleReadMoreClick}
+                  >
+                    <Text
+                      color="#f51"
+                      fontSize="18px"
+                      textDecoration="underline"
+                    >
+                      Read full history
+                    </Text>
+                  </Button>
+                </Box>
+              </>
+            )}
+            {showAdditionalContent && (
+              <Box
+                display="flex"
+                flexDir={isBreakPoint1200 ? 'row' : 'column'}
+                gap={isBreakPoint1200 ? '50px' : '5px'}
+              >
                 <Box display="flex" flexDir="column">
                   <Text color="#959595">Attack Type</Text>
                   <Box
@@ -251,43 +269,46 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                     ))}
                   </Box>
                 </Box>
-              </>
+              </Box>
             )}
           </Box>
         </motion.div>
       </Box>
-      <motion.div
-        initial={{ y: -1600 }}
-        animate={{ y: -800 }}
-        transition={{ duration: 1 }}
-      >
-        <Box
-          width="800px"
-          left="-320px"
-          marginRight="50px"
-          top="300px"
-          display="flex"
-          flexDir="row"
-          alignItems="center"
-          transform="rotate(270deg)"
-          position="absolute"
-          fontSize="17px"
-          fontWeight="600"
-          textTransform="uppercase"
-          gap="12px"
+
+      {isBreakPoint1200 ? null : (
+        <motion.div
+          initial={{ y: -1600 }}
+          animate={{ y: -800 }}
+          transition={{ duration: 1 }}
         >
-          <Image
-            width="22px"
-            height="22px"
-            src={transformAttributeIntoIconSrc(prim)}
-          />
-          <Text fontFamily={fontFamily} color="#fff">
-            {name}
-          </Text>
-          <Text color="#888">{id}</Text>
-          <Box flexGrow="1" height="2px" backgroundColor="#555" />
-        </Box>
-      </motion.div>
+          <Box
+            width="800px"
+            left="-320px"
+            marginRight="50px"
+            top="300px"
+            display="flex"
+            flexDir="row"
+            alignItems="center"
+            transform="rotate(270deg)"
+            position="absolute"
+            fontSize="17px"
+            fontWeight="600"
+            textTransform="uppercase"
+            gap="12px"
+          >
+            <Image
+              width="22px"
+              height="22px"
+              src={transformAttributeIntoIconSrc(prim)}
+            />
+            <Text fontFamily={fontFamily} color="#fff">
+              {name}
+            </Text>
+            <Text color="#888">{id}</Text>
+            <Box flexGrow="1" height="2px" backgroundColor="#555" />
+          </Box>
+        </motion.div>
+      )}
     </Box>
   );
 }
