@@ -79,6 +79,8 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
     .replace('-', '');
 
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
+  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
 
   return (
     <Box
@@ -90,8 +92,8 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
     >
       <Box
         width="100%"
-        height="85vh"
-        backgroundSize="100% auto"
+        height={isBreakPoint1200 ? '75vh' : '85vh'}
+        backgroundSize="2000px"
         backgroundPosition="center-top"
         backgroundRepeat="no-repeat"
         overflow="hidden"
@@ -102,8 +104,8 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           <Header />
         </Box>
         <Box
-          width="100%"
-          height="650px"
+          width="75%"
+          height="100%"
           transform="skewY(-45deg) "
           position="absolute"
           overflow="hidden"
@@ -111,6 +113,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
           top="35%"
           left="25%"
         />
+
         <NextAndPreviousButton
           nextHero={nextHero}
           previousHero={previousHero}
@@ -119,9 +122,12 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
         <Box
           display="flex"
           position="absolute"
-          width="100%"
-          left={isBreakPoint1200 ? '25%' : '30%'}
+          justifyContent="center"
+          width="70%"
+          left={isBreakPoint1200 ? '25%' : '45%'}
           top={isBreakPoint1200 ? '10%' : ''}
+          marginTop={isBreakPoint450 ? '70px' : ''}
+          transform={isBreakPoint700 ? 'translateX(-25%)' : ''}
         >
           <motion.div
             initial={{ x: '-10%' }}
@@ -129,7 +135,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             transition={{ duration: 2 }}
           >
             <video
-              width="80%"
+              width={isBreakPoint450 ? '120%' : '70%'}
               autoPlay
               loop
               muted
@@ -155,7 +161,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             display="flex"
             flexDir="column"
             position="relative"
-            marginTop={isBreakPoint1200 ? '400px' : '100px'}
+            marginTop={isBreakPoint1200 ? '350px' : '100px'}
             marginLeft={isBreakPoint1200 ? '20px' : '300px'}
             textTransform="uppercase"
             color="#fff"
@@ -173,7 +179,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
               </Text>
             </Box>
 
-            <Text fontSize="80px" marginY="0">
+            <Text fontSize={isBreakPoint450 ? '40px' : '80px'} marginY="0">
               {name}
             </Text>
             {isBreakPoint1200 ? null : (
@@ -229,16 +235,20 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             {showAdditionalContent && (
               <Box
                 display="flex"
-                flexDir={isBreakPoint1200 ? 'row' : 'column'}
+                flexDir={
+                  isBreakPoint1200 && !isBreakPoint450 ? 'row' : 'column'
+                }
                 gap={isBreakPoint1200 ? '50px' : '5px'}
               >
                 <Box display="flex" flexDir="column">
-                  <Text color="#959595">Attack Type</Text>
+                  <Text marginBottom="5px" color="#959595">
+                    Attack Type
+                  </Text>
                   <Box
                     display="flex"
                     flexDir="row"
                     alignItems="center"
-                    gap="10px"
+                    gap="15px"
                   >
                     <Image
                       width="24px"
@@ -249,7 +259,13 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                   </Box>
                 </Box>
                 <Box>
-                  <Text color="#959595">Complexity</Text>
+                  <Text
+                    marginTop={isBreakPoint450 ? '-25px' : ''}
+                    color="#959595"
+                    marginBottom="20px"
+                  >
+                    Complexity
+                  </Text>
                   <Box display="flex" flexDir="row" gap="20px">
                     {[1, 2, 3].map((index) => (
                       <Box

@@ -81,7 +81,7 @@ function Skills({ name, heroId, onImageClick }) {
 
   return (
     <Box>
-      <Box position="absolute" top="600px" right="500px">
+      <Box position="absolute" top="650px" right="520px">
         <Box
           {...mainBoxStyles}
           left="-80px"
