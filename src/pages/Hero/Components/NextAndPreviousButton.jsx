@@ -4,6 +4,7 @@ import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function NextAndPreviousButton({ previousHero, nextHero }) {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
   const arrowBoxStyles1200 = {
     width: '20px',
     height: '45px',
@@ -16,6 +17,7 @@ function NextAndPreviousButton({ previousHero, nextHero }) {
     width: '30px',
     height: '64px',
     cursor: 'pointer',
+
     _hover: {
       borderColor: '#fff',
       '& .inner-image': {
@@ -62,14 +64,18 @@ function NextAndPreviousButton({ previousHero, nextHero }) {
   return (
     <Box
       position="absolute"
-      right="20"
-      top="200"
+      right={isBreakPoint900 ? '0' : '20'}
+      top={isBreakPoint900 ? '70' : '200'}
       display="flex"
+      justifyContent="center"
+      alignItems="center"
       flexDir="row"
-      width="200px"
-      height="200px"
+      width="150px"
+      height="70px"
       zIndex="999"
       gap="5px"
+      bgColor={isBreakPoint900 ? '#383f4240' : ''}
+      borderRadius={isBreakPoint900 ? '15px' : ''}
     >
       <Box {...arrowBoxStyles} onClick={previousHero}>
         <Image {...arrowImageStyles} />
