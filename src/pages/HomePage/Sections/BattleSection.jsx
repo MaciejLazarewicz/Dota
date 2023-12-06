@@ -6,7 +6,6 @@ import OrangeDivider from '../../../components/OrangeDivider';
 
 import FontStyles from '../../../components/constants/FontVariables';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
-import Gradient from '../../../components/Gradient';
 
 function BattleSection() {
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
