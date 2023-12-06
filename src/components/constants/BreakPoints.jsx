@@ -8,9 +8,11 @@ export const breakpoints = {
   isBreakPoint600: '(max-width: 600px)',
   isBreakPoint700: '(max-width: 700px)',
   isBreakPoint900: '(max-width: 900px)',
+  isBreakPoint1000: '(max-width: 1000px)',
   isBreakPoint1200: '(max-width: 1200px)',
   isBreakPoint1300: '(max-width: 1300px)',
   isBreakPoint1500: '(max-width: 1500px)',
+  isBreakPoint1650: '(max-width: 1650px)',
   isBreakPoint1900: '(max-width: 1900px)',
 };
 export const useBreakpoint = (breakpoint) => {
