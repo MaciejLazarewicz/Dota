@@ -1,9 +1,6 @@
 import { Box, Image, Text } from '@chakra-ui/react';
-import {
-  GiHealthNormal,
-  GiHealthIncrease,
-  GiFizzingFlask,
-} from 'react-icons/gi';
+import { GiHealthNormal, GiFizzingFlask } from 'react-icons/gi';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function HeroBar({
   name,
@@ -33,14 +30,12 @@ function HeroBar({
   dayVision,
   nightVision,
 }) {
-  console.log(roles);
-
   const renderRoleBox = (role) => (
     <Box key={role}>
       <Text>{role}</Text>
       <Box
         marginTop="-10px"
-        width="130px"
+        width="80%"
         height="6px"
         backgroundColor={roles.includes(role) ? '#fff' : '#4c4c4c'}
         boxShadow={
@@ -64,11 +59,35 @@ function HeroBar({
     'Initiator',
   ];
 
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+
+  const characterDataFont = {
+    color: '#969696',
+    fontSize: '18px',
+    textTransform: 'uppercase',
+    letterSpacing: '2px',
+  };
+  const dividerColor = {
+    backgroundColor: '#4f4f4f',
+  };
+
+  const verticalDivider = {
+    ...dividerColor,
+    width: '1px',
+    height: '80%',
+  };
+  const horizontalDivider = {
+    ...dividerColor,
+    width: '100%',
+    height: '2px',
+  };
+
   return (
     <Box width="100%">
       <Box
         width="100%"
-        height="30vh"
+        height={isBreakPoint900 ? '80vh' : '25vh'}
         borderTop="2px solid #282828"
         borderBottom="2px solid #2c2e2e"
         boxShadow="0px 0px 8px #000"
@@ -80,16 +99,30 @@ function HeroBar({
       >
         <Box
           width="100%"
-          maxWidth="1600px"
           padding="20px 0px"
           position="relative"
           display="flex"
-          flexDir="row"
+          flexDir={isBreakPoint900 ? 'column' : 'row'}
           alignItems="center"
           justifyContent="space-between"
         >
-          <Box display="flex" width="30%" flexDir="column" gap="60px">
-            <Box display="flex" flexDir="row">
+          <Box
+            display="flex"
+            width={isBreakPoint900 ? '100%' : '30%'}
+            flexDir="column"
+            gap={isBreakPoint900 ? '' : '60px'}
+            textAlign="center"
+          >
+            {isBreakPoint900 ? (
+              <Text style={characterDataFont}>Attributes</Text>
+            ) : null}
+
+            <Box
+              display="flex"
+              flexDir="row"
+              justifyContent="center"
+              marginLeft={isBreakPoint1200 ? '5%' : '25%'}
+            >
               <Box
                 height="fit-content"
                 display="flex"
@@ -145,7 +178,7 @@ function HeroBar({
                 display="flex"
                 flexDir="column"
                 alignItems="center"
-                marginLeft="100px"
+                marginLeft="30px"
               >
                 <Box
                   display="flex"
@@ -237,23 +270,42 @@ function HeroBar({
               </Box>
             </Box>
           </Box>
-          <Box backgroundColor="#4f4f4f" width="1px" height="80%" />
+          {isBreakPoint900 ? <Box style={horizontalDivider} /> : null}
+          {isBreakPoint900 ? (
+            <Text marginBottom="5px" style={characterDataFont}>
+              Roles
+            </Text>
+          ) : null}
+
+          {isBreakPoint900 ? null : (
+            <Box backgroundColor="#4f4f4f" width="1px" height="80%" />
+          )}
 
           <Box
-            width="30%"
+            width={isBreakPoint900 ? '100%' : '30%'}
             display="grid"
             columnGap="0"
-            marginX="0"
             gridTemplateColumns="repeat(3, 1fr)"
             fontSize="15px"
             color="#fff"
             letterSpacing="1px"
+            marginLeft={isBreakPoint900 ? '5%' : ''}
           >
             {rolesToRender.map(renderRoleBox)}
           </Box>
+          {isBreakPoint900 ? <Box style={horizontalDivider} /> : null}
 
-          <Box backgroundColor="#4f4f4f" width="1px" height="80%" />
-          <Box width="30%" display="grid" gridTemplateColumns="repeat(3,1fr)">
+          {isBreakPoint900 ? null : <Box style={verticalDivider} />}
+          {isBreakPoint900 ? (
+            <Text marginBottom="5px" style={characterDataFont}>
+              Stats
+            </Text>
+          ) : null}
+          <Box
+            width={isBreakPoint900 ? '100%' : '30%'}
+            display="grid"
+            gridTemplateColumns="repeat(3,1fr)"
+          >
             <Box>
               <Text
                 color="#969696"
@@ -398,40 +450,21 @@ function HeroBar({
           </Box>
         </Box>
       </Box>
-      <Box
-        width="100%"
-        display="flex"
-        justifyContent="center"
-        position="relative"
-        marginTop="-60px"
-        gap="500px"
-        left="-2.5%"
-      >
-        <Text
-          color="#969696"
-          fontSize="18px"
-          textTransform="uppercase"
-          letterSpacing="2px"
+      {isBreakPoint900 ? null : (
+        <Box
+          width="70%"
+          display="flex"
+          justifyContent="space-between"
+          position="relative"
+          marginTop="-60px"
+          left="15%"
+          right="15%"
         >
-          Attributes
-        </Text>
-        <Text
-          color="#969696"
-          fontSize="18px"
-          textTransform="uppercase"
-          letterSpacing="2px"
-        >
-          Roles
-        </Text>
-        <Text
-          color="#969696"
-          fontSize="18px"
-          textTransform="uppercase"
-          letterSpacing="2px"
-        >
-          Stats
-        </Text>
-      </Box>
+          <Text style={characterDataFont}>Attributes</Text>
+          <Text style={characterDataFont}>Roles</Text>
+          <Text style={characterDataFont}>Stats</Text>
+        </Box>
+      )}
     </Box>
   );
 }
