@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import { imagesStyles } from '../Constants/imageSkillStyles';
 import { heroSkills } from './HeroSkills';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
   const [currentHeroId, setCurrentHeroId] = useState(heroId);
@@ -73,6 +74,9 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     }
   };
 
+  const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
+
   return (
     <Box
       width="100%"
@@ -98,10 +102,14 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
         width="100%"
         justifyContent="center"
         display="flex"
-        flexDir="row"
+        flexDir={isBreakPoint900 ? 'column' : 'row'}
         gap="20px"
       >
-        <Box display="flex" flexDir="column" width="40%">
+        <Box
+          display="flex"
+          flexDir="column"
+          width={isBreakPoint900 ? '100%' : '40%'}
+        >
           <Box width="100%">
             {[
               firstSkill,
@@ -128,6 +136,8 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
           <Box
             width="100%"
             display="flex"
+            flexDir="row"
+            flexWrap="wrap"
             gap="15px"
             justifyContent="center"
             marginTop="-25px"
@@ -156,12 +166,18 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
             ))}
           </Box>
         </Box>
-        <Box width="40%" display="flex" flexDir="column" alignItems="center">
+        <Box
+          width={isBreakPoint900 ? '100%' : '40%'}
+          display="flex"
+          flexDir="column"
+          alignItems="center"
+        >
           <Box
             width="100%"
             display="flex"
-            flexDir="row"
+            flexDir={isBreakPoint600 ? 'column' : 'row'}
             bgColor="rgba(0,0,0,0.6)"
+            alignItems={isBreakPoint600 ? 'center ' : ''}
           >
             <Box margin=" 25px 5px 25px 25px">
               <Image
@@ -175,8 +191,9 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
               display="flex"
               height="fit-content"
               flexDir="column"
-              width="100%"
+              width={isBreakPoint600 ? '80%' : '100%'}
               marginLeft="30px"
+              alignItems={isBreakPoint600 ? 'center ' : ''}
             >
               <Text
                 color="#fff"
@@ -185,34 +202,38 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
                 letterSpacing="1px"
                 fontWeight="bold"
                 marginBottom="5px"
+                maxWidth="80%"
               >
                 {selectedText.replace('_', ' ')}
               </Text>
 
               <Text
                 color="#959595"
-                fontSize="18px"
+                fontSize={isBreakPoint600 ? '14px' : '18px'}
                 whiteSpace="pre-wrap"
                 marginBottom="10px"
                 marginTop="5px"
+                maxWidth="80%"
               >
                 {selectedDescription}
               </Text>
             </Box>
           </Box>
 
-          <Box width="50%" display="flex" justifyContent="center">
-            <video
-              autoPlay
-              loop
-              muted
-              width="700px"
-              height="400px"
-              src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName(
-                name
-              )}.webm`}
-            />
-          </Box>
+          {isBreakPoint900 ? null : (
+            <Box width="50%" display="flex" justifyContent="center">
+              <video
+                autoPlay
+                loop
+                muted
+                width="700px"
+                height="400px"
+                src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName(
+                  name
+                )}.webm`}
+              />
+            </Box>
+          )}
         </Box>
       </Box>
     </Box>

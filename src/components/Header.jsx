@@ -10,7 +10,12 @@ import {
 } from '@chakra-ui/react';
 
 import { BsSteam } from 'react-icons/bs';
-import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import {
+  ChevronDownIcon,
+  HamburgerIcon,
+  CloseIcon,
+  ChevronRightIcon,
+} from '@chakra-ui/icons';
 import { useState } from 'react';
 import CommonButton from './CommonButton';
 import { useBreakpoint } from './constants/BreakPoints';
@@ -24,10 +29,11 @@ const FONT_DATA = {
 
 function Header() {
   const [isMenuHovered, setMenuHovered] = useState(false);
-  const [breakPoint700] = useBreakpoint('isBreakPoint700'); // HAMBURGER
-  const [breakPoint900] = useBreakpoint('isBreakPoint900'); // LOGO
-  const [breakPoint1200] = useBreakpoint('isBreakPoint1200'); //GRAJ ZA DARMO
-  const [breakPoint1300] = useBreakpoint('isBreakPoint1300'); //DOTA
+  const [isHamburgerClicked, setIsHamburgerClicked] = useState(false);
+  const [breakPoint700] = useBreakpoint('isBreakPoint700');
+  const [breakPoint900] = useBreakpoint('isBreakPoint900');
+  const [breakPoint1200] = useBreakpoint('isBreakPoint1200');
+  const [breakPoint1300] = useBreakpoint('isBreakPoint1300');
 
   return (
     <Box
@@ -149,10 +155,110 @@ function Header() {
           <Box
             cursor="pointer"
             marginRight={breakPoint700 ? '-20px' : 'inherit'}
+            onClick={() => setIsHamburgerClicked(!isHamburgerClicked)}
           >
-            <HamburgerIcon width="50px" height="50px" />
+            <HamburgerIcon
+              width="50px"
+              height="50px"
+              color="#dbd8d8"
+              _hover={{
+                color: '#fff',
+              }}
+            />
           </Box>
         ) : null}
+        {isHamburgerClicked && breakPoint700 && (
+          <Box
+            display="flex"
+            flexDir="column"
+            position="fixed"
+            top="0"
+            left="0"
+            width="100%"
+            height="100%"
+            zIndex="999"
+            backgroundColor="#000"
+          >
+            <Box display="flex" flexDir="row" justifyContent="space-between">
+              <Box display="flex" flexDir="row">
+                <Img width="50px" height="50px" src="/dota.svg" />
+                <Text fontSize="30px" letterSpacing="5px" style={FONT_DATA}>
+                  DOTA 2
+                </Text>
+              </Box>
+              <Box>
+                <CloseIcon
+                  color="#fff"
+                  onClick={() => setIsHamburgerClicked(!isHamburgerClicked)}
+                />
+              </Box>
+            </Box>
+            <Box backgroundColor="#f51">
+              <Text color="#fff">Game</Text>
+            </Box>
+            <Box display="flex" flexDir="column">
+              <Box display="flex" flexDir="row">
+                <Text color="#fff">Builds</Text>
+                <ChevronRightIcon color="#fff" />
+              </Box>
+
+              <Box display="flex" flexDir="row">
+                <Text color="#fff">Steam Guides</Text>
+
+                <ChevronRightIcon color="#fff" />
+              </Box>
+              <Box display="flex" flexDir="row">
+                <Text color="#fff">Patches</Text>
+
+                <ChevronRightIcon color="#fff" />
+              </Box>
+              <Box display="flex" flexDir="row">
+                <Text color="#fff">Gameplay Updates</Text>
+
+                <ChevronRightIcon color="#fff" />
+              </Box>
+              <Box display="flex" flexDir="row">
+                <Text color="#fff">Store</Text>
+                <ChevronRightIcon color="#fff" />
+              </Box>
+            </Box>
+            <Box backgroundColor="#f51">
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <Text color="#fff">Heroes</Text>
+                </Box>
+                <Box>
+                  <ChevronRightIcon color="#fff" />
+                </Box>
+              </Box>
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <Text color="#fff">News</Text>
+                </Box>
+                <Box>
+                  <ChevronRightIcon color="#fff" />
+                </Box>
+              </Box>
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <Text color="#fff">Esports</Text>
+                </Box>
+                <Box>
+                  <ChevronRightIcon color="#fff" />
+                </Box>
+              </Box>
+            </Box>
+            <Box>
+              <Text color="#fff">dada</Text>
+            </Box>
+            <Box display="flex" justifyContent="center" backgroundColor="#f51">
+              <CommonButton>
+                <BsSteam />
+                Play for free
+              </CommonButton>
+            </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );

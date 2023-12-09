@@ -18,14 +18,3 @@ export const breakpoints = {
 export const useBreakpoint = (breakpoint) => {
   return useMediaQuery(breakpoints[breakpoint]);
 };
-
-// const [isBreakPoint300] = useBreakpoint('isBreakPoint300');
-// const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
-// const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
-// const [isBreakPoint550] = useBreakpoint('isBreakPoint550');
-// const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
-// const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
-// const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
-// const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
-// const [isBreakPoint1300] = useBreakpoint('isBreakPoint1300');
-// const [isBreakPoint1900] = useBreakpoint('isBreakPoint1900');

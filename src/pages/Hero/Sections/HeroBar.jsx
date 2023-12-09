@@ -61,6 +61,7 @@ function HeroBar({
 
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
 
   const characterDataFont = {
     color: '#969696',
@@ -178,7 +179,7 @@ function HeroBar({
                 display="flex"
                 flexDir="column"
                 alignItems="center"
-                marginLeft="30px"
+                marginLeft={isBreakPoint350 ? '20px' : '30px'}
               >
                 <Box
                   display="flex"
@@ -282,7 +283,7 @@ function HeroBar({
           )}
 
           <Box
-            width={isBreakPoint900 ? '100%' : '30%'}
+            width={isBreakPoint900 ? '90%' : '30%'}
             display="grid"
             columnGap="0"
             gridTemplateColumns="repeat(3, 1fr)"
