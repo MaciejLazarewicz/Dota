@@ -133,12 +133,14 @@ function Home() {
     fetchData();
   }, []);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <Box style={mainContainerStyle}>
       <BackgroundVideo />
       <Box top="0" left="0" zIndex="1" width="inherit" position="absolute">
         <Box style={headerStyle}>
-          <Header />
+          <Header setIsMenuOpen={setIsMenuOpen} />
         </Box>
         <Box>
           <motion.div
@@ -196,70 +198,76 @@ function Home() {
           </motion.div>
         </Box>
 
-        {isBreakPoint700 ? null : <NewsSection />}
+        {!isMenuOpen ? (
+          <>
+            {isBreakPoint700 ? null : <NewsSection />}
 
-        <BattleSection />
+            <BattleSection />
 
-        <ChooseSection />
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          position="relative"
-          background="rgb(0,0,0)"
-          marginTop="-500px"
-          paddingBottom="150px"
-          overflow="hidden"
-        >
-          <Box
-            position="absolute"
-            top="0"
-            left="10%"
-            bottom="0"
-            width="5%"
-            background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
-            zIndex="3"
-          />
-          <Box
-            position="absolute"
-            top="0"
-            width="5%"
-            bottom="0"
-            right="10%"
-            background="linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
-            zIndex="3"
-          />
-          <Box
-            display="grid"
-            height="70%"
-            width="80%"
-            overflow="hidden"
-            gap="15px"
-            gridTemplateColumns="repeat(25,1fr)"
-            gridTemplateRows="repeat (5,1fr)"
-            background="rgb(0,0,0)"
-            position="relative"
-            zIndex="2"
-          >
-            {heroes.map((hero, index) => (
-              <HeroHomePageGrid
-                key={hero.id}
-                name={hero.localized_name}
-                img={`${PUBLIC_DOMAIN}${hero.img}`}
-                alt={hero.localized_name}
-                prim={hero.primary_attr}
-                rowStyle={
-                  Math.floor(index / 25) % 2 === 0 ? evenRowStyle : oddRowStyle
-                }
+            <ChooseSection />
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              position="relative"
+              background="rgb(0,0,0)"
+              marginTop="-500px"
+              paddingBottom="150px"
+              overflow="hidden"
+            >
+              <Box
+                position="absolute"
+                top="0"
+                left="10%"
+                bottom="0"
+                width="5%"
+                background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
+                zIndex="3"
               />
-            ))}
-          </Box>
-        </Box>
+              <Box
+                position="absolute"
+                top="0"
+                width="5%"
+                bottom="0"
+                right="10%"
+                background="linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
+                zIndex="3"
+              />
+              <Box
+                display="grid"
+                height="70%"
+                width="80%"
+                overflow="hidden"
+                gap="15px"
+                gridTemplateColumns="repeat(25,1fr)"
+                gridTemplateRows="repeat (5,1fr)"
+                background="rgb(0,0,0)"
+                position="relative"
+                zIndex="2"
+              >
+                {heroes.map((hero, index) => (
+                  <HeroHomePageGrid
+                    key={hero.id}
+                    name={hero.localized_name}
+                    img={`${PUBLIC_DOMAIN}${hero.img}`}
+                    alt={hero.localized_name}
+                    prim={hero.primary_attr}
+                    rowStyle={
+                      Math.floor(index / 25) % 2 === 0
+                        ? evenRowStyle
+                        : oddRowStyle
+                    }
+                  />
+                ))}
+              </Box>
+            </Box>
 
-        <ProCircuitSection />
-        <Box width="100%" height="20%" background="rgb(0,0,0)" />
-        <JoinBattleSection />
-        <FooterSection />
+            <ProCircuitSection />
+            <Box width="100%" height="20%" background="rgb(0,0,0)" />
+            <JoinBattleSection />
+            <FooterSection />
+          </>
+        ) : null}
       </Box>
     </Box>
   );

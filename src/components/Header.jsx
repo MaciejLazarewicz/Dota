@@ -27,13 +27,20 @@ const FONT_DATA = {
   cursor: 'pointer',
 };
 
-function Header() {
+function Header({ setIsMenuOpen }) {
   const [isMenuHovered, setMenuHovered] = useState(false);
   const [isHamburgerClicked, setIsHamburgerClicked] = useState(false);
   const [breakPoint700] = useBreakpoint('isBreakPoint700');
   const [breakPoint900] = useBreakpoint('isBreakPoint900');
   const [breakPoint1200] = useBreakpoint('isBreakPoint1200');
   const [breakPoint1300] = useBreakpoint('isBreakPoint1300');
+
+  const handleHamburgerClick = () => {
+    if (typeof setIsMenuOpen === 'function') {
+      setIsHamburgerClicked(!isHamburgerClicked);
+      setIsMenuOpen((prev) => !prev);
+    }
+  };
 
   return (
     <Box
@@ -155,7 +162,7 @@ function Header() {
           <Box
             cursor="pointer"
             marginRight={breakPoint700 ? '-20px' : 'inherit'}
-            onClick={() => setIsHamburgerClicked(!isHamburgerClicked)}
+            onClick={handleHamburgerClick}
           >
             <HamburgerIcon
               width="50px"
@@ -167,7 +174,7 @@ function Header() {
             />
           </Box>
         ) : null}
-        {isHamburgerClicked && breakPoint700 && (
+        {isHamburgerClicked && (
           <Box
             display="flex"
             flexDir="column"
@@ -176,7 +183,6 @@ function Header() {
             left="0"
             width="100%"
             height="100%"
-            zIndex="999"
             backgroundColor="#000"
           >
             <Box display="flex" flexDir="row" justifyContent="space-between">
@@ -187,10 +193,7 @@ function Header() {
                 </Text>
               </Box>
               <Box>
-                <CloseIcon
-                  color="#fff"
-                  onClick={() => setIsHamburgerClicked(!isHamburgerClicked)}
-                />
+                <CloseIcon color="#fff" onClick={handleHamburgerClick} />
               </Box>
             </Box>
             <Box backgroundColor="#f51">
