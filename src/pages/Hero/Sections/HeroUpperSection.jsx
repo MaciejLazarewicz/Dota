@@ -166,7 +166,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
             textTransform="uppercase"
             color="#fff"
             letterSpacing="2px"
-            width={isBreakPoint1200 ? '100%' : '30%'}
+            width={isBreakPoint1200 ? '90%' : '30%'}
           >
             <Box display="flex" flexDir="row" alignItems="center" gap="10px">
               <Image
@@ -179,7 +179,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
               </Text>
             </Box>
 
-            <Text fontSize={isBreakPoint450 ? '40px' : '80px'} marginY="0">
+            <Text fontSize={isBreakPoint450 ? '30px' : '80px'} marginY="0">
               {name}
             </Text>
             {isBreakPoint1200 ? null : (

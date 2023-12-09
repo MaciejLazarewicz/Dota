@@ -1,6 +1,7 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
 import { Link } from 'react-router-dom';
+import { useBreakpoint } from '../../../components/constants/BreakPoints';
 
 function HeroBottomBar({
   heroId,
@@ -18,6 +19,10 @@ function HeroBottomBar({
   prevIndexAttackType,
 }) {
   const formattedName = name.toLowerCase();
+
+  const [isBreakPoint1650] = useBreakpoint('isBreakPoint1650');
+  const [isBreakPoint1500] = useBreakpoint('isBreakPoint1500');
+  const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
 
   const commonTextStyles = {
     fontSize: '15px',
@@ -63,6 +68,7 @@ function HeroBottomBar({
     transition: 'transform 0.3s ease-in-out',
     height: '250px',
     className: 'hero-image',
+    width: isBreakPoint1500 ? '300px' : '',
   };
 
   const backgroundImageStyles = {
@@ -121,40 +127,46 @@ function HeroBottomBar({
   return (
     <Box width="100%" display="flex" flexDir="column" justifyContent="center">
       <Box width="100%" display="flex" flexDir="row" justifyContent="center">
-        <Box {...backgroundImageStyles} onClick={previousHeroImageClick}>
-          <Box display="flex" flexDir="row" position="absolute" right="5%">
-            <Box display="flex" flexDir="column">
-              <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
-                Previous Hero
-              </Text>
-              <Text {...prevAndNextHeroSecondTextStyles}>
-                {previousHeroName}
-              </Text>
-              <Box {...indexAttackTypeBoxStyles}>
-                <Image
-                  width="20px"
-                  height="20px"
-                  src={nextAndPreviousIconAttribute(prevIndexAttr)}
-                />
-
-                <Text {...indexAttackTypeTextStyles}>
-                  {prevIndexAttackType}
+        {isBreakPoint1200 ? (
+          <Box width="46%" backgroundColor="rgba(0,0,0,0.85)" />
+        ) : null}
+        {isBreakPoint1200 ? null : (
+          <Box {...backgroundImageStyles} onClick={previousHeroImageClick}>
+            <Box display="flex" flexDir="row" position="absolute" right="5%">
+              <Box display="flex" flexDir="column">
+                <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
+                  Previous Hero
                 </Text>
+                <Text {...prevAndNextHeroSecondTextStyles}>
+                  {previousHeroName}
+                </Text>
+                <Box {...indexAttackTypeBoxStyles}>
+                  <Image
+                    width="20px"
+                    height="20px"
+                    src={nextAndPreviousIconAttribute(prevIndexAttr)}
+                  />
+
+                  <Text {...indexAttackTypeTextStyles}>
+                    {prevIndexAttackType}
+                  </Text>
+                </Box>
               </Box>
             </Box>
+            <Box position="absolute" bottom="-20px" right="50%">
+              <Image {...nextAndPrevHeroImageStyles} src={prevHeroImg} />
+            </Box>
           </Box>
-          <Box position="absolute" bottom="-20px" right="50%">
-            <Image {...nextAndPrevHeroImageStyles} src={prevHeroImg} />
-          </Box>
-        </Box>
+        )}
 
         <Link to="/Heroes">
           <Box
+            width={isBreakPoint1200 ? '100%' : ''}
             display="flex"
             flexDir="column"
             cursor="pointer"
             paddingTop="20px"
-            paddingX="40px"
+            paddingX={isBreakPoint1200 ? '' : '40px'}
             boxShadow="2px 2px 6px #000"
             backgroundColor="rgba(0,0,0,0.85)"
             _hover={{
@@ -186,7 +198,6 @@ function HeroBottomBar({
               <Text
                 color="#fff"
                 fontWeight="bold"
-                maxWidth="100px"
                 textAlign="center"
                 lineHeight="1.5"
                 {...commonTextStyles}
@@ -197,31 +208,41 @@ function HeroBottomBar({
           </Box>
         </Link>
 
-        <Box {...backgroundImageStyles} onClick={nextHeroImageClick}>
-          <Box display="flex" flexDir="row" position="absolute" left="5%">
-            <Box display="flex" flexDir="column">
-              <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
-                Next Hero
-              </Text>
-              <Text {...prevAndNextHeroSecondTextStyles}>{nextHeroName}</Text>
-              <Box {...indexAttackTypeBoxStyles}>
-                <Image
-                  width="20px"
-                  height="20px"
-                  src={nextAndPreviousIconAttribute(nextIndexAttr)}
-                />
+        {isBreakPoint1200 ? (
+          <Box width="45%" backgroundColor="rgba(0,0,0,0.85)" />
+        ) : null}
 
-                <Text {...indexAttackTypeTextStyles}>
-                  {' '}
-                  {nextIndexAttackType}
+        {isBreakPoint1200 ? null : (
+          <Box {...backgroundImageStyles} onClick={nextHeroImageClick}>
+            <Box display="flex" flexDir="row" position="absolute" left="5%">
+              <Box display="flex" flexDir="column">
+                <Text {...commonTextStyles} {...prevAndNextHeroMainTextStyles}>
+                  Next Hero
                 </Text>
+                <Text {...prevAndNextHeroSecondTextStyles}>{nextHeroName}</Text>
+                <Box {...indexAttackTypeBoxStyles}>
+                  <Image
+                    width="20px"
+                    height="20px"
+                    src={nextAndPreviousIconAttribute(nextIndexAttr)}
+                  />
+
+                  <Text {...indexAttackTypeTextStyles}>
+                    {' '}
+                    {nextIndexAttackType}
+                  </Text>
+                </Box>
               </Box>
             </Box>
+            <Box
+              position="absolute"
+              bottom="-20px"
+              left={isBreakPoint1650 ? '30%' : '40%'}
+            >
+              <Image {...nextAndPrevHeroImageStyles} src={nextHeroImg} />
+            </Box>
           </Box>
-          <Box position="absolute" bottom="-20px" left="50%">
-            <Image {...nextAndPrevHeroImageStyles} src={nextHeroImg} />
-          </Box>
-        </Box>
+        )}
       </Box>
       <Box zIndex="1" width="100%" height="25px" backgroundColor="#000" />
     </Box>
