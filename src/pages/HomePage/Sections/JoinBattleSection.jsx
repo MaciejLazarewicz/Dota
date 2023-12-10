@@ -35,7 +35,7 @@ function JoinBattleSection() {
 
             <OrangeDivider />
           </Box>
-          <Box marginRight="25px">
+          <Box width="fit-content" marginRight="25px">
             <CommonButton>
               <Text>Play for free</Text>
             </CommonButton>
