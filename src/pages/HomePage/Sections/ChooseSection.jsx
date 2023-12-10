@@ -6,6 +6,7 @@ import BottomAnimation from '../../../components/BottomAnimation';
 import FontStyles from '../../../components/constants/FontVariables';
 
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
+import UnstyledReactRouterLink from '../../../components/UnstyledReactRouterLink';
 
 function ChooseSection() {
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
@@ -71,9 +72,11 @@ function ChooseSection() {
         width="100%"
         marginTop={isBreakPoint350 ? '35px' : '5px'}
       >
-        <CommonButton>
-          <Text>View all heroes</Text>
-        </CommonButton>
+        <UnstyledReactRouterLink to="/Heroes">
+          <CommonButton>
+            <Text>View all heroes</Text>
+          </CommonButton>
+        </UnstyledReactRouterLink>
       </Box>
     </Box>
   );

@@ -37,7 +37,7 @@ function JoinBattleSection() {
           </Box>
           <Box width="fit-content" marginRight="25px">
             <CommonButton>
-              <Text>Play for free</Text>
+              <Text>Play free now</Text>
             </CommonButton>
           </Box>
         </Box>

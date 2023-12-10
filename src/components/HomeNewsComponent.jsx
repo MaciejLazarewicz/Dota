@@ -1,18 +1,11 @@
 import { Box, Text, Image } from '@chakra-ui/react';
 import { faker } from '@faker-js/faker';
 import { useBreakpoint } from './constants/BreakPoints';
+import UnstyledReactRouterLink from './UnstyledReactRouterLink';
 
 function HomeNewsComponent() {
-  const [isBreakPoint300] = useBreakpoint('isBreakPoint300');
-  const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
-  const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
-  const [isBreakPoint550] = useBreakpoint('isBreakPoint550');
-  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
-  const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
-  const [isBreakPoint1300] = useBreakpoint('isBreakPoint1300');
-  const [isBreakPoint1900] = useBreakpoint('isBreakPoint1900');
 
   const generateRandomDate = () => {
     const startDate = new Date(2019, 0, 1);
@@ -24,18 +17,18 @@ function HomeNewsComponent() {
 
     const day = randomDate.getDate();
     const monthNames = [
-      'Styczeń',
-      'Luty',
-      'Marzec',
-      'Kwiecień',
-      'Maj',
-      'Czerwiec',
-      'Lipiec',
-      'Sierpień',
-      'Wrzesień',
-      'Październik',
-      'Listopad',
-      'Grudzień',
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
     ];
     const monthName = monthNames[randomDate.getMonth()];
     const year = randomDate.getFullYear();
@@ -153,48 +146,52 @@ function HomeNewsComponent() {
   return (
     <Box height="30%" display="flex" gap="35px">
       {imagesUrl.map((image, index) => (
-        <Box
-          style={mainBoxStyles}
-          key={index}
-          _hover={{
-            borderBottom: '2px solid #f51',
-            transform: 'scale(1.1)',
-            transition: 'transform 0.3s ease-in-out',
-          }}
-          borderBottom="2px solid rgba(255,255,255,0.7)"
-        >
-          <Image
-            style={imageStyles}
-            src={image.src}
-            alt="Random Gaming Image from Unsplash"
-            borderRadius="15px"
-          />
+        <>
+          <UnstyledReactRouterLink to="https://www.dota2.com/news">
+            <Box
+              style={mainBoxStyles}
+              key={index}
+              _hover={{
+                borderBottom: '2px solid #f51',
+                transform: 'scale(1.1)',
+                transition: 'transform 0.3s ease-in-out',
+              }}
+              borderBottom="2px solid rgba(255,255,255,0.7)"
+            >
+              <Image
+                style={imageStyles}
+                src={image.src}
+                alt="Random Gaming Image from Unsplash"
+                borderRadius="15px"
+              />
 
-          <Box style={imageOverlayStyles} borderRadius="15px" />
+              <Box style={imageOverlayStyles} borderRadius="15px" />
 
-          <Box style={imageTextBoxStyles}>
-            <Box marginX="10px" width="250px">
-              <Text
-                margin="0"
-                fontSize={isBreakPoint900 ? '10px' : '20px'}
-                color="rgba(255,255,255,0.7)"
-              >
-                {randomDate}
-              </Text>
-              <Text
-                marginX="0"
-                marginTop={isBreakPoint900 ? '5px' : '0'}
-                marginBottom="30px"
-                fontSize={isBreakPoint900 ? ' 10px' : '20px'}
-                color="#fff"
-              >
-                {randomTitle}
-              </Text>
+              <Box style={imageTextBoxStyles}>
+                <Box marginX="10px" width="250px">
+                  <Text
+                    margin="0"
+                    fontSize={isBreakPoint900 ? '10px' : '20px'}
+                    color="rgba(255,255,255,0.7)"
+                  >
+                    {randomDate}
+                  </Text>
+                  <Text
+                    marginX="0"
+                    marginTop={isBreakPoint900 ? '5px' : '0'}
+                    marginBottom="30px"
+                    fontSize={isBreakPoint900 ? ' 10px' : '20px'}
+                    color="#fff"
+                  >
+                    {randomTitle}
+                  </Text>
 
-              <Text color="rgba(255,255,255,0.7)">{randomSentence}</Text>
+                  <Text color="rgba(255,255,255,0.7)">{randomSentence}</Text>
+                </Box>
+              </Box>
             </Box>
-          </Box>
-        </Box>
+          </UnstyledReactRouterLink>
+        </>
       ))}
     </Box>
   );
