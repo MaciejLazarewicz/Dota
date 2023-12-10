@@ -100,9 +100,6 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
         position="relative"
         backgroundImage="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//backgrounds/greyfade.jpg"
       >
-        <Box width="100%" position="absolute" zIndex="999">
-          <Header />
-        </Box>
         <Box
           width="75%"
           height="100%"

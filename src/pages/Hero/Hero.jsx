@@ -10,6 +10,7 @@ import HeroSkillsDetails from './Components/HeroSkillsDetails';
 import FooterSection from '../HomePage/Sections/FooterSection';
 import HeroBottomBar from './Components/HeroBottomBar';
 import { useBreakpoint } from '../../components/constants/BreakPoints';
+import Header from '../../components/Header';
 
 function Hero() {
   const [heroes, setHeroes] = useState([]);
@@ -23,6 +24,7 @@ function Hero() {
   const [prevIndexAttr, setPrevIndexAttr] = useState(null);
   const [nextIndexAttackType, setNextIndexAttackType] = useState(null);
   const [prevIndexAttackType, setPrevIndexAttackType] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const bottomImagesUrl =
     'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/crops/';
@@ -110,74 +112,82 @@ function Hero() {
         .filter((hero) => (name ? hero.localized_name === name : true))
         .map((hero) => (
           <Box key={hero.id} name={hero.localized_name}>
-            <HeroUpperSection
-              id={hero.id}
-              name={hero.localized_name}
-              prim={hero.primary_attr}
-              attackType={hero.attack_type}
-              nextHero={handleNextHero}
-              previousHero={handlePrevHero}
-            />
-            <HeroBar
-              id={hero.id}
-              name={hero.localized_name}
-              img={`${PUBLIC_DOMAIN}${hero.img}`}
-              alt={hero.localized_name}
-              prim={hero.primary_attr}
-              attackType={hero.attack_type}
-              baseHP={hero.base_health}
-              baseHPRegen={hero.base_health_regen}
-              baseMP={hero.base_mana}
-              baseMPRegen={hero.base_mana_regen}
-              baseArmor={hero.base_armor}
-              baseAttackMin={hero.base_attack_min}
-              baseAttackMax={hero.base_attack_max}
-              baseStrength={hero.base_str}
-              baseAgility={hero.base_agi}
-              baseIntelligence={hero.base_int}
-              strengthGain={hero.str_gain}
-              agilityGain={hero.agi_gain}
-              intelligenceGain={hero.int_gain}
-              attackRange={hero.attack_range}
-              roles={hero.roles}
-              attackRate={hero.attack_rate}
-              baseMR={hero.base_mr}
-              moveSpeed={hero.move_speed}
-              attackPoint={hero.attack_point}
-              dayVision={hero.day_vision}
-              nightVision={hero.night_vision}
-            />
+            <Box width="100%" position="absolute" zIndex="999">
+              <Header setIsMenuOpen={setIsMenuOpen} />
+            </Box>
+            {!isMenuOpen ? (
+              <>
+                <HeroUpperSection
+                  id={hero.id}
+                  name={hero.localized_name}
+                  prim={hero.primary_attr}
+                  attackType={hero.attack_type}
+                  nextHero={handleNextHero}
+                  previousHero={handlePrevHero}
+                />
 
-            {isBreakPoint1200 ? null : (
-              <Skills
-                heroId={hero.id}
-                name={hero.localized_name}
-                onImageClick={handleImageClick}
-              />
-            )}
+                <HeroBar
+                  id={hero.id}
+                  name={hero.localized_name}
+                  img={`${PUBLIC_DOMAIN}${hero.img}`}
+                  alt={hero.localized_name}
+                  prim={hero.primary_attr}
+                  attackType={hero.attack_type}
+                  baseHP={hero.base_health}
+                  baseHPRegen={hero.base_health_regen}
+                  baseMP={hero.base_mana}
+                  baseMPRegen={hero.base_mana_regen}
+                  baseArmor={hero.base_armor}
+                  baseAttackMin={hero.base_attack_min}
+                  baseAttackMax={hero.base_attack_max}
+                  baseStrength={hero.base_str}
+                  baseAgility={hero.base_agi}
+                  baseIntelligence={hero.base_int}
+                  strengthGain={hero.str_gain}
+                  agilityGain={hero.agi_gain}
+                  intelligenceGain={hero.int_gain}
+                  attackRange={hero.attack_range}
+                  roles={hero.roles}
+                  attackRate={hero.attack_rate}
+                  baseMR={hero.base_mr}
+                  moveSpeed={hero.move_speed}
+                  attackPoint={hero.attack_point}
+                  dayVision={hero.day_vision}
+                  nightVision={hero.night_vision}
+                />
 
-            <HeroSkillsDetails
-              heroId={hero.id}
-              refs={skillRefs}
-              name={name}
-              selectedSkill={selectedSkill}
-            />
-            <HeroBottomBar
-              heroId={hero.id}
-              prim={hero.primary_attr}
-              name={name}
-              nextHeroName={nextHeroName}
-              previousHeroName={prevHeroName}
-              nextHeroImg={nextHeroImage}
-              prevHeroImg={prevHeroImage}
-              nextHero={handleNextHero}
-              previousHero={handlePrevHero}
-              nextIndexAttr={nextIndexAttr}
-              prevIndexAttr={prevIndexAttr}
-              nextIndexAttackType={nextIndexAttackType}
-              prevIndexAttackType={prevIndexAttackType}
-            />
-            <FooterSection />
+                {isBreakPoint1200 ? null : (
+                  <Skills
+                    heroId={hero.id}
+                    name={hero.localized_name}
+                    onImageClick={handleImageClick}
+                  />
+                )}
+
+                <HeroSkillsDetails
+                  heroId={hero.id}
+                  refs={skillRefs}
+                  name={name}
+                  selectedSkill={selectedSkill}
+                />
+                <HeroBottomBar
+                  heroId={hero.id}
+                  prim={hero.primary_attr}
+                  name={name}
+                  nextHeroName={nextHeroName}
+                  previousHeroName={prevHeroName}
+                  nextHeroImg={nextHeroImage}
+                  prevHeroImg={prevHeroImage}
+                  nextHero={handleNextHero}
+                  previousHero={handlePrevHero}
+                  nextIndexAttr={nextIndexAttr}
+                  prevIndexAttr={prevIndexAttr}
+                  nextIndexAttackType={nextIndexAttackType}
+                  prevIndexAttackType={prevIndexAttackType}
+                />
+                <FooterSection />
+              </>
+            ) : null}
           </Box>
         ))}
     </Box>

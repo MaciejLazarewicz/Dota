@@ -23,6 +23,7 @@ function Heroes() {
   const [selectedAttribute, setSelectedAttribute] = useState('');
   const [selectedComplexity, setSelectedComplexity] = useState(null);
   const [selectedIds, setSelectedIds] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleComplexityClick = (complexityId) => {
     setSelectedComplexity((prevComplexity) =>
@@ -142,171 +143,177 @@ function Heroes() {
           alignItems="center"
           width="100%"
         >
-          <Header />
-
-          <Box
-            display="flex"
-            flexDir="column"
-            width="100%"
-            alignItems="center"
-            textAlign="center"
-          >
-            <Text
-              fontFamily={fontFamily}
-              marginBottom="5px"
-              style={styles.darkFontBreakpoints}
-            >
-              Choose your hero
-            </Text>
-            <Text width="60%" style={styles.descriptionFontBreakpoints}>
-              From magical tacticians to fierce brutes and cunning rogues, Dota
-              2's hero pool is massive and limitlessly diverse. Unleash
-              incredible abilities and devastating ultimates on your way to
-              victory.
-            </Text>
-
+          <Header setIsMenuOpen={setIsMenuOpen} />
+          {!isMenuOpen ? (
             <Box
-              width={isBreakPoint450 ? '90%' : '70%'}
               display="flex"
-              flexDir={isBreakPoint1000 ? 'column' : 'row'}
+              flexDir="column"
+              width="100%"
               alignItems="center"
-              justifyContent="space-between"
-              border="1px solid rgba(17,17,17,.564)"
-              background="linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3))"
-              textTransform="uppercase"
-              borderRadius="10px"
+              textAlign="center"
             >
-              <Box display="flex" flexDir="column">
-                {(!isBreakPoint1300 || isBreakPoint1000) && (
-                  <Text
-                    color="#fff"
-                    width="180px"
+              <Text
+                fontFamily={fontFamily}
+                marginBottom="5px"
+                style={styles.darkFontBreakpoints}
+              >
+                Choose your hero
+              </Text>
+              <Text width="60%" style={styles.descriptionFontBreakpoints}>
+                From magical tacticians to fierce brutes and cunning rogues,
+                Dota 2's hero pool is massive and limitlessly diverse. Unleash
+                incredible abilities and devastating ultimates on your way to
+                victory.
+              </Text>
+
+              <Box
+                width={isBreakPoint450 ? '90%' : '70%'}
+                display="flex"
+                flexDir={isBreakPoint1000 ? 'column' : 'row'}
+                alignItems="center"
+                justifyContent="space-between"
+                border="1px solid rgba(17,17,17,.564)"
+                background="linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3))"
+                textTransform="uppercase"
+                borderRadius="10px"
+              >
+                <Box display="flex" flexDir="column">
+                  {(!isBreakPoint1300 || isBreakPoint1000) && (
+                    <Text
+                      color="#fff"
+                      width="180px"
+                      letterSpacing="2px"
+                      fontSize="18px"
+                      marginX="10px"
+                    >
+                      Filter heroes
+                    </Text>
+                  )}
+                </Box>
+                <Box {...attrAndComplexityFont}>
+                  <Text marginRight="10px"> Attribute</Text>
+                  <Box
+                    display="flex"
+                    flexDir="row"
                     letterSpacing="2px"
-                    fontSize="18px"
-                    marginX="10px"
+                    alignItems="center"
+                    gap="5px"
                   >
-                    Filter heroes
-                  </Text>
-                )}
-              </Box>
-              <Box {...attrAndComplexityFont}>
-                <Text marginRight="10px"> Attribute</Text>
+                    <Image
+                      {...filterImagesStyles('str')}
+                      src={`${attributeImageUrl}str-active.png`}
+                      onClick={() => handleAttributeClick('str')}
+                    />
+                    <Image
+                      {...filterImagesStyles('agi')}
+                      src={`${attributeImageUrl}agi-active.png`}
+                      onClick={() => handleAttributeClick('agi')}
+                    />
+                    <Image
+                      {...filterImagesStyles('int')}
+                      src={`${attributeImageUrl}int-active.png`}
+                      onClick={() => handleAttributeClick('int')}
+                    />
+                    <Image
+                      {...filterImagesStyles('all')}
+                      src={`${attributeImageUrl}uni-active.png`}
+                      onClick={() => handleAttributeClick('all')}
+                    />
+                  </Box>
+                </Box>
+                <Box {...attrAndComplexityFont}>
+                  <Text marginRight="10px">Complexity</Text>
+                  {[1, 2, 3].map((id) => (
+                    <Image
+                      key={id}
+                      {...filterImagesStyles('complexity', id)}
+                      src={complexityImageUrl}
+                      onClick={() => handleComplexityClick(id)}
+                    />
+                  ))}
+                </Box>
                 <Box
                   display="flex"
                   flexDir="row"
-                  letterSpacing="2px"
                   alignItems="center"
-                  gap="5px"
+                  width={isBreakPoint1000 ? '60%' : '15%'}
+                  height="45px"
+                  backgroundColor="#25282A"
+                  marginX="10px"
+                  marginBottom={isBreakPoint1000 ? '10px' : 'inherit'}
                 >
-                  <Image
-                    {...filterImagesStyles('str')}
-                    src={`${attributeImageUrl}str-active.png`}
-                    onClick={() => handleAttributeClick('str')}
-                  />
-                  <Image
-                    {...filterImagesStyles('agi')}
-                    src={`${attributeImageUrl}agi-active.png`}
-                    onClick={() => handleAttributeClick('agi')}
-                  />
-                  <Image
-                    {...filterImagesStyles('int')}
-                    src={`${attributeImageUrl}int-active.png`}
-                    onClick={() => handleAttributeClick('int')}
-                  />
-                  <Image
-                    {...filterImagesStyles('all')}
-                    src={`${attributeImageUrl}uni-active.png`}
-                    onClick={() => handleAttributeClick('all')}
-                  />
+                  <Box
+                    display="flex"
+                    flexDir="row"
+                    alignItems="center"
+                    gap="5px"
+                  >
+                    <SearchIcon
+                      color="#505050"
+                      paddingLeft="10px"
+                      boxSize="30px"
+                    />
+                    <Input
+                      color="#fff"
+                      width="190px"
+                      height="30px"
+                      fontSize="20px"
+                      background="inherit"
+                      variant="unstyled"
+                      border="none"
+                      outline="none"
+                      _focus={{
+                        backgroundColor: '#505050',
+                      }}
+                      onChange={handleSearchTextChange}
+                    />
+                  </Box>
                 </Box>
               </Box>
-              <Box {...attrAndComplexityFont}>
-                <Text marginRight="10px">Complexity</Text>
-                {[1, 2, 3].map((id) => (
-                  <Image
-                    key={id}
-                    {...filterImagesStyles('complexity', id)}
-                    src={complexityImageUrl}
-                    onClick={() => handleComplexityClick(id)}
-                  />
-                ))}
-              </Box>
-              <Box
-                display="flex"
-                flexDir="row"
-                alignItems="center"
-                width={isBreakPoint1000 ? '60%' : '15%'}
-                height="45px"
-                backgroundColor="#25282A"
-                marginX="10px"
-                marginBottom={isBreakPoint1000 ? '10px' : 'inherit'}
-              >
-                <Box display="flex" flexDir="row" alignItems="center" gap="5px">
-                  <SearchIcon
-                    color="#505050"
-                    paddingLeft="10px"
-                    boxSize="30px"
-                  />
-                  <Input
-                    color="#fff"
-                    width="190px"
-                    height="30px"
-                    fontSize="20px"
-                    background="inherit"
-                    variant="unstyled"
-                    border="none"
-                    outline="none"
-                    _focus={{
-                      backgroundColor: '#505050',
-                    }}
-                    onChange={handleSearchTextChange}
-                  />
-                </Box>
-              </Box>
-            </Box>
 
-            <Box display="flex" width="80%" justifyContent="center">
-              <Box
-                display="grid"
-                justifyItems="center"
-                gridTemplateColumns="repeat(auto-fit, minmax(250px, 1fr))"
-                gap="15px"
-                width={isBreakPoint900 ? '100%' : '90%'}
-                marginTop="20px"
-                marginBottom="50px"
-              >
-                {heroes
-                  .filter(
-                    (hero) =>
-                      (selectedAttribute === '' ||
-                        hero.primary_attr === selectedAttribute) &&
-                      (searchText === '' ||
-                        hero.localized_name
-                          .toLowerCase()
-                          .includes(searchText.toLowerCase())) &&
-                      (selectedIds.length === 0 ||
-                        selectedIds.includes(hero.id))
-                  )
-                  .map((hero) => (
-                    <motion.div
-                      key={hero.id}
-                      layout
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <HeroesGrid
-                        name={hero.localized_name}
-                        img={`${PUBLIC_DOMAIN}${hero.img}`}
-                        alt={hero.localized_name}
-                        prim={hero.primary_attr}
-                      />
-                    </motion.div>
-                  ))}
+              <Box display="flex" width="80%" justifyContent="center">
+                <Box
+                  display="grid"
+                  justifyItems="center"
+                  gridTemplateColumns="repeat(auto-fit, minmax(250px, 1fr))"
+                  gap="15px"
+                  width={isBreakPoint900 ? '100%' : '90%'}
+                  marginTop="20px"
+                  marginBottom="50px"
+                >
+                  {heroes
+                    .filter(
+                      (hero) =>
+                        (selectedAttribute === '' ||
+                          hero.primary_attr === selectedAttribute) &&
+                        (searchText === '' ||
+                          hero.localized_name
+                            .toLowerCase()
+                            .includes(searchText.toLowerCase())) &&
+                        (selectedIds.length === 0 ||
+                          selectedIds.includes(hero.id))
+                    )
+                    .map((hero) => (
+                      <motion.div
+                        key={hero.id}
+                        layout
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <HeroesGrid
+                          name={hero.localized_name}
+                          img={`${PUBLIC_DOMAIN}${hero.img}`}
+                          alt={hero.localized_name}
+                          prim={hero.primary_attr}
+                        />
+                      </motion.div>
+                    ))}
+                </Box>
               </Box>
             </Box>
-          </Box>
+          ) : null}
 
           {noResults && (
             <Box

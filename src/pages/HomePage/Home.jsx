@@ -27,6 +27,7 @@ function Home() {
 
   const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const mainContainerStyle = {
     position: 'relative',
@@ -49,7 +50,7 @@ function Home() {
   };
 
   const smallScreenTextStyle = {
-    fontSize: '30px',
+    fontSize: '25px',
     marginLeft: '30px',
     marginTop: '50px',
   };
@@ -132,8 +133,6 @@ function Home() {
 
     fetchData();
   }, []);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <Box style={mainContainerStyle}>
