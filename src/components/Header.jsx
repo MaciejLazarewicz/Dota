@@ -21,6 +21,7 @@ const FONT_DATA = {
   color: ' #f5f4f5d1',
   fontSize: ' 25px',
   cursor: 'pointer',
+  textTransform: 'uppercase',
 };
 
 function Header({ setIsMenuOpen }) {
@@ -36,6 +37,19 @@ function Header({ setIsMenuOpen }) {
       setIsHamburgerClicked(!isHamburgerClicked);
       setIsMenuOpen((prev) => !prev);
     }
+  };
+
+  const menuConstants = {
+    backgroundColor: 'rgba(244,244,244,.2)',
+    backdropFilter: 'blur(10px)',
+    borderColor: 'rgba(255,255,255,.6)',
+    transitionDuration: '.2s',
+  };
+
+  const menuItemConstants = {
+    fontSize: '60%',
+    borderTop: ['none', '2px solid'],
+    borderBottom: ['none', '2px solid'],
   };
 
   return (
@@ -82,17 +96,13 @@ function Header({ setIsMenuOpen }) {
                 rightIcon={<ChevronDownIcon />}
                 cursor="pointer"
                 background="transparent"
-                fontSize="inherit"
                 onMouseEnter={() => setMenuHovered(true)}
                 onMouseLeave={() => setMenuHovered(false)}
-                marginBottom="0"
                 _hover={{
                   borderTopLeftRadius: '5px',
                   borderTopRightRadius: '5px',
-                  backgroundColor: 'rgba(244,244,244,.2)',
-                  backdropFilter: 'blur(10px)',
-                  border: '2px solid rgba(255,255,255,.6)',
-                  transitionDuration: '.2s',
+                  border: '2px solid',
+                  ...menuConstants,
                 }}
                 {...FONT_DATA}
               >
@@ -106,21 +116,33 @@ function Header({ setIsMenuOpen }) {
               >
                 <MenuItem
                   marginTop="-10px"
-                  backgroundColor="rgba(244,244,244,.2)"
-                  backdropFilter="blur(10px)"
-                  border="2px solid rgba(255,255,255,.6)"
-                  transitionDuration=".2s"
+                  style={menuConstants}
+                  borderTop={menuItemConstants.borderTop[1]}
+                  borderBottom={menuItemConstants.borderBottom[0]}
+                  fontSize={menuItemConstants.fontSize}
                 >
                   <UnstyledReactRouterLink to="https://www.dota2.com/patches/7.34e">
-                    Patches
+                    <Text marginTop="10px" marginBottom="0">
+                      Patches
+                    </Text>
                   </UnstyledReactRouterLink>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem
+                  style={menuConstants}
+                  borderTop={menuItemConstants.borderTop[0]}
+                  borderBottom={menuItemConstants.borderBottom[0]}
+                  fontSize={menuItemConstants.fontSize}
+                >
                   <UnstyledReactRouterLink to="https://www.dota2.com/news/updates">
                     Gameplay updates
                   </UnstyledReactRouterLink>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem
+                  style={menuConstants}
+                  borderTop={menuItemConstants.borderTop[0]}
+                  borderBottom={menuItemConstants.borderBottom[1]}
+                  fontSize={menuItemConstants.fontSize}
+                >
                   <UnstyledReactRouterLink to="https://www.dota2.com/pastupdates">
                     Previous updates
                   </UnstyledReactRouterLink>
