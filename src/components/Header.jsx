@@ -69,16 +69,23 @@ function Header({ setIsMenuOpen }) {
         </UnstyledReactRouterLink>
         {breakPoint700 ? null : (
           <Box display="flex" fontSize="25px" gap="40px" alignItems="center">
-            <Menu isOpen={isMenuHovered} onClose={() => setMenuHovered(false)}>
+            <Menu
+              isOpen={isMenuHovered}
+              onClose={() => setMenuHovered(false)}
+              onMouseLeave={() => setMenuHovered(false)}
+            >
               <MenuButton
                 width="110px"
+                height="50px"
                 border="2px solid transparent"
                 as={Button}
                 rightIcon={<ChevronDownIcon />}
                 cursor="pointer"
-                onMouseEnter={() => setMenuHovered(true)}
                 background="transparent"
                 fontSize="inherit"
+                onMouseEnter={() => setMenuHovered(true)}
+                onMouseLeave={() => setMenuHovered(false)}
+                marginBottom="0"
                 _hover={{
                   borderTopLeftRadius: '5px',
                   borderTopRightRadius: '5px',
@@ -93,11 +100,17 @@ function Header({ setIsMenuOpen }) {
               </MenuButton>
 
               <MenuList
+                className="inner-menu"
                 onMouseEnter={() => setMenuHovered(true)}
                 onMouseLeave={() => setMenuHovered(false)}
-                {...FONT_DATA}
               >
-                <MenuItem>
+                <MenuItem
+                  marginTop="-10px"
+                  backgroundColor="rgba(244,244,244,.2)"
+                  backdropFilter="blur(10px)"
+                  border="2px solid rgba(255,255,255,.6)"
+                  transitionDuration=".2s"
+                >
                   <UnstyledReactRouterLink to="https://www.dota2.com/patches/7.34e">
                     Patches
                   </UnstyledReactRouterLink>
