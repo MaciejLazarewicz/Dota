@@ -1,8 +1,2 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a replica of an existing DOTA 2 website. Not all elements could be included due to the lack of access to API data. The copy contains basic information and detailed data for some heroes - 10 heroes forward and 5 heroes backward. The limitation on heroes is a result of the need to manually include all detailed data due to the lack of API access, as mentioned earlier. The News and Esports subpages redirect to the existing original page for the same reasons mentioned above.
