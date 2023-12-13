@@ -16,6 +16,7 @@ import JoinBattleSection from './Sections/JoinBattleSection';
 import FooterSection from './Sections/FooterSection';
 import HeroHomePageGrid from '../../components/HeroHomePageGrid';
 import { evenRowStyle, oddRowStyle } from '../../components/HeroHomePageGrid';
+import Gradient from '../../components/Gradient';
 
 export const PUBLIC_DOMAIN = 'https://cdn.cloudflare.steamstatic.com/';
 
@@ -200,6 +201,9 @@ function Home() {
         {!isMenuOpen ? (
           <>
             {isBreakPoint700 ? null : <NewsSection />}
+            {isBreakPoint700 ? (
+              <Box width="100%" height="15px" backgroundColor="#000" />
+            ) : null}
 
             <BattleSection />
 
