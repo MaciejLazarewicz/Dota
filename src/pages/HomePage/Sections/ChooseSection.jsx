@@ -10,6 +10,7 @@ import UnstyledReactRouterLink from '../../../components/UnstyledReactRouterLink
 
 function ChooseSection() {
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
 
   const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
 
@@ -70,7 +71,7 @@ function ChooseSection() {
         position="absolute"
         top={isBreakPoint900 ? '55%' : '75%'}
         width="100%"
-        marginTop={isBreakPoint350 ? '35px' : '-20px'}
+        marginTop={isBreakPoint600 ? '-140px' : ''}
       >
         <UnstyledReactRouterLink to="/Heroes">
           <CommonButton>
