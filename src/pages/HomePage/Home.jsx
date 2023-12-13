@@ -204,6 +204,7 @@ function Home() {
             <BattleSection />
 
             <ChooseSection />
+
             <Box
               display="flex"
               justifyContent="center"
@@ -223,6 +224,7 @@ function Home() {
                 background="linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
                 zIndex="3"
               />
+
               <Box
                 position="absolute"
                 top="0"
@@ -232,6 +234,7 @@ function Home() {
                 background="linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 60%)"
                 zIndex="3"
               />
+
               <Box
                 display="grid"
                 height="70%"
@@ -243,6 +246,7 @@ function Home() {
                 background="rgb(0,0,0)"
                 position="relative"
                 zIndex="2"
+                marginTop={isBreakPoint900 ? '100px' : ''}
               >
                 {heroes.map((hero, index) => (
                   <HeroHomePageGrid
