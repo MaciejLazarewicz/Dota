@@ -61,6 +61,7 @@ function HeroBar({
 
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
+  const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
   const [isBreakPoint350] = useBreakpoint('isBreakPoint350');
 
   const characterDataFont = {
@@ -305,6 +306,7 @@ function HeroBar({
           <Box
             width={isBreakPoint900 ? '100%' : '30%'}
             display="grid"
+            justifyItems="center"
             gridTemplateColumns="repeat(3,1fr)"
           >
             <Box>
@@ -332,33 +334,38 @@ function HeroBar({
                   {baseAttackMin} - {baseAttackMax}
                 </Text>
               </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                gap="15px"
-                marginTop="-15px"
-              >
-                <Image
-                  height="24px"
-                  width="24px"
-                  src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_attack_time.png"
-                />
-                <Text color="#fff">{attackRate}</Text>
-              </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                gap="15px"
-                marginTop="-15px"
-              >
-                <Image
-                  height="24px"
-                  width="24px"
-                  src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_attack_range.png"
-                />
-                <Text color="#fff">{attackRange}</Text>
-              </Box>
+              {isBreakPoint600 ? null : (
+                <>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="15px"
+                    marginTop="-15px"
+                  >
+                    <Image
+                      height="24px"
+                      width="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_attack_time.png"
+                    />
+                    <Text color="#fff">{attackRate}</Text>
+                  </Box>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="15px"
+                    marginTop="-15px"
+                  >
+                    <Image
+                      height="24px"
+                      width="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_attack_range.png"
+                    />
+                    <Text color="#fff">{attackRange}</Text>
+                  </Box>
+                </>
+              )}
             </Box>
+
             <Box>
               <Text
                 color="#969696"
@@ -382,19 +389,23 @@ function HeroBar({
                 />
                 <Text color="#fff">{baseArmor}</Text>
               </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                gap="15px"
-                marginTop="-15px"
-              >
-                <Image
-                  height="24px"
-                  width="24px"
-                  src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_magic_resist.png"
-                />
-                <Text color="#fff">{baseMR} %</Text>
-              </Box>
+              {isBreakPoint600 ? null : (
+                <>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="15px"
+                    marginTop="-15px"
+                  >
+                    <Image
+                      height="24px"
+                      width="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_magic_resist.png"
+                    />
+                    <Text color="#fff">{baseMR} %</Text>
+                  </Box>
+                </>
+              )}
             </Box>
             <Box>
               <Text
@@ -419,34 +430,38 @@ function HeroBar({
                 />
                 <Text color="#fff">{moveSpeed}</Text>
               </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                gap="15px"
-                marginTop="-15px"
-              >
-                <Image
-                  height="24px"
-                  width="24px"
-                  src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_turn_rate.png"
-                />
-                <Text color="#fff">{attackPoint}</Text>
-              </Box>
-              <Box
-                display="flex"
-                alignItems="center"
-                gap="15px"
-                marginTop="-15px"
-              >
-                <Image
-                  height="24px"
-                  width="24px"
-                  src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_vision.png"
-                />
-                <Text color="#fff">
-                  {dayVision}/{nightVision}
-                </Text>
-              </Box>
+              {isBreakPoint600 ? null : (
+                <>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="15px"
+                    marginTop="-15px"
+                  >
+                    <Image
+                      height="24px"
+                      width="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_turn_rate.png"
+                    />
+                    <Text color="#fff">{attackPoint}</Text>
+                  </Box>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap="15px"
+                    marginTop="-15px"
+                  >
+                    <Image
+                      height="24px"
+                      width="24px"
+                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_vision.png"
+                    />
+                    <Text color="#fff">
+                      {dayVision}/{nightVision}
+                    </Text>
+                  </Box>
+                </>
+              )}
             </Box>
           </Box>
         </Box>

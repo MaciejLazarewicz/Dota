@@ -329,15 +329,17 @@ function Heroes() {
           )}
         </Box>
       </Box>
-      <Box
-        position="absolute"
-        background="rgb(0,0,0)"
-        width="100%"
-        height="100px"
-        paddingTop="100px"
-      >
-        <FooterSection />
-      </Box>
+      {!isMenuOpen ? (
+        <Box
+          position="absolute"
+          background="rgb(0,0,0)"
+          width="100%"
+          height="100px"
+          paddingTop="100px"
+        >
+          <FooterSection />
+        </Box>
+      ) : null}
     </Box>
   );
 }
