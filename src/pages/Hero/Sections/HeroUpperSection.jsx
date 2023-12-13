@@ -136,6 +136,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
               autoPlay
               loop
               muted
+              playsInline
               src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName}.webm`}
             />
           </motion.div>

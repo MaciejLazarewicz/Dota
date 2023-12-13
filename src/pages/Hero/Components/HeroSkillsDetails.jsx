@@ -123,6 +123,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
               <video
                 key={index}
                 autoPlay
+                playsInline
                 muted
                 loop
                 width="100%"
@@ -230,6 +231,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
                 autoPlay
                 loop
                 muted
+                playsInline
                 width="700px"
                 height="400px"
                 src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${formattedName(
