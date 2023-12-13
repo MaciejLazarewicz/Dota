@@ -71,7 +71,7 @@ function ChooseSection() {
         position="absolute"
         top={isBreakPoint900 ? '55%' : '75%'}
         width="100%"
-        marginTop={isBreakPoint600 ? '-140px' : ''}
+        marginTop={isBreakPoint600 ? '-70px' : ''}
       >
         <UnstyledReactRouterLink to="/Heroes">
           <CommonButton>
