@@ -249,6 +249,4 @@ function HeroBottomBar({
   );
 }
 
-// TU JEST PASEK NA DOLE
-
 export default HeroBottomBar;

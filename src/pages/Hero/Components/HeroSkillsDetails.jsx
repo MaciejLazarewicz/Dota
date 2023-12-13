@@ -27,7 +27,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
     fifthSkill: { fifthFirstValue, fifthSecondValue, fifthThirdValue },
     sixthSkill: { sixthFirstValue, sixthSecondValue, sixthThirdValue },
     ninthSkill: { ninthSecondValue },
-    tenthSkill,
+
     eleventhSkill,
     videoUrl,
     imagePath,
@@ -76,6 +76,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
 
   const [isBreakPoint900] = useBreakpoint('isBreakPoint900');
   const [isBreakPoint600] = useBreakpoint('isBreakPoint600');
+  const [isBreakPoint400] = useBreakpoint('isBreakPoint400');
 
   return (
     <Box
@@ -166,6 +167,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
             ))}
           </Box>
         </Box>
+
         <Box
           width={isBreakPoint900 ? '100%' : '40%'}
           display="flex"
@@ -179,7 +181,7 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
             bgColor="rgba(0,0,0,0.6)"
             alignItems={isBreakPoint600 ? 'center ' : ''}
           >
-            <Box margin=" 25px 5px 25px 25px">
+            <Box margin=" 25px 5px 0 25px">
               <Image
                 boxShadow="0px 0px 8px #888"
                 width="96px"
@@ -203,20 +205,22 @@ function HeroSkillsDetails({ name, heroId, refs, selectedSkill }) {
                 fontWeight="bold"
                 marginBottom="5px"
                 maxWidth="80%"
+                textAlign="center"
               >
                 {selectedText.replace('_', ' ')}
               </Text>
-
-              <Text
-                color="#959595"
-                fontSize={isBreakPoint600 ? '14px' : '18px'}
-                whiteSpace="pre-wrap"
-                marginBottom="10px"
-                marginTop="5px"
-                maxWidth="80%"
-              >
-                {selectedDescription}
-              </Text>
+              {isBreakPoint400 ? null : (
+                <Text
+                  color="#959595"
+                  fontSize={isBreakPoint600 ? '14px' : '18px'}
+                  whiteSpace="pre-wrap"
+                  marginBottom="10px"
+                  marginTop="5px"
+                  maxWidth="80%"
+                >
+                  {selectedDescription}
+                </Text>
+              )}
             </Box>
           </Box>
 

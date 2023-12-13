@@ -3,6 +3,7 @@ import { useMediaQuery } from '@chakra-ui/react';
 export const breakpoints = {
   isBreakPoint300: '(max-width: 300px)',
   isBreakPoint350: '(max-width: 350px)',
+  isBreakPoint400: '(max-width: 400px)',
   isBreakPoint450: '(max-width: 450px)',
   isBreakPoint550: '(max-width: 550px)',
   isBreakPoint600: '(max-width: 600px)',

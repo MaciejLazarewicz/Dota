@@ -9,7 +9,6 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
-import Header from '../../../components/Header';
 
 import { fontFamily } from '../../../components/constants/FontFamily';
 import { complexityIds } from '../../Heroes/Components/HeroesComplexity';
@@ -80,6 +79,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
 
   const [isBreakPoint1200] = useBreakpoint('isBreakPoint1200');
   const [isBreakPoint700] = useBreakpoint('isBreakPoint700');
+  const [isBreakPoint400] = useBreakpoint('isBreakPoint400');
   const [isBreakPoint450] = useBreakpoint('isBreakPoint450');
 
   return (
@@ -229,6 +229,7 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                 </Box>
               </>
             )}
+
             {showAdditionalContent && (
               <Box
                 display="flex"
@@ -237,51 +238,55 @@ function HeroSections({ name, prim, id, attackType, nextHero, previousHero }) {
                 }
                 gap={isBreakPoint1200 ? '50px' : '5px'}
               >
-                <Box display="flex" flexDir="column">
-                  <Text marginBottom="5px" color="#959595">
-                    Attack Type
-                  </Text>
-                  <Box
-                    display="flex"
-                    flexDir="row"
-                    alignItems="center"
-                    gap="15px"
-                  >
-                    <Image
-                      width="24px"
-                      height="24px"
-                      src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg"
-                    />
-                    <Text>{attackType}</Text>
-                  </Box>
-                </Box>
-                <Box>
-                  <Text
-                    marginTop={isBreakPoint450 ? '-25px' : ''}
-                    color="#959595"
-                    marginBottom="20px"
-                  >
-                    Complexity
-                  </Text>
-                  <Box display="flex" flexDir="row" gap="20px">
-                    {[1, 2, 3].map((index) => (
+                {isBreakPoint400 ? null : (
+                  <>
+                    <Box display="flex" flexDir="column">
+                      <Text marginBottom="5px" color="#959595">
+                        Attack Type
+                      </Text>
                       <Box
-                        key={index}
-                        width="15px"
-                        height="15px"
-                        border="1px solid #fff"
-                        transform="rotateZ(45deg)"
-                        backgroundColor={
-                          complexityIds[index].includes(id) ||
-                          complexityIds[index].includes(id - 1) ||
-                          complexityIds[index].includes(id - 2)
-                            ? '#fff'
-                            : 'initial'
-                        }
-                      />
-                    ))}
-                  </Box>
-                </Box>
+                        display="flex"
+                        flexDir="row"
+                        alignItems="center"
+                        gap="15px"
+                      >
+                        <Image
+                          width="24px"
+                          height="24px"
+                          src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/melee.svg"
+                        />
+                        <Text>{attackType}</Text>
+                      </Box>
+                    </Box>
+                    <Box>
+                      <Text
+                        marginTop={isBreakPoint450 ? '-25px' : ''}
+                        color="#959595"
+                        marginBottom="20px"
+                      >
+                        Complexity
+                      </Text>
+                      <Box display="flex" flexDir="row" gap="20px">
+                        {[1, 2, 3].map((index) => (
+                          <Box
+                            key={index}
+                            width="15px"
+                            height="15px"
+                            border="1px solid #fff"
+                            transform="rotateZ(45deg)"
+                            backgroundColor={
+                              complexityIds[index].includes(id) ||
+                              complexityIds[index].includes(id - 1) ||
+                              complexityIds[index].includes(id - 2)
+                                ? '#fff'
+                                : 'initial'
+                            }
+                          />
+                        ))}
+                      </Box>
+                    </Box>
+                  </>
+                )}
               </Box>
             )}
           </Box>
