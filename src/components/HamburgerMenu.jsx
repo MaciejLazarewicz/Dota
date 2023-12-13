@@ -161,7 +161,7 @@ function HamburgerMenu({ handleHamburgerClick }) {
             </Box>
           </Box>
         </Box>
-        <Box marginTop="230px">
+        <Box marginTop="150px">
           <UnstyledReactRouterLink to="https://steamcommunity.com/oauth/loginform/?goto=%2Foauth%2Flogin%3Fclient_id%3D9B2C1229%26response_type%3Dtoken%26state%3Dheroes">
             <Text
               marginLeft="15px"
