@@ -1,7 +1,7 @@
 import { Box, Image, Text } from '@chakra-ui/react';
 
-import { Link } from 'react-router-dom';
 import { useBreakpoint } from '../../../components/constants/BreakPoints';
+import UnstyledReactRouterLink from '../../../components/UnstyledReactRouterLink';
 
 function HeroBottomBar({
   heroId,
@@ -159,7 +159,7 @@ function HeroBottomBar({
           </Box>
         )}
 
-        <Link to="/Heroes">
+        <UnstyledReactRouterLink to="/Heroes">
           <Box
             width={isBreakPoint1200 ? '100%' : ''}
             display="flex"
@@ -206,7 +206,7 @@ function HeroBottomBar({
               </Text>
             </Box>
           </Box>
-        </Link>
+        </UnstyledReactRouterLink>
 
         {isBreakPoint1200 ? (
           <Box width="45%" backgroundColor="rgba(0,0,0,0.85)" />

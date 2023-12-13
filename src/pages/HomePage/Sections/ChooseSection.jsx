@@ -37,7 +37,7 @@ function ChooseSection() {
         alignItems="center"
         width="100%"
         position="absolute"
-        top={isBreakPoint900 ? '25%' : '30%'}
+        top={isBreakPoint900 ? '15%' : '30%'}
       >
         <BottomAnimation>
           <Box display="flex" flexDir="column" alignItems="center" width="100%">
@@ -70,7 +70,7 @@ function ChooseSection() {
         position="absolute"
         top={isBreakPoint900 ? '55%' : '75%'}
         width="100%"
-        marginTop={isBreakPoint350 ? '35px' : '5px'}
+        marginTop={isBreakPoint350 ? '35px' : '-20px'}
       >
         <UnstyledReactRouterLink to="/Heroes">
           <CommonButton>
