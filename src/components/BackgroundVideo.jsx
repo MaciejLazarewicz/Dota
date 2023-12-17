@@ -9,7 +9,6 @@ function BackgroundVideo() {
         muted
         playsInline
         style={{ width: '100%', height: '80%', objectFit: 'cover' }}
-        controls
         preload
       >
         <source
