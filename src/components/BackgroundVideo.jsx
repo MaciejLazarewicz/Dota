@@ -9,6 +9,8 @@ function BackgroundVideo() {
         muted
         playsInline
         style={{ width: '100%', height: '80%', objectFit: 'cover' }}
+        controls
+        preload
       >
         <source
           src="https://cdn.cloudflare.steamstatic.com/apps/dota2/videos/dota_react/homepage/dota_montage_webm.webm"
